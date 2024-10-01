@@ -1,0 +1,81 @@
+include /modules/_logo
+include /modules/ui/_btn-icon
+
+header.header#js-header
+    .container
+        .header__content
+            .header__head
+                +logo()
+                button.header__burger-button.js-burger-open(type="button")
+                    +sprite('burger-closed')
+            .header__menu
+                .header__menu-top
+                    +logo()
+                    button.header__burger-button.js-burger-close(type="button")
+                        +sprite('burger-opened')
+
+                -
+                    const navLinks = [
+                        {
+                            caption: 'О нас',
+                            href: '#',
+                            children: [
+                                {
+                                    caption: 'Новости',
+                                    href: '#'
+                                },
+                                {
+                                    caption: 'Вакансии',
+                                    href: '#'
+                                },
+                            ],
+                        },
+                        {
+                            caption: 'Каталог',
+                            href: '#',
+                        },
+                        {
+                            caption: 'Где купить',
+                            href: '#',
+                        },
+                        {
+                            caption: 'Клиентам',
+                            href: '#',
+                        },
+                        {
+                            caption: 'Контакты',
+                            href: '#',
+                        },
+                    ]
+
+                nav.header__main-nav
+                    ul
+                        each link in navLinks
+                            - const {caption, href, children} = link
+                            li(class={'header__main-nav-dropdown': children && children.length})
+                                a(href= href)= caption
+                                if children && children.length
+                                    ul
+                                        each child in [link, ...children]
+                                            li: a(href= child.href)= child.caption
+
+
+                .header__side-nav
+                    ul
+                        li
+                            a(href="tel:+74993228940")
+                                | +7 (499) 322-89-40
+                                +sprite('logo-arrows')
+                        li
+                            +btn-icon({ href: '#', caption: true })(id="favorites-counter")
+                                +sprite('favorite')
+                                span Избранное
+                        li
+                            +btn-icon({ href: '#', caption: true})(class="js-search-toggle")
+                                +sprite('search')
+                                span Поиск
+                        li
+                            +btn-icon({ icon: 'placeholder', caption: true})
+                                +sprite('placeholder')
+
+

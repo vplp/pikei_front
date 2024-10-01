@@ -1,0 +1,58 @@
+.client-catalog-card {
+  @include hover {
+    .client-catalog-card__title {
+      transform: translateY(0%);
+    }
+  }
+
+  &__image {
+    border-radius: 0.8rem;
+    overflow: hidden;
+
+    img {
+      @include box(100%);
+
+      object-fit: cover;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    border-radius: 0.8rem;
+    overflow: hidden;
+  }
+
+  &__link {
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: '';
+    }
+  }
+
+  &__title {
+    @include text;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1.6rem;
+    color: var(--color-contrast);
+    background-color: var(--color-overlay);
+    transform: translateY(100%);
+    transition: transform $default-tr;
+
+    @include --tablet {
+      transform: none;
+    }
+  }
+
+  &__foot {
+    margin: 0.8rem 0 0;
+    text-align: right;
+  }
+
+  &__file-info {
+    color: var(--color-grey-1);
+  }
+}

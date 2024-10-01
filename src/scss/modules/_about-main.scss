@@ -1,0 +1,50 @@
+.about-main {
+  .app-grid {
+    align-items: center;
+
+    @include --tablet {
+      gap: 3.2rem;
+    }
+  }
+
+  margin: 20rem 0 0;
+
+  @include --tablet {
+    margin: 9.3rem 0 0;
+  }
+
+  p:not(.about-main__lead) {
+    color: var(--color-grey-3);
+  }
+
+  &__description {
+    padding-right: 13.3rem;
+
+    @include --tablet {
+      order: 2;
+      padding-right: 0;
+    }
+  }
+
+  &__lead {
+    @include lead;
+
+    margin: 0 0 5rem;
+    color: var(--text-color);
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+
+    @include --tablet {
+      order: 1;
+
+      img {
+        width: 25.4rem;
+        height: auto;
+      }
+    }
+  }
+
+}

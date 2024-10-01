@@ -1,0 +1,18 @@
+mixin btn(props = {})
+    -
+        const {
+            caption = '',
+            href = '',
+            variant = '',
+            disabled = false,
+            type = 'button',
+            fab = false,
+            small = false,
+        } = props
+
+    if href
+        a.btn(href= href, class={[`_${variant}`]: variant, '_fab': fab, '_sm': small})&attributes(attributes)= caption
+            block
+    else
+        button.btn(type= type, class={[`_${variant}`]: variant, '_fab': fab, '_sm': small} disabled= disabled)&attributes(attributes)= caption
+            block

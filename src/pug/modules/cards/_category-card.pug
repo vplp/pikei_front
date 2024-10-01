@@ -1,0 +1,7 @@
+mixin category-card(props = {})
+    - const {img, title, href} = props
+    article.category-card
+        .category-card__image
+            img(src= img.src, srcset=`${img.src} 1x, ${img.src2x}` alt= img.alt)
+        .category-card__description
+            a(href = href): h3.category-card__title= title

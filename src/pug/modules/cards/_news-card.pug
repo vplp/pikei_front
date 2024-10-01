@@ -1,0 +1,16 @@
+mixin news-card(props = {})
+    -
+        const {
+            image = '',
+            title = '',
+            date = '',
+            isLatest =  false,
+            href = '#',
+        } = props
+
+    article.news-card.hx-swap(class={'_latest': isLatest})
+        a.news-card__link(href= href)
+        .news-card__image
+            img(src= image.src srcset= image.src2x alt= title)
+        h2.news-card__title= title
+        time.news-card__date.js-date(datetime= date)= date

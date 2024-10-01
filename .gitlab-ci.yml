@@ -1,0 +1,44 @@
+# Примечание:
+# директория сервера /var/www со всеми поддоменами примонтирована как /.www в Docker
+image:
+  name: node:lts
+  entrypoint: ['bash', '-c', 'useradd deploy && exec su deploy -c bash']
+
+variables:
+  GITLAB_DOMAIN: paraweb.pw
+  BUILD_FOLDER: build # директория ./build проекта будет использована для артефакта сборки
+  SUBDOMAIN: $CI_COMMIT_REF_NAME-$CI_PROJECT_NAME.$GITLAB_DOMAIN # main-project-name.paraweb.space | dev-project-name.paraweb.space
+  CI_DEBUG_TRACE: "false" # подробный вывод в консоль
+
+# эти директории кэшируются между сборками
+# https://docs.gitlab.com/ee/ci/yaml/index.html#cache
+cache:
+  paths:
+    - node_modules/
+
+build:
+  before_script:
+    - yarn install
+    - yarn build # или например yarn build:mock
+    - yarn build-storybook
+  script:
+    - if [ ! -d "$BUILD_FOLDER" ]; then echo "Файлы сборки в директории $BUILD_FOLDER не найдены"; fi
+    - if [ ! -d "$BUILD_FOLDER" ]; then exit 0; fi
+    - echo "Создание/очистка поддиректории $SUBDOMAIN"
+    - if [ -d "/.www/$SUBDOMAIN" ]; then rm -rf "/.www/$SUBDOMAIN"; fi
+    - if [ ! -d "/.www/$SUBDOMAIN" ]; then mkdir "/.www/$SUBDOMAIN"; fi
+    - echo "Копирование файлов сборки в поддомен"
+    - cp -a -rf "$BUILD_FOLDER/." "/.www/$SUBDOMAIN/"
+    - echo "Файлы сборки скопированы"
+  only:
+    - main
+    - master
+    - dev
+  artifacts:
+    name: $CI_COMMIT_REF_NAME-$CI_PROJECT_NAME
+    when: on_success
+    expire_in: 2 days # архивы сборки хранятся в течении двух дней
+    paths:
+      - build
+    exclude:
+      - build/storybook/**/*

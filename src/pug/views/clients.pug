@@ -1,0 +1,152 @@
+extends /layout/_layout
+
+include /modules/ui/_breadcrumbs
+include /modules/cards/_client-catalog-card
+
+block variables
+    - const title = 'Клиентам'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Клиентам',
+                    attributes: {
+                        href: '#',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+
+    +app-section({
+        title: 'Клиентам',
+        arrows: false,
+        titleHidden: true,
+        hasContainer: false,
+    })
+        -
+            const tabs = [
+                ["Доставка"],
+                ["Сертификаты", 27],
+                ["Каталоги", 3],
+                ["Политика возврата", 9],
+                ["Паспорт изделия", 9],
+                ["Договор-поставки", 13],
+                ["Реквизиты", 1],
+            ]
+
+        .tabs.js-tabs
+            .container
+                .tabs__buttons
+                    each tab, index in tabs
+                        - const [caption, amount] = tab
+                        +tab({
+                            caption,
+                            amount,
+                            isChecked: index === 0,
+                        })
+
+            .tabs__item.fade-transition.js-tab-item
+                +app-section({
+                    title: 'Доставка',
+                    arrows: true,
+                })
+                    +app-grid(3)
+                        .app-grid__span-2.text-content
+                            h3 Самовывоз
+                            p Если сумма заказа больше 150 000 рублей, мы доставим его бесплатно до любой точки в Москве. Мы также доставляем заказы своим автотранспортом до терминалов транспортных компаний:
+                            ul
+                                li Возовоз
+                                li Байкал Сервис
+                                li ПЭК
+                                li Деловые линии
+                                li Мейджик Транс
+                            p!= 'Возможность доставки другими транспортными компаниями <a href="#">обсуждается индивидуально</a>.'
+                            img(src="/i/c/clients/1.jpg")
+                            +btn({
+                                href: '#',
+                                caption: 'Скачать бланк доверенности'
+                            })
+                            h3 Самовывоз
+                            p Если сумма заказа больше 150 000 рублей, мы доставим его бесплатно до любой точки в Москве. Мы также доставляем заказы своим автотранспортом до терминалов транспортных компаний:
+                            ul
+                                li Возовоз
+                                li Байкал Сервис
+                                li ПЭК
+                                li Деловые линии
+                                li Мейджик Транс
+
+            .tabs__item.fade-transition.js-tab-item
+                +app-section({
+                    title: 'Сертификаты',
+                    arrows: true,
+                })
+                    ul.links-list
+                        -
+                            const certificates = [
+                                {
+                                    title: 'Сертификат соответствия. Магистральные кабели КОС-ОКГ, КОС-ОКБ, КОС-ОКС',
+                                    fileInfo: 'PDF, 483 Kb',
+                                    icon: 'download',
+                                    href: '#'
+                                },
+                                {
+                                    title: 'Сертификат соответствия нормам безопасности',
+                                    fileInfo: 'PDF, 483 Kb',
+                                    icon: 'download',
+                                    href: '#'
+                                },
+                                {
+                                    title: 'Сертификат Технического регламента Таможенного союза. Блоки распределения питания NTSS (NTSS-PDU, NTSS-VDE)',
+                                    fileInfo: 'PDF, 483 Kb',
+                                    icon: 'download',
+                                    href: '#'
+                                },
+                                {
+                                    title: 'Сертификат соответствия. Муфты оптические КОСТРОМАКАБЕЛЬ',
+                                    fileInfo: 'PDF, 483 Kb',
+                                    icon: 'download',
+                                    href: '#'
+                                },
+                            ]
+
+                        each item in certificates
+                            li
+                                +list-link({
+                                    datetime: item.datetime,
+                                    date: item.date,
+                                    href: item.href,
+                                    title: item.title,
+                                    fileInfo: item.fileInfo,
+                                    icon: 'link',
+                                })
+
+            .tabs__item.fade-transition.js-tab-item
+                +app-section({
+                    title: 'Каталоги',
+                    arrows: true,
+                })
+                    +app-grid(4)
+                        each _, index in new Array(3)
+                            +client-catalog-card({
+                                image: {
+                                    src: `/i/c/clients/catalog-${index + 1}.jpg`,
+                                },
+                                href: '#',
+                                title: `Каталог Каталог Каталог Каталог Каталог Каталог Каталог Каталог Каталог Каталог ${index + 1}`,
+                                fileInfo: 'PDF, 6.4 Mb',
+                            })
+
+            .tabs__item.fade-transition.js-tab-item
+            .tabs__item.fade-transition.js-tab-item
+            .tabs__item.fade-transition.js-tab-item
+            .tabs__item.fade-transition.js-tab-item

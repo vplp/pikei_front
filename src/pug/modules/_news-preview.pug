@@ -1,0 +1,56 @@
+mixin news-preview()
+    .container
+        .app-section.js-tabs(data-swap-buttons)
+            .app-section__head._align-center
+                +sprite('logo-arrows')
+                button.app-section__title._checked.js-tab-button
+                    | Новости
+                span /
+                button.app-section__subtitle.js-tab-button Вакансии
+            .app-section__content
+                .links-list.fade-transition.js-tab-item
+                    ul
+                        -
+                            const news = [
+                                {
+                                    date: '20 июля 2023',
+                                    datetime: '2023-07-19T21:00:00.000Z',
+                                    title: 'Прошли систему сертификации %certificate_name%, подтверждающую %properties% нашей продукции',
+                                    href: '#'
+                                },
+                                {
+                                    date: '07 июля 2023',
+                                    datetime: '2023-07-06T21:00:00.000Z',
+                                    title: 'Запустили новый завод, теперь сами делаем оптоволоконный кабель',
+                                    href: '#'
+                                },
+                                {
+                                    date: '17 мая 2023',
+                                    datetime: '2023-05-16T21:00:00.000Z',
+                                    title: 'Как подобрать скобы и инструмент для монтажа? Рассказываем в новом видео на нашем канале',
+                                    href: '#'
+                                },
+                            ]
+
+                        each item in news
+                            li
+                                +list-link({
+                                    datetime: item.datetime,
+                                    date: item.date,
+                                    href: item.href,
+                                    title: item.title,
+                                    icon: 'link',
+                                })
+                .links-list.fade-transition.js-tab-item
+                    ul
+                        each item in news
+                            li
+                                +list-link({
+                                    datetime: item.datetime,
+                                    date: item.date,
+                                    href: item.href,
+                                    title: item.title,
+                                    icon: 'link',
+                                })
+
+

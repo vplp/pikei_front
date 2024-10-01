@@ -1,0 +1,16 @@
+.cursor {
+  @include box(6.4rem);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-image: url('/i/sprite/logo-chevron-right.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 6.4rem 6.4rem;
+  visibility: hidden;
+  opacity: 0;
+  mix-blend-mode: hard-light;
+  pointer-events: none;
+}

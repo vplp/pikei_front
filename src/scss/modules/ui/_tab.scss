@@ -1,0 +1,73 @@
+.tab {
+  @include text-sm;
+
+  display: inline-flex;
+  gap: 0.8rem;
+  padding: 1.2rem;
+  border: 1px solid var(--color-grey-6);
+  border-radius: 8px;
+  color: var(--text-color);
+  line-height: 100%;
+  background: var(--element-background);
+  transition: background-color $default-tr, border-color $default-tr, color $default-tr;
+
+  @include --tablet {
+    @include caption;
+
+    padding: 0.8rem;
+  }
+
+  @include hover {
+    border-color: var(--color-grey-1);
+    color: var(--color-grey-1);
+
+    .tab__amount {
+      color: var(--color-grey-2);
+    }
+  }
+
+  &._checked {
+    border: 1px solid var(--color-accent-dark);
+    border-radius: 0.8rem;
+    color: var(--color-contrast);
+    background-color: var(--color-accent);
+
+    @include hover {
+      background-color: var(--color-accent-dark);
+
+      .tab__amount {
+        color: var(--color-contrast);
+      }
+    }
+  }
+
+  &__amount {
+    color: var(--color-grey-3);
+    transition: color $default-tr;
+
+
+    ._checked & {
+      color: var(--color-contrast);
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  @include --tablet {
+    gap: 3.2rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+
+    @include --tablet {
+      gap: 0.8rem;
+    }
+  }
+}

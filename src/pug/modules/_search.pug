@@ -1,0 +1,28 @@
+include /modules/ui/_btn-icon
+
+mixin search()
+    .search.js-search
+        +btn-icon({
+            icon: 'close',
+        })(class="js-button-close")
+        .search__bg.js-bg
+        .search__inner
+            +app-section({
+                title: 'Поиск',
+                arrows: true,
+            })
+                .ui-text-field._search._plain
+                        input.js-search-input(
+                            id="search-1",
+                            name="search",
+                            type="search",
+                            placeholder=" ",
+                            hx-get="/search-response.html",
+                            hx-trigger="keyup changed delay:500ms, search",
+                            hx-target="#search-results-1"
+                            hx-swap="innerHTML"
+                            hx-disinherit
+                        )
+                        label(for="search") Введите запрос
+                        +sprite('search')
+                        .search-results-container#search-results-1

@@ -1,0 +1,22 @@
+.search-results-items {
+  position: relative;
+  margin: 3.2rem 0 0;
+}
+
+.search-results-item {
+  &:not(:first-child) {
+    margin: 6.4rem 0 0;
+  }
+
+  &__title {
+    @include lead;
+
+    + .search-results-item__list {
+      margin: 3.2rem 0 0;
+    }
+  }
+
+  &__amount {
+    color: var(--color-grey-1);
+  }
+}

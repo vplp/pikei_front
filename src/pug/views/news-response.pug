@@ -1,0 +1,24 @@
+include /modules/cards/_news-card
+include /modules/_sprite
+include /modules/ui/_ui-pagination
+include /modules/ui/_btn
+
+#news
+    each _, index in new Array(20)
+        +news-card({
+            title: 'Новые телеги для УЗК с оптимальными размерами',
+            date: '1691787600000',
+            image: {
+                src: `/i/c/news/news-${index + 1}.jpg`,
+                src2x: `/i/c/news/news-${index + 1}@2x.jpg`,
+            },
+            isLatest: index === 0,
+        })
+
+#show-more-btn
+
++ui-pagination({
+    current: 2,
+    get: '/news-response.html',
+    swap: 'multi:#pagination-1:outerHTML,#show-more-btn:outerHTML,#news:innerHTML',
+})

@@ -1,0 +1,46 @@
+// --
+// This file contains all application-wide Sass variables.
+// ==
+
+// regular font family
+$opensansFont: 'Open Sans', 'Arial', sans-serif !default;
+$robotoFont: 'Roboto', 'Arial', sans-serif;
+$mulishFont: 'Mulish', 'Arial', sans-serif;
+$formularFont: 'Formular', 'Arial', sans-serif;
+
+$mainFont: $formularFont;
+
+// breakpoints
+$tablet: 1023px;
+$mobile: 767px;
+
+$from_tablet: #{$tablet + 1px};
+$from_mobile: #{$mobile + 1px};
+
+// container
+$width_container: 147.2rem;
+$width_container_tablet: calc(100% - 8rem);
+$width_container_mobile: calc(100% - 3.2rem);
+
+$margin_container_desktop: 12rem;
+$margin_container_tablet: 6rem;
+
+// gutters
+$width_gutter: 1.6rem;
+
+// z-index
+$base_project_layer: 10;
+
+$layer-page-z-index: $base_project_layer + 1;
+$layer-dropdown-z-index: $base_project_layer + 2;
+$layer-modal-z-index: $base_project_layer + 3;
+$layer-popover-z-index: $base_project_layer + 4;
+$layer-tooltip-z-index: $base_project_layer + 5;
+
+// easings
+
+$easeDefault: cubic-bezier(0.32, 0.94, 0.6, 1);
+
+// transitions
+
+$default-tr: 0.35s $easeDefault;

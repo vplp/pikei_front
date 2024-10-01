@@ -1,0 +1,234 @@
+.contact-form {
+
+  &._favorites {
+    .app-grid {
+      grid-template-rows: repeat(4, auto);
+      column-gap: 9.6rem;
+
+      @include --tablet {
+        grid-template-rows: auto;
+      }
+    }
+  }
+
+  .app-grid {
+    row-gap: 4rem;
+
+    @include --tablet {
+      gap: 3.2rem;
+    }
+  }
+
+  &__favorites {
+    position: relative;
+    grid-row: span 4;
+    grid-column: span 2;
+    order: 1;
+
+    @include --tablet {
+      grid-row: auto;
+      grid-column: auto;
+    }
+  }
+
+  &__description {
+    max-width: 31.7rem;
+    color: var(--color-grey-3);
+
+    ._favorites & {
+      display: none;
+
+      @include --tablet {
+        display: block;
+        order: 2;
+        margin: 3.2rem 0 0;
+      }
+    }
+  }
+
+  &__agreement {
+    @include text-sm;
+
+    ._favorites & {
+      order: 6;
+
+      .text-content {
+        color: var(--color-grey-1);
+      }
+
+      @include --tablet {
+        order: 5;
+      }
+    }
+
+    max-width: 31.7rem;
+    color: var(--color-grey-1);
+
+    @include --tablet {
+      @include text-xs;
+
+      order: 2;
+    }
+  }
+
+  &__inputs {
+    display: grid;
+    grid-column: span 2;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 3rem;
+    column-gap: 5rem;
+
+    .ui-text-field {
+      grid-column: 1 / 2;
+    }
+
+    ._favorites & {
+      grid-column: 3 / 4;
+      grid-template-columns: 1fr;
+      order: 2;
+
+      @include --tablet {
+        grid-column: auto;
+        order: 3;
+      }
+
+      > .ui-text-field {
+        &:first-child {
+          display: none;
+        }
+      }
+    }
+
+    @include --tablet {
+      grid-column: auto;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__textarea {
+    display: flex;
+    flex-direction: column;
+    grid-row: 1 / 5;
+    grid-column: 2;
+
+    @include --tablet {
+      grid-row: auto;
+      grid-column: auto;
+    }
+
+    ._favorites & {
+      grid-row: auto;
+      grid-column: auto;
+    }
+
+    .ui-text-field {
+      flex: 1;
+
+      textarea {
+        display: block;
+        height: 100%;
+        resize: none;
+
+        @include --tablet {
+          height: fit-content;
+          min-height: 9.6rem;
+        }
+      }
+    }
+  }
+
+  &__submit-button {
+    margin-left: auto;
+
+    ._favorites & {
+      order: 5;
+      margin-left: 0;
+
+      @include --tablet {
+        order: 6;
+      }
+    }
+
+    @include --tablet {
+      order: 1;
+
+      margin-left: 0;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  &__file-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 5rem 0 0;
+
+    ._favorites & {
+      order: 3;
+      padding: 0;
+    }
+
+    @include --tablet {
+      padding: 0;
+    }
+
+    input[type='file'] {
+      &.is-invalid + label {
+        border-color: var(--error-color);
+      }
+    }
+
+    label {
+      @include text-sm;
+
+      display: flex;
+      flex-shrink: 0;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      max-width: 42rem;
+      height: 9rem;
+      padding: 1rem;
+      border: 1px dashed var(--color-grey-6);
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: opacity $default-tr, border-color $default-tr;
+
+      @include --tablet {
+        max-width: none;
+      }
+
+      @include hover {
+        border-color: var(--color-grey-3);
+        opacity: 0.8;
+      }
+
+      + .ui-file {
+        margin-top: 2rem;
+      }
+
+      span {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      svg {
+        @include box(3rem);
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &__no-items {
+    @include box(100%);
+    @include lead;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-grey-1);
+  }
+}

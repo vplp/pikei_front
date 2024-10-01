@@ -1,0 +1,110 @@
+.ui-input {
+  flex: 0 0 fit-content;
+
+  label {
+    @include box(1.8rem);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-grey-6);
+    border-radius: 4px;
+    transition: border-color $default-tr, background-color $default-tr;
+
+    @include active {
+      background-color: var(--gray-color-6);
+    }
+
+    @include hover {
+      border-color: var(--color-grey-3);
+    }
+
+    svg {
+      @include box(1.6rem);
+
+      color: var(--color-contrast);
+      opacity: 0;
+      transition: transform $default-tr;
+
+      @include --mobile {
+        @include box(1.6rem);
+      }
+    }
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    &:checked + label {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent);
+
+      svg {
+        opacity: 1;
+      }
+
+      @include active {
+        background-color: var(--color-accent-dark);
+      }
+
+      @include hover {
+        background-color: var(--color-accent-dark);
+      }
+    }
+
+    &:disabled + label {
+      border-color: var(--text-blind-color);
+      background-color: var(--gray-color-7);
+      pointer-events: none;
+
+      svg {
+        color: var(--text-blind-color);
+      }
+    }
+
+    &:disabled:checked + label {
+      border-color: var(--gray-color-3);
+      background-color: var(--gray-color-3);
+    }
+  }
+
+  input[type='radio'] {
+    + label {
+      border-radius: 50%;
+    }
+
+    &:checked + label {
+      &::before {
+        @include box(0.7rem);
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        background-color: var(--color-contrast);
+        transform: translate(-50%, -50%);
+        content: '';
+      }
+    }
+  }
+
+  &._invalid {
+    label {
+      border-color: var(--error-color);
+    }
+  }
+}
+
+.ui-input-label {
+  transition: opacity $default-tr;
+
+  @include hover {
+    opacity: 0.4;
+
+    + .ui-input {
+      label {
+        border-color: var(--color-accent);
+      }
+    }
+  }
+}

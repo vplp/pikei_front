@@ -1,0 +1,20 @@
+.social {
+  display: flex;
+  gap: 1.5rem;
+
+  svg {
+    @include box(4rem);
+  }
+
+  a {
+    transition: opacity $default-tr;
+
+    @include active {
+      opacity: 0.8;
+    }
+
+    @include hover {
+      opacity: 0.8;
+    }
+  }
+}

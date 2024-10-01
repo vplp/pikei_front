@@ -1,0 +1,15 @@
+.news {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2.4rem;
+  row-gap: 4.8rem;
+
+  @include --tablet {
+    grid-template-columns: 1fr;
+  }
+
+  @include --mobile {
+    row-gap: 2.4rem;
+  }
+}

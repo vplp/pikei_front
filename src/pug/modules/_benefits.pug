@@ -1,0 +1,43 @@
+.benefits
+    -
+        const benefits = [
+            {
+                title: 'Гарантии качества',
+                subtitle: 'Сертификаты и лецензии',
+                icon: 'certification',
+            },
+            {
+                title: 'Доставка',
+                subtitle: 'Авто  и жд транспортом',
+                icon: 'delivery',
+            },
+            {
+                title: 'Склад и завод',
+                subtitle: 'контакты и Схема проезда',
+                icon: 'warehouse',
+            },
+            {
+                title: 'Постоплата',
+                subtitle: 'Отсрочка платежей до 21 дня',
+                icon: 'postpay',
+            },
+            {
+                title: 'Скидки',
+                subtitle: 'При оптовых закупках',
+                icon: 'discount',
+            },
+            {
+                title: 'Гарантия',
+                subtitle: 'Для всей продукции 25 лет',
+                icon: 'warranty',
+            },
+        ]
+    +app-grid(3, 2, 1)
+        each item in benefits
+            article.benefits__item
+                .benefits__inner
+                    .benefits__icon
+                        +sprite(item.icon)
+                    .benefits__description
+                        h3.benefits__title= item.title
+                        p.benefits__subtitle= item.subtitle

@@ -1,0 +1,48 @@
+extends /layout/_layout
+
+include /modules/ui/_breadcrumbs
+include /modules/_contact-form
+
+block variables
+    - const title = 'Избранное'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Избранное',
+                    attributes: {
+                        href: '#',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+
+    +app-section({
+        title: 'Избранное',
+        pageTitle: true,
+        arrows: true,
+    })
+        +app-grid(3)
+            .app-grid__span-2.text-content
+                p.text-lead Здесь находится оборудование, которое вы отметили. Отправьте заявку, и мы с вами свяжемся.
+
+    +app-section({
+        title: '',
+        variant: 'white',
+        arrows: true,
+        hasContainer: true,
+    })(id="contact-us")
+        +contact-form({
+            isFavoritesForm: true,
+            submitCaption: 'Запросить информацию',
+        })

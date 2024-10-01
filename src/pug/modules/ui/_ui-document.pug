@@ -1,0 +1,17 @@
+mixin ui-document(props = {})
+    -
+        const {
+            href = 'i/c/about-main/1.png',
+            title = 'Паспорт качества',
+            fileType = 'pdf',
+            fileSize = '370Kb',
+            icon = 'download',
+        } = props
+
+    a.ui-document(href= href, target="_blank")
+        .ui-document__icon
+            +sprite(icon)
+        .ui-document__title= title
+        .ui-document__props
+            span.ui-document__file-type= fileType.toUpperCase() + ', '
+            span.ui-document__file-size= fileSize

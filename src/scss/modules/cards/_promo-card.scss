@@ -1,0 +1,63 @@
+.promo-card {
+  position: sticky;
+  top: calc(var(--header-height) + 2rem);
+  display: flex;
+  flex-direction: column;
+  min-width: 35rem;
+  min-height: 44.2rem;
+  margin: 2rem 0 0;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  background-color: var(--element-background);
+
+  @include --tablet {
+    display: none;
+  }
+
+  @include hover {
+    .promo-card__image {
+      opacity: 0.6;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .btn {
+      &::before {
+        position: absolute;
+        top: -2rem;
+        right: -2rem;
+        bottom: -2rem;
+        left: -2rem;
+        display: block;
+        content: '';
+      }
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    // opacity: 0.8;
+    transition: opacity $default-tr, filter $default-tr;
+
+    img {
+      @include box(100%);
+      object-fit: fill;
+    }
+  }
+
+  &__button-wrapper {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 2rem;
+  }
+}

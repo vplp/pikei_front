@@ -1,0 +1,112 @@
+.dealer-card {
+  display: flex;
+  gap: 2.4rem;
+  justify-content: space-between;
+  padding: 2.4rem;
+  border-radius: 1.6rem;
+  background-color: var(--element-background);
+
+  @include --tablet {
+    flex-direction: column-reverse;
+    gap: 0;
+    padding: 0;
+  }
+
+  @include --mobile {
+    border-radius: 0.8rem;
+  }
+
+  &__logo {
+    flex: 0 0 auto;
+    width: 20rem;
+    height: 10.6rem;
+
+    @include --tablet {
+      width: 11.4rem;
+      height: 9.3rem;
+    }
+
+    img {
+      @include box(100%);
+
+      object-fit: contain;
+    }
+  }
+
+  &__title {
+    @include text-bold;
+
+    @include --tablet {
+      @include text-button-bold;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+
+    @include --tablet {
+      gap: 1.6rem;
+      padding: 0 1.6rem 1.6rem;
+    }
+  }
+
+  &__contacts-wrapper {
+    @include text-sm;
+
+    @include --tablet {
+      @include caption;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__contacts {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 2.4rem;
+
+    @include --tablet {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+
+    @include --tablet {
+      gap: 4px;
+    }
+  }
+
+  a {
+    transition: color $default-tr;
+    @include hover {
+      color: var(--color-accent);
+    }
+
+    // [data-away] {
+    //   &::after
+    // }
+  }
+
+  &__link {
+    display: inline-flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    svg {
+      @include box(1.6rem);
+
+      @include --tablet {
+      @include box(1.2rem);
+
+      }
+    }
+  }
+}

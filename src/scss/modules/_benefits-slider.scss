@@ -1,0 +1,204 @@
+.benefits-slider {
+  position: relative;
+  margin: 9.8rem 0 0;
+
+  @include --mobile {
+    margin: 3.8rem 0 0;
+  }
+
+  &__container {
+    border-radius: 1.6rem;
+    overflow: hidden;
+
+    @include --mobile {
+      max-width: none;
+      border-radius: 0;
+    }
+  }
+
+  &__slide {
+    height: 76.5rem;
+    background-color: var(--color-accent);
+
+    @include --mobile {
+      height: 48.8rem;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+
+    &._overlay {
+      &::before {
+        @include box(100%);
+        position: absolute;
+        inset: 0;
+        display: block;
+        background-image: var(--accent-gradient-2);
+        content: '';
+      }
+    }
+
+    picture {
+      @include box(100%);
+
+      display: block;
+    }
+
+    img {
+      @include box(100%);
+
+      object-fit: cover;
+    }
+  }
+
+  .swiper-progress-bar {
+    @include lead;
+
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    color: var(--color-contrast);
+
+    &__bar {
+      width: 11.3rem;
+      height: 2px;
+      background-color: var(--element-background);
+
+      @include --mobile {
+        width: 9.7rem;
+      }
+    }
+
+    &__fill {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: var(--color-accent);
+        transition: width 1s ease;
+    }
+  }
+
+  &__content {
+    @include box(100%);
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 17.3rem 6.3rem;
+
+    @include --mobile {
+      padding: 0 1.8rem 8.7rem;
+    }
+
+    p {
+      @include text-lg;
+
+      @include --mobile {
+        @include text-sm;
+      }
+
+      max-width: 73.1rem;
+      margin: auto 0 0;
+      color: var(--color-contrast);
+    }
+  }
+
+  &__navigation {
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5.5rem;
+
+    @include --mobile {
+      padding: 1.8rem;
+    }
+  }
+
+  .swiper-navigation {
+    display: flex;
+    gap: 2.4rem;
+
+    @include --mobile {
+      gap: 1.4rem;
+    }
+  }
+
+  .swiper-pagination {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    padding: 6rem 4.4rem 4.9rem;
+    border-bottom: 1px solid var(--color-accent);
+    color: var(--color-text-accent);
+    background-color: #d12a0366;
+
+    @include --tablet {
+      overflow: hidden;
+    }
+
+    @include --mobile {
+      padding: 2.7rem 1.8rem;
+    }
+
+    .swiper-pagination-bullet {
+      @include text;
+
+      position: relative;
+      min-width: max-content;
+      cursor: pointer;
+
+
+      @include --tablet {
+        display: none;
+      }
+
+      &::before {
+        position: absolute;
+        bottom: 0;
+        width: 0%;
+        height: 1px;
+        background-color: var(--color-text-accent);
+        transition: width $default-tr;
+        content: '';
+      }
+    }
+
+    .swiper-pagination-bullet-active {
+      @include text-bold;
+
+      transition: opacity $default-tr, visibility 0s 0s ease;
+      pointer-events: none;
+
+      @include --tablet {
+        @include text-h3;
+
+        display: block;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      @include --mobile {
+        @include text-bold;
+      }
+
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+}

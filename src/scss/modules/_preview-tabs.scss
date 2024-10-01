@@ -1,0 +1,97 @@
+.preview-tabs {
+  // @include --mobile {
+  //   display: none;
+  // }
+
+  &__buttons {
+    display: flex;
+    margin-bottom: 2rem;
+
+    button {
+      @include link;
+
+      &:last-child {
+        margin-left: 1.6rem;
+      }
+
+      &._checked {
+        @include text-bold;
+
+        color: var(--text-color);
+        pointer-events: none;
+
+        &::before {
+          display: none;
+
+        }
+      }
+    }
+  }
+
+  &__item {
+    .link {
+      margin: 3.6rem 0 0;
+    }
+  }
+
+  .news-preview {
+    &__title {
+      @include text-sm;
+
+      position: relative;
+      display: inline;
+      font-family: $formularFont;
+      transition: color $default-tr;
+
+      @include hover {
+        color: var(--color-grey-5);
+      }
+
+      span {
+        position: relative;
+
+        &::after {
+          @include box(2.4rem);
+          position: absolute;
+          top: 50%;
+          right: -2.4rem;
+          background-image: url("data:image/svg+xml,%3Csvg width='24' height='25' viewBox='0 0 24 25' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 12.8945L17 7.89453' stroke='%23E6360C' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16.9993 11.9094V7.89453H12.9844' stroke='%23E6360C' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17.148 15.9849V18.0945H7V7.89453H9.05008' stroke='%23E6360C' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 2.4rem 2.4rem;
+          transform: translateY(-1rem);
+          content: '';
+        }
+      }
+
+      svg {
+        @include box(2.4rem);
+
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+    li {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 3rem;
+      align-items: flex-start;
+      padding: 2.4rem 0;
+      border: none;
+      border-bottom: 1px solid var(--color-grey-1);
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      time {
+        @include text-sm;
+
+        min-width: auto;
+        color: var(--color-grey-3);
+        font-family: $formularFont;
+      }
+    }
+  }
+}

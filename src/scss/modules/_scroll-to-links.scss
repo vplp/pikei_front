@@ -1,0 +1,9 @@
+.scroll-to-links {
+  display: flex;
+  gap: 3.2rem;
+  margin: auto 0 0;
+
+  @include --mobile {
+    display: none;
+  }
+}

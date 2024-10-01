@@ -1,0 +1,14 @@
+mixin text-content-slider(props = {})
+    -
+        const {
+            slides = []
+        } = props
+
+    .text-content-slider.js-text-content-slider
+        .swiper
+            .swiper-wrapper
+                each slide in slides
+                    - const {image} = slide
+                    .swiper-slide
+                        img(src= image.src srcset= image.src2x alt= image.alt)
+        .swiper-pagination

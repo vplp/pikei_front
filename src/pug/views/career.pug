@@ -1,0 +1,142 @@
+extends /layout/_layout
+
+include /modules/ui/_breadcrumbs
+include /modules/_contact-form
+
+block variables
+    - const title = 'Работа в ПИКЕЙ'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Вакансии',
+                    attributes: {
+                        href: '#',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+
+    +app-section({
+        title: 'Работа в ПИКЕЙ',
+        pageTitle: true,
+        arrows: true,
+    })
+        +app-grid(3)
+            .app-grid__span-2.text-content
+                p.text-lead Наша компания – это люди. Мы ценим профессиональные навыки наших сотрудников, уважаем личностные качества, и предлагаем выгодные условия работы.
+            .app-grid__span-3
+                .career-advantages.text-content
+                    p.text-h2 Преимущества работы в ПИКЕЙ:
+                    +app-grid(3)
+                        -
+                            const advantages = [
+                                'Условия/оплата',
+                                'Профессиональный рост',
+                                'Внутрикорпоративная активность',
+                            ]
+
+                        each title, index in advantages
+                            .career-advantages__item
+                                +sprite((index + 1) + '')
+                                p= title
+                    +app-grid(3)
+                        .app-grid__span-2.text-content
+                            p.text-h2 Станьте частью нашей команды!
+                            p Мы растем и предлагаем возможности роста соискателям. Откликайтесь на актуальные вакансии и присоединяйтесь к нам.
+            .app-grid__span-3
+                h2.text-h3 Открытые вакансии:
+                .accordions
+                    .accordion.js-accordion
+                        .accordion__trigger
+                            +list-link({
+                                date: '20 июля 2023',
+                                datetime: '2022-07-19T21:00:00.000Z',
+                                title: 'Инженер-электрик',
+                                icon: 'plus',
+                                secondIcon: 'minus',
+                            })(class="js-accordion-toggle")
+                        .accordion__content.js-accordion-content
+                            .accordion__inner.text-content
+                                strong Требуемый опыт работы: 1–3 года
+                                p Обязанности:
+                                ul
+                                    li проверка правильности заложенных материалов (электрики)
+                                    li составление отчетной документации
+                                    li взаимодействие с заказчиком на объекте
+                                p Требования:
+                                ul
+                                    li высшее техническое образование
+                                    li знание типовых схем
+                                    li чтение чертежей
+                                    li умение вести отчетность
+                                    li наличие собственного авто
+                                    li возможность работать в вечернее время с 16.00 до 00.00
+                                p Условия:
+                                ul
+                                    li график работы 5/2
+                                    li выплаты ЗП каждые две недели
+                                    li офис предприятия в центре города
+                                    li Зарплата:
+                                    li от 76,000₽  до вычета налогов
+                                +btn({
+                                    href: '#contact-us',
+                                    caption: 'Откликнуться'
+                                })
+                    .accordion.js-accordion
+                        .accordion__trigger
+                            +list-link({
+                                date: '20 июля 2023',
+                                datetime: '2022-07-19T21:00:00.000Z',
+                                title: 'Инженер-электрик',
+                                icon: 'plus',
+                                secondIcon: 'minus',
+                            })(class="js-accordion-toggle")
+                        .accordion__content.js-accordion-content
+                            .accordion__inner.text-content
+                                strong Требуемый опыт работы: 1–3 года
+                                p Обязанности:
+                                ul
+                                    li проверка правильности заложенных материалов (электрики)
+                                    li составление отчетной документации
+                                    li взаимодействие с заказчиком на объекте
+                                p Требования:
+                                ul
+                                    li высшее техническое образование
+                                    li знание типовых схем
+                                    li чтение чертежей
+                                    li умение вести отчетность
+                                    li наличие собственного авто
+                                    li возможность работать в вечернее время с 16.00 до 00.00
+                                p Условия:
+                                ul
+                                    li график работы 5/2
+                                    li выплаты ЗП каждые две недели
+                                    li офис предприятия в центре города
+                                    li Зарплата:
+                                    li от 76,000₽  до вычета налогов
+                                +btn({
+                                    href: '#contact-us',
+                                    caption: 'Откликнуться'
+                                })
+
+    +app-section({
+        title: 'Отправить резюме',
+        variant: 'white',
+        arrows: true,
+        hasContainer: true,
+    })(id="contact-us")
+        +contact-form({
+            hasCompanyField: false,
+            dropzoneText: 'Прикрепить резюме'
+        })

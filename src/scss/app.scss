@@ -1,0 +1,38 @@
+// structure info https://www.easeout.co/blog/2020-08-25-structuring-your-sass-projects/
+// INFO: vendor plugins import in vendor.scss
+
+// ==
+// 1 - import utils
+// ==
+
+@import 'utils';
+
+// ==
+// 2 - import base styles
+// ==
+
+@import 'global';
+
+// ==
+// 3 - import layout
+// ==
+
+@import 'layout';
+
+// ==
+// 4 - import modules
+// ==
+
+@import 'text-content';
+@import 'modules';
+
+// ==
+// 6 - vendor styles edit
+// ==
+
+@import 'vendor-edit';
+
+// ==
+// 7 - theme styles
+// IMPORTANT: vendor plugins import in vendor.scss
+// ==

@@ -1,0 +1,37 @@
+mixin list-link(props = {})
+    -
+        const {
+            datetime = '',
+            date = '',
+            href = '',
+            title = 'Ссылка',
+            category = '',
+            icon = 'link',
+            secondIcon = '',
+            fileInfo = '',
+            isAccent = true,
+        } = props
+
+    .list-link
+        if date
+            time.js-date(datetime= datetime)= date
+        if href
+            a.list-link__link(href= href)&attributes(attributes)
+                span.list-link__title
+                    | #{title}
+                    if category
+                        .list-link__category= `/ ${category}`
+                    if fileInfo
+                        span.list-link__file-info= fileInfo
+                    +sprite(icon)
+                    if secondIcon
+                        +sprite(secondIcon)
+        else
+            button.list-link__link(type="button")&attributes(attributes)
+                span.list-link__title
+                    | #{title}
+                    if fileInfo
+                        span.list-link__file-info= fileInfo
+                    +sprite(icon)
+                    if secondIcon
+                        +sprite(secondIcon)

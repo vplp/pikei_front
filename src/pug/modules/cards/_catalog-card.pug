@@ -1,0 +1,30 @@
+mixin catalog-card(props = {})
+    -
+        const CardType = {
+            CATEGORY: 'category',
+            PRODUCT: 'product',
+        }
+        const {
+            type = CardType.CATEGORY,
+            img = '',
+            title = '',
+            href = '#',
+        } = props
+
+    article.catalog-card(class={[`_${CardType[type.toUpperCase()]}`]: CardType[type.toUpperCase()]})
+        if type === CardType.PRODUCT
+            +btn-icon({
+                icon: 'favorite',
+                caption: 'Добавить в избранное'
+            })(
+                id='btn-icon-favorite',
+                class="catalog-card__favorites",
+                hx-get="/favorites-response.html",
+                hx-swap="multi:#btn-icon-favorite:outerHTML,#favorites-counter:outerHTML"
+            )
+        .catalog-card__image
+            img(src= img.src, srcset=`${img.src} 1x, ${img.src2x}` alt= img.alt)
+        .catalog-card__description
+            a.catalog-card__link(href = href): span.visually-hidden= title
+            h3.catalog-card__title= title
+

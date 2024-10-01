@@ -1,0 +1,67 @@
+include /modules/ui/_btn
+include /modules/_sprite
+
+mixin app-section(props = {})
+    -
+        const {
+            title = '',
+            meta = '',
+            link = null, // { caption: '', href: '' }
+            arrows = false,
+            variant = '',
+            pageTitle = false,
+            titleSize = '',
+            titleHidden = false,
+            hasContainer = true,
+            image = null,
+        } = props
+
+    section.app-section(class={[`_${variant}`]: variant, '_meta': meta, [`_title-${titleSize}`]: titleSize})&attributes(attributes)
+        if hasContainer
+            .container
+                if title
+                    .app-section__head(class={'visually-hidden': titleHidden})
+                        if pageTitle
+                            h1.app-section__title
+                                if arrows
+                                    +sprite('logo-arrows')
+                                | #{title}
+                        else
+                            h2.app-section__title
+                                if arrows
+                                    +sprite('logo-arrows')
+                                | #{title}
+                if meta
+                    .app-section__meta!= meta
+                if image
+                    .app-section__image
+                        img(src= image.src, srcset= image.src2x, alt= title)
+                .app-section__content
+                    block
+                if link
+                    .app-section__foot(class={[`_${link.align}`]: link.align})
+                        +btn({caption: link.caption, href: link.href})
+        else
+            if title
+                .app-section__head(class={'visually-hidden': titleHidden})
+                    .container
+                        if pageTitle
+                            h1.app-section__title
+                                if arrows
+                                    +sprite('logo-arrows')
+                                | #{title}
+                        else
+                            h2.app-section__title
+                                if arrows
+                                    +sprite('logo-arrows')
+                                | #{title}
+            if meta
+                .app-section__meta!= meta
+            if image
+                .app-section__image
+                    img(src= image.src, srcset= image.src2x, alt= title)
+            .app-section__content
+                block
+            if link
+                .app-section__foot(class={[`_${link.align}`]: link.align})
+                    +btn({caption: link.caption, href: link.href})

@@ -1,0 +1,21 @@
+@mixin link {
+  @include text-sm;
+
+  position: relative;
+  display: inline-block;
+  color: var(--color-accent);
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-accent);
+    transform: translateY(1rem);
+    content: '';
+  }
+}
+
+.link {
+  @include link;
+}

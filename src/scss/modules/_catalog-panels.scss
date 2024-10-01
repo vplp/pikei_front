@@ -1,0 +1,27 @@
+.catalog-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+
+  @include --tablet {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .panel-mobile {
+    display: none;
+
+    @include --tablet {
+      display: flex;
+      flex-direction: column;
+      gap: 6.4rem;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &__controls {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

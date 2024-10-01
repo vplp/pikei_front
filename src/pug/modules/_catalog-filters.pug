@@ -1,0 +1,60 @@
+mixin catalog-filters(props = {})
+    -
+        const defaultFilters = [
+            {
+                title: 'Максимальная рабочая нагрузка, кН',
+                name: 'max-load',
+                type: 'checkbox',
+                options: [
+                    ['1,5(3)', '(356)'],
+                    ['4(6)', '(328)'],
+                    ['6(10)', '(172)'],
+                    ['7(12)', '(76)'],
+                    ['10(17)','(76)'],
+                ],
+            },
+            {
+                title: 'Наличие коуша',
+                name: 'max-load',
+                type: 'radio',
+                options: [
+                    ['С коушем', '(356)'],
+                    ['Без коуша', '(328)'],
+                ],
+            },
+            {
+                title: 'Узлы крепления',
+                name: 'max-load',
+                type: 'radio',
+                options: [
+                    ['Для круглых опор', '(356)'],
+                    ['Для некруглых опор', '(328)'],
+                ],
+            },
+        ]
+
+    -
+        const {filters = defaultFilters, buttonsDisabled = true} = props
+
+    .filters#filters
+        +spinner({ isContrast: true })
+        each filter, index in filters
+            - const {title, name, type, options} = filter
+            .filters__group
+                p.filters__title= title
+
+                .filters__group-content
+                    each item, innerIndex in options
+                        - const [title, amount, isChecked] = item
+                        .filters__item
+                            label.ui-input-label(for=`${index}-${innerIndex}`)
+                                span= title
+                                span.filters__item-amount= amount
+                            +ui-input({id: `${index}-${innerIndex}`, index, name, value: index, type, isChecked})(class='hx-form-trigger')
+        .filters__foot
+            +btn({
+                type: "reset",
+                caption: "Сбросить",
+                variant: "outline",
+                disabled: buttonsDisabled
+            })

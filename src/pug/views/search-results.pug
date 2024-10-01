@@ -1,0 +1,119 @@
+extends /layout/_layout
+
+include /modules/_spinner
+
+block variables
+    - const title = 'Поиск'
+
+block content
+    .container
+        +app-section({
+            title: 'Поиск',
+            arrows: true,
+            pageTitle: true,
+        })
+            .ui-text-field._search._plain
+                input.js-search-input(
+                    id="search-1",
+                    name="search",
+                    type="search",
+                    placeholder=" ",
+                    hx-get="/search-response-2.html",
+                    hx-trigger="keyup changed delay:500ms, search",
+                    hx-target="#search-results"
+                    hx-swap="innerHTML"
+                    hx-indicator=".spinner"
+                )
+                label(for="search") Введите запрос
+                +sprite('search')
+
+            -
+                const tabs = [
+                    ["Все", 3],
+                    ["Каталог", 3],
+                    ["Клиентам", 3],
+                    ["Новости", 1],
+                ]
+
+            #search-results.search-results-items
+                +spinner()
+                .tabs.js-tabs
+                    .tabs__buttons
+                        each tab, index in tabs
+                            - const [caption, amount] = tab
+                            +tab({
+                                caption,
+                                amount,
+                                isChecked: index === 0,
+                            })
+
+                    -
+                        const searchResults = [
+                            {
+                                title: 'Каталог',
+                                amount: 3,
+                                icon: 'link',
+                                results: [
+                                    [null, 'Кабель волоконно оптический DROP', 'каталог > анкерные зажимы для ок'],
+                                    [null, 'Протектор защитный спиральный', 'каталог > анкерные зажимы для ок'],
+                                    [null, 'Кабель волоконно оптический DROP', 'каталог > анкерные зажимы для ок'],
+                                ],
+                            },
+                            {
+                                title: 'Клиентам',
+                                amount: 3,
+                                icon: 'download',
+                                results: [
+                                    [null, 'Сертификат соответствия. Магистральные кабели КОС-ОКГ, КОС-ОКБ, КОС-ОКС', null, 'PDF, 483 Kb'],
+                                    [null, 'Сертификат соответствия нормам безопасности',  null, 'PDF, 483 Kb'],
+                                ],
+                            },
+                            {
+                                title: 'Новости',
+                                amount: 1,
+                                icon: 'link',
+                                results: [
+                                    [null, 'Прошли систему сертификации %certificate_name%, подтверждающую %properties% нашей продукции'],
+                                ],
+                            },
+
+                        ]
+
+                    .tabs__item.fade-transition.js-tab-item
+                        each item in searchResults
+                            - const {title, amount, icon, results} = item
+                            .search-results-item
+                                h2.search-results-item__title
+                                    span #{title} #[span.search-results-item__amount= `(${amount})`]
+                                .search-results-item__list.links-list
+                                    each result in results
+                                        - const [date, title, category, fileInfo] = result
+                                        +list-link({
+                                            date,
+                                            href: '#',
+                                            title,
+                                            category,
+                                            fileInfo,
+                                            icon,
+                                        })
+
+                    each item in searchResults
+                        - const {title, amount, icon, results} = item
+                            .tabs__item.fade-transition.js-tab-item
+                                .search-results-item
+                                    h2.search-results-item__title.visually-hidden
+                                        span #{title}
+                                    .search-results-item__list.links-list
+                                        each result in results
+                                            - const [date, title, category, fileInfo] = result
+                                            +list-link({
+                                                date,
+                                                href: '#',
+                                                title,
+                                                category,
+                                                fileInfo,
+                                                icon,
+                                            })
+
+
+

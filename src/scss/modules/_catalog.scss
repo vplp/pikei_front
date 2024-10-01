@@ -1,0 +1,7 @@
+.catalog {
+  &__search {
+    @include --tablet {
+      display: none;
+    }
+  }
+}

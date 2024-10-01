@@ -1,0 +1,120 @@
+.btn {
+  @include text-button-bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 1.6rem 2.4rem;
+  border-radius: 1.6rem;
+  color: var(--color-text-accent);
+  text-transform: uppercase;
+  background-color: var(--color-accent);
+  transition: background-color $default-tr, box-shadow $default-tr, color $default-tr;
+
+  @include hover {
+    background-color: var(--color-accent-dark);
+  }
+
+  &._fab {
+    padding: 2rem;
+
+    &._lg {
+      padding: 1.1rem;
+
+      svg {
+        @include box(3.2rem);
+      }
+
+      color: var(--color-contrast);
+    }
+
+    @include --mobile {
+      padding: 1.2rem;
+      border-radius: 0.8rem;
+    }
+
+    svg {
+      @include box(2.4rem);
+
+      @include --mobile {
+        @include box(1.6rem);
+      }
+
+      color: var(--color-contrast);
+    }
+  }
+
+  &._sm {
+    @include text-button-sm;
+
+    padding: 1rem 1.6rem;
+    border-radius: 0.8rem;
+    font-weight: 400;
+    text-transform: none;
+  }
+
+  &:disabled {
+    background-color: var(--color-accent-light);
+    pointer-events: none;
+  }
+
+  @include active {
+    background-color: var(--color-accent-dark);
+  }
+
+  &._white {
+    color: var(--color-accent);
+    background-color: var(--color-contrast);
+
+    svg {
+      color: var(--color-accent);
+    }
+
+    @include active {
+      color: var(--color-accent-dark);
+      background-color: var(--color-contrast);
+    }
+
+    &:disabled {
+      color: var(--color-accent-light);
+      opacity: 0.3;
+    }
+  }
+
+  &._outline {
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    background-color: var(--color-contrast);
+
+    @include active {
+      color: var(--color-accent-dark);
+      background-color: var(--color-contrast);
+    }
+
+    @include hover {
+      border-color: var(--color-accent-dark);
+      // box-shadow: 0px 4px 12px 0px var(--color-shadow-outline);
+      color: var(--color-contrast);
+      background-color: var(--color-accent);
+    }
+
+    &:disabled {
+      border-color: var(--color-grey-1);
+      color: var(--color-grey-1);
+    }
+  }
+
+  &._secondary {
+    border-radius: 1.6rem;
+    background-color: rgba(69, 69, 69, 0.4);
+
+    @include --mobile {
+      border-radius: 4px;
+    }
+
+    @include hover {
+      background-color: rgba(230, 54, 12, 0.8);
+    }
+  }
+}

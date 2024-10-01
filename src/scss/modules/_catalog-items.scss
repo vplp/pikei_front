@@ -1,0 +1,14 @@
+.catalog-items {
+  position: relative;
+  padding: 2rem 0 0;
+
+  @include --tablet {
+    padding: 0;
+
+    .app-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+  }
+
+}

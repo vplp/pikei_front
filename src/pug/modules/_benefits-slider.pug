@@ -1,0 +1,78 @@
+-
+    const slides = [
+        {
+            title: 'Качество',
+            text: 'Качество 一 это главное. При производстве крепежей и арматуры мы используем антикоррозийные и износостойкие материалы, которые соответствует требованиям ГОСТ Р 51177-2017 и ТУ 27.33.13.130-001-15701895-2020.',
+            img: {
+                src: '/i/c/about/benefits/slide-1.jpg',
+                src2x: '/i/c/about/benefits/slide-1@x.jpg',
+                mob: '/i/c/about/benefits/mobile/slide-1.jpg',
+                mob2x: '/i/c/about/benefits/mobile/slide-1@2x.jpg',
+            },
+        },
+        {
+            title: 'Выгода',
+            text: 'Мы нацелены на долгосрочное сотрудничество с вами. Поэтому мы предусмотрели выгодные условия для постоянных покупателей и заказчиков 一 специальные цены, возможность рассрочки платежей, сопровождение персонального менеджера и маркетинговую поддержку.',
+            img: {
+                src: '/i/c/about/benefits/slide-2.jpg',
+                src2x: '/i/c/about/benefits/slide-2@2x.jpg',
+                mob: '/i/c/about/benefits/mobile/slide-2.jpg',
+                mob2x: '/i/c/about/benefits/mobile/slide-2@2x.jpg',
+            },
+        },
+        {
+            title: 'Комплексные предложения',
+            text: 'Мы сотрудничаем с ведущими мировыми производителями комплектующих и компонентов 一 Siemens, ABB, Omron. Для эффективного производства в цехах мы автоматизировали системы рубки, комплекс по выпуску спиральной арматуры, сварочные автоматы. Мы используем автоматизированные термопластавтоматы Haitian и прессы для листовой штамповки, выпускающие 20000 изделий за смену.',
+            img: {
+                src: '/i/c/about/benefits/slide-3.jpg',
+                src2x: '/i/c/about/benefits/slide-3@2x.jpg',
+                mob: '/i/c/about/benefits/mobile/slide-3.jpg',
+                mob2x: '/i/c/about/benefits/mobile/slide-3@2x.jpg',
+            },
+        },
+        {
+            title: 'Обслуживание',
+            text: 'Мы знаем, как проводятся монтажные работы волоконно-оптических линий связи. Поэтому мы предлагаем комплексные решения для создания инфраструктуры и коммуникаций. Это не только производство и поставку узлов крепления и зажимов, но и необходимые для работы материалы 一 скрепы, крюки, монтажная лента и профессиональный инструмент для ее натяжки.',
+            img: {
+                src: '/i/c/about/benefits/slide-4.jpg',
+                src2x: '/i/c/about/benefits/slide-4@2x.jpg',
+                mob: '/i/c/about/benefits/mobile/slide-4.jpg',
+                mob2x: '/i/c/about/benefits/mobile/slide-4@2x.jpg',
+            },
+        },
+        {
+            title: 'Производство',
+            text: 'Мы работаем с монтажными компаниями и создаем уникальные детали под конкретные проекты благодаря собственному конструкторскому бюро. Приносите проект и скажите, что вам для него нужно.',
+            img: {
+                src: '/i/c/about/benefits/slide-5.jpg',
+                src2x: '/i/c/about/benefits/slide-5@2x.jpg',
+                mob: '/i/c/about/benefits/mobile/slide-5.jpg',
+                mob2x: '/i/c/about/benefits/mobile/slide-5@2x.jpg',
+            },
+        },
+    ]
+
+.benefits-slider.js-benefits-slider
+    .container.benefits-slider__container
+        .swiper
+            .swiper-pagination
+            .benefits-slider__navigation
+                .swiper-navigation
+                    +btn({ variant: 'white', fab: true })(class="swiper-button-prev")
+                        +sprite('arrow-left')
+                    +btn({ variant: 'white', fab: true })(class="swiper-button-next")
+                        +sprite('arrow-right')
+                .swiper-progress-bar
+                    span.swiper-progress-bar__current
+                    span.swiper-progress-bar__bar: span.swiper-progress-bar__fill
+                    span.swiper-progress-bar__total
+            .swiper-wrapper
+                each slide in slides
+                    - const { title, text, img } = slide
+                    .swiper-slide.benefits-slider__slide(data-title= title)
+                        .benefits-slider__image
+                            picture
+                                source(media="(max-width: 767px)" srcset=`${img.mob} 1x, ${img.mob2x} 2x`)
+                                img(src= img.src, srcset=`${img.src} 1x, ${img.src2x} 2x`)
+                        .benefits-slider__content
+                            p= text

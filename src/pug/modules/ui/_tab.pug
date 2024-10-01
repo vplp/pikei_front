@@ -1,0 +1,12 @@
+mixin tab(props = {})
+    -
+        const {
+            isChecked = false,
+            caption = 'Таб',
+            amount = '',
+        } = props
+
+    button.tab.js-tab-button(type="button", class={'_checked': isChecked})
+        span.tab__caption= caption
+        if amount
+            span.tab__amount= `(${amount})`

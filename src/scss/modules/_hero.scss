@@ -1,0 +1,15 @@
+.hero {
+  &.app-section {
+    margin: 0 0 4rem;
+  }
+
+  &__foot {
+    display: flex;
+    justify-content: flex-end;
+    margin: 4rem 0 0;
+
+    @include --mobile {
+      display: none;
+    }
+  }
+}

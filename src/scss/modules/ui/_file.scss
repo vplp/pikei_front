@@ -1,0 +1,44 @@
+.ui-file {
+  display: flex;
+  // flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__title {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-right: auto;
+
+    p {
+      max-width: 15rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__title,
+  &__delete {
+    svg {
+      @include box(2.4rem);
+      flex-shrink: 0;
+      transition: color $default-tr;
+    }
+  }
+
+  &__size {
+    white-space: nowrap;
+  }
+
+  &__delete {
+    display: flex;
+    align-items: center;
+    @include hover {
+      svg {
+        color: var(--error-color);
+      }
+    }
+  }
+}

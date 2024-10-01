@@ -1,0 +1,7 @@
+include /modules/_sprite
+
+mixin social(items)
+    ul.social
+        each item in items
+            li: a.social__link(href= item.href)
+                +sprite(item.icon)

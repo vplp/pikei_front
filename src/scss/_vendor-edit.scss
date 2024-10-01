@@ -1,0 +1,157 @@
+.fancybox__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: transparent;
+}
+
+.fancybox__backdrop {
+  background: var(--element-background);
+}
+
+.fancybox__caption {
+  color: var(--text-color);
+}
+
+.fancybox__content {
+  border-radius: 1.6rem;
+  overflow: hidden;
+
+  > .f-button.is-close-btn {
+    position: fixed;
+    top: 6.4rem;
+    right: 6.4rem;
+    transition: opacity $default-tr;
+
+    .is-animated & {
+      opacity: 0;
+    }
+  }
+}
+
+.f-button,
+.f-button.is-close-btn {
+  @include text-button-bold;
+
+  &[data-fancybox-close] {
+    position: fixed;
+
+    top: 6.4rem;
+    right: 6.4rem;
+
+    .is-compact & {
+      top: 1.6rem;
+      right: 1.6rem;
+    }
+
+    @include --tablet {
+      top: 3.2rem;
+      right: 3.2rem;
+    }
+  }
+
+  &::before {
+    display: none;
+  }
+
+  &.is-next {
+    right: 6.4rem;
+  }
+
+  &.is-prev {
+    left: 6.4rem;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 2rem;
+  border-radius: 1.6rem;
+  color: var(--color-text-accent);
+  text-transform: uppercase;
+  background-color: rgba(69, 69, 69, 0.4);
+  transition: background-color $default-tr, box-shadow $default-tr, color $default-tr;
+
+  @include --mobile {
+    padding: 1.2rem;
+    border-radius: 4px;
+  }
+
+  @include hover {
+    &:not([disabled]) {
+      background-color: rgba(230, 54, 12, 0.8);
+    }
+  }
+
+  svg {
+    @include box(2.4rem);
+
+    @include --mobile {
+      @include box(1.6rem);
+    }
+
+    flex-shrink: 0;
+    color: var(--color-contrast);
+    filter: none;
+  }
+}
+
+.is-horizontal .f-carousel__nav .f-button.is-prev,
+.is-horizontal .fancybox__nav .f-button.is-prev {
+  left: 6.4rem;
+
+  @include --tablet {
+    left: 3.2rem;
+  }
+
+  @include --mobile {
+    left: 1.6rem;
+  }
+}
+
+.is-horizontal .f-carousel__nav .f-button.is-next,
+.is-horizontal .fancybox__nav .f-button.is-next {
+  right: 6.4rem;
+
+  @include --tablet {
+    right: 3.2rem;
+  }
+
+  @include --mobile {
+    right: 1.6rem;
+  }
+}
+
+.f-thumbs__slide__button {
+  border-radius: 0.8rem;
+  overflow: hidden;
+
+  .is-nav-selected & {
+    &::after {
+      border-color: var(--color-accent);
+      border-radius: 0.8rem;
+    }
+  }
+}
+
+.f-thumbs.is-horizontal .f-thumbs__track {
+  padding: 0.8rem 0 6.4rem;
+
+  @include --tablet {
+    padding: 0.8rem 0 1.6rem;
+  }
+}
+
+.fancybox__footer {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  background: var(--element-background);
+
+  .is-compact & {
+    background: var(--element-background);
+  }
+}

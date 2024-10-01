@@ -1,0 +1,33 @@
+.fab-links {
+  position: fixed;
+  right: 1.6rem;
+  bottom: 1.6rem;
+  z-index: 11;
+  display: none;
+  flex-direction: column;
+  gap: 0.8rem;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: opacity $default-tr, transform $default-tr;
+  pointer-events: none;
+
+  html.header-hidden &,
+  html.scroll-up & {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  html.footer-in-view & {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  svg {
+    pointer-events: none;
+  }
+
+  @include --tablet {
+    display: flex;
+  }
+}

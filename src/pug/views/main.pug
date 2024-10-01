@@ -1,0 +1,107 @@
+extends ../layout/_layout.pug
+
+include /modules/_hero-slider
+include /modules/cards/_category-card
+include /modules/_contact-form
+include /modules/_news-preview
+
+block variables
+    - const title = 'Главная страница'
+
+block content
+    +app-section()(class= "hero")
+        -
+            const slides = [
+                {
+                    img: {
+                        src: '/i/c/hero-slider/1.jpg',
+                        src2x: '/i/c/hero-slider/1@2x.jpg',
+                        alt: 'Описание',
+                    },
+                    description: 'Арматура для строительства воздушных линий связи',
+                    subtitle: 'Поставляем, устанавливаем и обслуживаем:',
+                    link: {
+                        caption: 'Смотреть каталог',
+                        href: "/catalog.html"
+                    }
+                },
+                {
+                    img: {
+                        src: '/i/c/hero-slider/2.jpg',
+                        src2x: '/i/c/hero-slider/2@2x.jpg',
+                        alt: 'Описание',
+                    },
+                    description: 'Производство и доставка волоконно-оптического кабеля',
+                    subtitle: 'Поставляем, устанавливаем и обслуживаем:',
+                    link: {
+                        caption: 'Смотреть каталог',
+                        href: "/catalog.html"
+                    }
+                },
+                {
+                    img: {
+                        src: '/i/c/hero-slider/3.jpg',
+                        src2x: '/i/c/hero-slider/3@2x.jpg',
+                        alt: 'Описание',
+                    },
+                    description: 'Инструмент для монтажа  воздушных линий связи',
+                    subtitle: 'Поставляем, устанавливаем и обслуживаем:',
+                    link: {
+                        caption: 'Смотреть каталог',
+                        href: "/catalog.html"
+                    }
+                },
+                {
+                    img: {
+                        src: '/i/c/hero-slider/4.jpg',
+                        src2x: '/i/c/hero-slider/4@2x.jpg',
+                        alt: 'Описание',
+                    },
+                    description: 'Даем гарантию на всю продукцию 25 лет',
+                    subtitle: 'Поставляем, устанавливаем и обслуживаем:',
+                    link: {
+                        caption: 'Смотреть каталог',
+                        href: "/catalog.html"
+                    }
+                },
+            ]
+        +hero-slider({ slides })
+        .hero__foot
+            +btn({ caption: 'Написать нам', href: '#'})
+    +app-section({ title: 'Каталог', link: {href: '#', caption: 'Смотреть каталог' }, arrows: true})
+        +app-grid(3, 2)
+            -
+                const categories = [
+                    'Анкерные зажимы для ОК',
+                    'Спиральная арматура',
+                    'Узлы крепления для ОК',
+                    'Элементы крепления для ОК',
+                    'Инструмент для монтажа ленты',
+                    'Пассивные компоненты ВОЛС',
+                    'Шкафы Телекоммуникационные',
+                    'Кабель волоконно-оптический',
+                    'Типовые решения крепления кабеля на опорах воздушных линий'
+                ]
+
+            each item, index in new Array(9)
+                +category-card({
+                    img: {
+                        src: `/i/c/catalog-categories/${index + 1}.jpg`,
+                        src2x: `/i/c/catalog-categories/${index + 1}@2x.jpg`,
+                        alt: categories[index]
+                    },
+                    title: categories[index],
+                    href: '#',
+                })
+    +app-section({ title: 'Выгодное сотрудничество', link: {href: '#', caption: 'Больше о нас' }, arrows: true })
+        include /modules/_benefits
+        include /modules/_about-main
+
+    +news-preview()
+
+    +app-section({ title: 'Связаться с нами', variant: 'white', arrows: true, hasContainer: true, })
+        +contact-form()
+
+
+
+

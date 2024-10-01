@@ -1,0 +1,3 @@
+mixin app-grid(cols=1, tabletCols, mobCols)
+    div(class='app-grid _columns-' + cols + '-1' class={['app-grid _columns-tablet-' + tabletCols + '-1']: tabletCols, ['app-grid _columns-mob-' + mobCols + '-1']: mobCols, })&attributes(attributes)
+        block

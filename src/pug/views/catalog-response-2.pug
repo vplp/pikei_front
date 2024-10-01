@@ -1,0 +1,94 @@
+extends /layout/_layout
+
+include /modules/_catalog-items
+include /modules/_catalog-categories
+
+block content
+
+    -
+        const categories = [
+            [false, 'Все', 672],
+            [false, 'Анкерные зажимы', 83, [
+                [false, 'Спиральная арматура', 27],
+                [false, 'Зажимы спиральные натяжные', 8],
+                [false, 'Протектор защитный спиральный', 9],
+                [false, 'Зажимы спиральные поддерживающие', 10],
+            ]],
+            [false, 'Узлы крепления', 134],
+            [false, 'Элементы крепления', 17],
+            [false, 'Инструмент для монтажа ленты', 53],
+            [false, 'Пассивные компоненты ВОЛС', 27],
+            [false, 'Пассивные компоненты ВОЛС', 64],
+            [false, 'Шкафы телекоммуникационные', 41],
+            [false, 'Кабель волоконно-оптический', 56],
+            [false, 'Типовые решения крепления кабеля на опорах воздушных линий', 27],
+        ]
+
+        const catalogCategories = [
+            ['Анкерные зажимы для ОК', 'category'],
+            ['Спиральная арматура', 'product'],
+            ['Узлы крепления для ОК', 'category'],
+        ]
+
+        const filters = [
+            {
+                title: 'Максимальная рабочая нагрузка, кН',
+                name: 'max-load',
+                type: 'checkbox',
+                options: [
+                    ['1,5(3)', '(356)',],
+                    ['4(6)', '(328)'],
+                    ['6(10)', '(172)'],
+                    ['7(12)', '(76)'],
+                    ['10(17)','(76)'],
+                ],
+            },
+            {
+                title: 'Узлы крепления',
+                name: 'max-load',
+                type: 'radio',
+                options: [
+                    ['Для круглых опор', '(356)'],
+                    ['Для некруглых опор', '(328)'],
+                ],
+            },
+        ]
+
+    form(
+        id="catalog-form"
+        hx-get="/catalog-response.html"
+        hx-trigger="input from:.hx-form-trigger"
+        hx-swap="multi:#filters,#catalog-items,#catalog-categories"
+        hx-params="not search"
+    )
+        .catalog-panels.js-catalog-panels
+            +panel({title: 'Категория'})(class="js-category-panel")
+                +catalog-categories({categories})
+
+            +panel({title: 'Фильтры', titleIcon: 'filter-2', isAccordion: true})(class="js-filters-panel")
+        +catalog-filters({filters, buttonsDisabled: true})
+
+            .panel-mobile
+                .ui-text-field._search
+                    input.js-search-input(
+                        id="search-1",
+                        name="search",
+                        type="search",
+                        placeholder=" ",
+                        hx-get="/search-response.html",
+                        hx-trigger="keyup changed delay:500ms, search",
+                        hx-target="#search-results-1"
+                        hx-swap="innerHTML"
+                        hx-disinherit
+                    )
+                    label(for="search") Поиск по каталогу
+                    +sprite('search')
+                    .search-results-container#search-results-1
+                .panel-mobile__controls
+                    +btn({caption: 'Категория: Все', small: true})(class="js-category-trigger")
+                    +btn-icon({static: true})(class="js-filters-trigger")
+                        +sprite('filter-2')
+                        span Фильтры
+
+    +catalog-items({categories: catalogCategories})
+

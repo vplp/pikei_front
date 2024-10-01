@@ -1,0 +1,67 @@
+.key-figures {
+  padding: 7.4rem 0;
+  color: var(--color-text-accent);
+  background-color: var(--color-accent);
+  background-image: url('/i/c/about/key-figures/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include --mobile {
+    margin: 0;
+    padding: 5.6rem 0;
+  }
+
+  &.app-section {
+    margin: -7.8rem 0 15.6rem;
+
+    @include --mobile {
+      margin: 0 0 8.6rem;
+    }
+
+    .app-section__title {
+      ._icon-logo-arrows {
+        color: var(--color-contrast);
+      }
+    }
+  }
+
+  &__list {
+    @include flex($gap: 3.6rem, $flex-wrap: wrap);
+
+    @include --mobile {
+      gap: 2.4rem;
+    }
+
+    li {
+      @include flex($flex-direction: column);
+
+      width: calc((100% - 3.6rem * (4 - 1)) / 4);
+
+      @include --tablet {
+        width: calc((100% - 3.6rem * (2 - 1)) / 2);
+      }
+
+      @include --mobile {
+        width: calc((100% - 2.4rem * (2 - 1)) / 2);
+      }
+    }
+  }
+
+  &__figure {
+    @include text-h0;
+
+    @include --mobile {
+      @include text-h2;
+    }
+  }
+
+  &__description {
+    @include text-lg;
+
+    max-width: 25rem;
+
+    @include --mobile {
+      @include text-button;
+    }
+  }
+}

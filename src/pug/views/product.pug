@@ -1,0 +1,311 @@
+extends /layout/_layout
+
+include /modules/ui/_breadcrumbs
+include /modules/_contact-form
+include /modules/cards/_catalog-card
+
+block variables
+    - const title = 'Каталог'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Каталог',
+                    attributes: {
+                        href: '/catalog.html',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Узлы крепления',
+                    attributes: {
+                        href: '#',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Узел крепления натяжной УКН-01 (болт)',
+                    attributes: {
+                        href: '#',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+    +app-section()
+        .product
+            .product__description-wrapper
+                h1.product__title Узел крепления натяжной УКН-01 цинк (болт)
+                p.product__article артикул: ххх
+                .product__favorites-button
+                    +btn({
+                        caption: 'В избранное'
+                    })(
+                        hx-get="/favorites-response.html",
+                        hx-swap="outerHTML"
+                        hx-select="#btn-favorite"
+                    )
+                p.product__description.text-content= 'Узел крепления натяжной УКН-01 предназначен для крепления натяжных спиральных или анкерных зажимов. Крепится на опорах ВЛ до 20 кВ городского электрохозяйства, элементах зданий и сооружений с помощью монтажной ленты. В комплект узла крепления УКН входит площадка, скоба, 4 гайки, 2 шайбы, 2 стопорных кольца. Узел крепления изготавливается из стали с защитным покрытием из цинка в климатическом исполнении УХЛ1 ГОСТ 15150.'
+                .product__specs
+                    -
+                        const specs = [
+                            {
+                                title: 'Технические характеристики',
+                                items: [
+                                    ['Максимальная рабочая нагрузка, кН10', '10 кН'],
+                                    ['Материал корпуса', 'сталь 10'],
+                                    ['Покрытие', 'цинк'],
+                                    ['Масса', '0,55 кг'],
+                                    ['Габаритные размеры', '12х37х64 мм'],
+                                    ['Диаметр кабеля ВОЛС', '20 мм'],
+                                ]
+                            },
+                            {
+                                title: 'Упаковка',
+                                items: [
+                                    ['Материал упаковка', 'картон, коробка'],
+                                    ['В одной коробке', '40 шт.'],
+                                    ['Вес одной коробки', '19,7 кг'],
+                                    ['Габариты упаковки', '300х700х200 мм',],
+                                    ['Минимальная партия', '1 коробка'],
+                                ]
+                            },
+                            {
+                                title: 'Комплектация',
+                                items: [
+                                    ['площадка, скоба, гайка', '4 шт.'],
+                                    ['шайба', '2 шт.'],
+                                    ['стопорное кольцо', '2 шт.'],
+                                ]
+                            },
+                        ]
+
+                    each spec in specs
+                        .specs-group
+                            .specs-group__title= spec.title
+                            .specs-group__items
+                                each item in spec.items
+                                    - const [name, value] = item
+                                    .specs-group__item
+                                        span.specs-group__item-name= name
+                                        span.specs-group__delimeter
+                                        span.specs-group__item-value= value
+                    .specs-group
+                        .specs-group__title= 'Область применения'
+                        .specs-group__items
+                            .specs-group__item
+                                span.specs-group__item-name= 'Строители ВОЛС'
+                            .specs-group__item
+                                span.specs-group__item-name= 'Монтажные организации'
+
+                .product__documents
+                    +ui-document()
+                    +ui-document()
+                    +ui-document()
+            .product__aside
+
+                .preview-slider.js-preview-slider
+                    -
+                        const slides = [
+                            {
+                                img: {
+                                    src: '/i/c/product/product-1.jpg',
+                                    src2x: '/i/c/product/product-1@2x.jpg',
+                                    alt: 'Фотография товара'
+                                },
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/product/product-1.jpg',
+                                    src2x: '/i/c/product/product-1@2x.jpg',
+                                    alt: 'Фотография товара'
+                                },
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/product/product-1.jpg',
+                                    src2x: '/i/c/product/product-1@2x.jpg',
+                                    alt: 'Фотография товара'
+                                },
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/product/product-1.jpg',
+                                    src2x: '/i/c/product/product-1@2x.jpg',
+                                    alt: 'Фотография товара'
+                                },
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/product/product-1.jpg',
+                                    src2x: '/i/c/product/product-1@2x.jpg',
+                                    alt: 'Фотография товара'
+                                },
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/product/product-1.jpg',
+                                    src2x: '/i/c/product/product-1@2x.jpg',
+                                    alt: 'Фотография товара'
+                                },
+                            },
+                        ]
+
+                    .preview-slider__stage
+                        .preview-slider__main-slider.swiper.js-preview-slider-main
+                            +btn({ variant: 'secondary', fab: true })(class="swiper-button-prev")
+                                +sprite('chevron-left')
+                            +btn({ variant: 'secondary', fab: true })(class="swiper-button-next")
+                                +sprite('chevron-right')
+                            .swiper-wrapper
+                                each slide in slides
+                                    - const { title, description, img } = slide
+                                    .swiper-slide.preview-slider__slide(data-title= title)
+                                        .preview-slider__image
+                                            a(href= img.src data-fancybox="gallery" data-caption= title)
+                                                img(src= img.src, srcset=`${img.src} 1x, ${img.src2x} 2x`)
+
+                        .preview-slider__thumbs-slider.swiper.js-preview-slider-thumbs
+                            .swiper-wrapper
+                                each slide in slides
+                                    - const { img } = slide
+                                    .swiper-slide.preview-slider__thumb
+                                        .preview-slider__image._thumb
+                                            img(src= img.src, srcset=`${img.src} 1x, ${img.src2x} 2x`)
+
+                .product__favorites-button
+                    +btn({
+                        caption: 'В избранное'
+                    })(
+                        hx-get="/favorites-response.html",
+                        hx-swap="outerHTML"
+                        hx-select="#btn-favorite"
+                    )
+
+
+            .product__related
+                .products__related-wrapper
+                    h2 Другие варианты исполнения:
+                    -
+                        const variants = [
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-2.jpg`,
+                                    src2x: `/i/c/product/product-2@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-3.jpg`,
+                                    src2x: `/i/c/product/product-3@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                        ]
+                    .related-products-slider.js-related-products-slider
+                        +btn({ variant: 'secondary', fab: true })(class="swiper-button-prev")
+                            +sprite('chevron-left')
+                        +btn({ variant: 'secondary', fab: true })(class="swiper-button-next")
+                            +sprite('chevron-right')
+                        .swiper
+                            .swiper-wrapper
+                                each variant in variants
+                                    .swiper-slide.related-products-slider__slide
+                                        +catalog-card({...variant, type: 'product'})
+                .products__related-wrapper
+                    h2 С этим товаром покупают:
+                    -
+                        const related = [
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-2.jpg`,
+                                    src2x: `/i/c/product/product-2@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-3.jpg`,
+                                    src2x: `/i/c/product/product-3@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-2.jpg`,
+                                    src2x: `/i/c/product/product-2@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-3.jpg`,
+                                    src2x: `/i/c/product/product-3@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-2.jpg`,
+                                    src2x: `/i/c/product/product-2@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                            {
+                                title: 'Узел крепления натяжной УКН-01 цинк (болт)',
+                                img: {
+                                    src: `/i/c/product/product-3.jpg`,
+                                    src2x: `/i/c/product/product-3@2x.jpg`,
+                                    alt: title,
+                                },
+                                href: '#',
+                            },
+                        ]
+                    .related-products-slider.js-related-products-slider
+                        +btn({ fab: true })(class="swiper-button-prev")
+                            +sprite('arrow-left')
+                        +btn({ fab: true })(class="swiper-button-next")
+                            +sprite('arrow-right')
+                        .swiper
+                            .swiper-wrapper
+                                each item in related
+                                    .swiper-slide.related-products-slider__slide
+                                        +catalog-card({...item, type: 'product'})
+
+
+    +app-section({
+        title: 'Связаться с нами',
+        variant: 'white',
+        arrows: true
+    })(id="contact-us")
+        +contact-form({
+            hiddenValue: '%вставить сюда артикул товара%'
+        })
+
+
+
+

@@ -1,0 +1,83 @@
+.catalog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 1.6rem;
+  border-radius: 0.8rem;
+  background-color: var(--element-background);
+
+  @include --mobile {
+    padding: 0.8rem;
+  }
+
+  @include hover {
+    .catalog-card__image {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__image {
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    border-radius: 0.8rem;
+    overflow: hidden;
+
+    img {
+      @include box(100%);
+
+      object-fit: cover;
+      transition: transform $default-tr;
+    }
+  }
+
+  &__title {
+    @include text-bold-sm;
+
+    max-width: 100%;
+    min-height: 4rem;
+    overflow: hidden;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include --mobile {
+      align-items: flex-start;
+      min-height: 2.8rem;
+    }
+
+    ._product & {
+      text-align: center;
+      text-transform: none;
+    }
+  }
+
+  &__link {
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: '';
+    }
+  }
+
+  &__favorites {
+    position: absolute;
+    top: 2.4rem;
+    right: 2.4rem;
+    z-index: 1;
+
+    @include --mobile {
+      top: 1rem;
+      right: 1rem;
+    }
+
+    &._favorite {
+      svg {
+        color: var(--color-accent);
+        stroke-width: 3;
+      }
+    }
+  }
+}

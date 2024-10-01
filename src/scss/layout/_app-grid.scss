@@ -1,0 +1,97 @@
+// 2 колонки
+// <div class="app-grid _columns-2-1">
+//   <div></div>
+//   <div></div>
+// </div>
+
+// 3 колонки
+// <div class="app-grid _columns-3-1">
+//   <div></div>
+//   <div></div>
+//   <div></div>
+// </div>
+
+// 3 колонки, внутри него второй элемент занимает 2 колонки
+// <div class="app-grid _columns-3-1">
+//   <div></div>
+//   <div class="app-grid__span-2"></div>
+// </div>
+
+.app-grid {
+  display: grid;
+  flex-grow: 1;
+  gap: 2rem;
+
+  &._desktop-only {
+    flex-grow: 0;
+
+    @include --tablet {
+      display: none;
+    }
+  }
+
+  &._columns-1 {
+    grid-template-columns: 1fr;
+  }
+
+  &._columns-2-1 {
+    grid-template-columns: repeat(2, 1fr);
+
+    @include --tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+  &._columns-3-1 {
+    grid-template-columns: repeat(3, 1fr);
+
+    @include --tablet {
+      grid-template-columns: 100%;
+    }
+  }
+
+  &._columns-tablet-2-1 {
+    @include --tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &._columns-mob-2-1 {
+    @include --mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &._columns-mob-1-1 {
+    @include --mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &._columns-4-1 {
+    grid-template-columns: repeat(4, 1fr);
+
+    @include --tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__span-2 {
+    grid-column: span 2;
+
+    @include --tablet {
+      grid-column: auto;
+    }
+  }
+
+  &__span-3 {
+    grid-column: span 3;
+
+    @include --tablet {
+      grid-column: auto;
+    }
+  }
+}
+
+

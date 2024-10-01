@@ -1,0 +1,57 @@
+.privacy-contents {
+  position: sticky;
+  top: 0;
+  max-width: 34.5rem;
+  margin-left: auto;
+  transition: top $default-tr;
+
+  @include --tablet {
+    position: static;
+    max-width: auto;
+  }
+
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1.6rem 0 0;
+    list-style: decimal;
+
+    @include --tablet {
+      padding-left: 2.4rem;
+    }
+  }
+
+  li {
+    position: relative;
+
+    &._active {
+      position: relative;
+      color: var(--color-accent);
+      @include --from-tablet {
+        list-style: none;
+
+        &::before {
+          position: absolute;
+          top: 0.8rem;
+          left: -2.4rem;
+          display: block;
+          width: 1.2rem;
+          height: 1.5rem;
+          background-image: url("data:image/svg+xml,%3Csvg width='12' height='15' viewBox='0 0 12 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_2016_9249)'%3E%3Cpath d='M2.09471e-07 14.2507V10.9867C3.97001e-05 10.8838 0.0328097 10.7836 0.0935709 10.7006C0.154332 10.6175 0.239935 10.5559 0.338 10.5247L7.347 8.30874C7.39203 8.29448 7.43133 8.26624 7.45921 8.22811C7.48708 8.18999 7.50208 8.14397 7.502 8.09674V7.41274C7.50186 7.36568 7.48677 7.31988 7.45892 7.28196C7.43106 7.24403 7.39186 7.21594 7.347 7.20174L0.338 4.97274C0.239935 4.94155 0.154332 4.87997 0.0935709 4.79692C0.0328097 4.71387 3.97001e-05 4.61364 2.09471e-07 4.51074V1.24774C-5.18413e-05 1.2076 0.00959731 1.16805 0.0281255 1.13246C0.0466537 1.09686 0.0735121 1.06626 0.106413 1.04328C0.139313 1.0203 0.177281 1.00561 0.217082 1.00047C0.256883 0.995323 0.297338 0.999876 0.335 1.01374L9.429 4.35274C10.2652 4.65988 10.9589 5.26451 11.3773 6.05099C11.7958 6.83748 11.9096 7.75061 11.697 8.61574C11.5427 9.20515 11.2459 9.74758 10.8326 10.1952C10.4193 10.6429 9.90225 10.982 9.327 11.1827L0.335 14.4827C0.297496 14.4965 0.257221 14.5011 0.217576 14.4961C0.177932 14.491 0.140084 14.4765 0.107229 14.4538C0.0743751 14.431 0.0474801 14.4007 0.0288164 14.3653C0.0101528 14.33 0.00026905 14.2907 2.09471e-07 14.2507Z' fill='%23E6360C'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_2016_9249'%3E%3Crect width='11.801' height='13.501' fill='white' transform='translate(0 0.998413)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+          content: '';
+        }
+      }
+    }
+  }
+
+  a {
+    text-decoration: underline 1px transparent;
+    text-underline-offset: 4px;
+    transition: color $default-tr;
+
+    @include hover {
+      color: var(--color-accent);
+    }
+  }
+}

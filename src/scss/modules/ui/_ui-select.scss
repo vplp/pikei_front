@@ -1,0 +1,138 @@
+.ui-select {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+  height: auto;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  @include --tablet {
+    justify-content: space-between;
+    width: 100%;
+    height: 5.6rem;
+    padding: 1.6rem;
+    border: inherit;
+    border-radius: 1.6rem;
+    background-color: var(--element-background);
+  }
+
+  @include --mobile {
+    gap: 0.8rem;
+    border-radius: 0.8rem;
+  }
+
+  @include hover {
+    &::after {
+      border-color: var(--color-accent);
+    }
+  }
+
+  &::after {
+    @include box(0.8rem);
+
+    position: static;
+    margin: 0;
+    border-color: var(--text-color);
+    transition: border-color $default-tr, transform $default-tr;
+
+    @include --tablet {
+      position: absolute;
+      top: 50%;
+      right: 1.6rem;
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  &.open {
+    &::after {
+      transform: translateY(-50%) rotate(45deg) scale(-1);
+    }
+  }
+
+  .current {
+    @include text-button-bold;
+  }
+
+  .nice-select-dropdown {
+    @include text-button;
+
+    width: fit-content;
+    min-width: 42.7rem;
+    height: auto;
+    max-height: 64rem;
+    margin: 1.6rem 0 0;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.16);
+
+    @include --tablet {
+      min-width: 100%;
+      border-radius: 1.6rem;
+    }
+  }
+
+
+  .nice-select-search-box {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+
+    &::before {
+      @include box(2rem);
+
+      position: absolute;
+      top: 50%;
+      left: 2.4rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='20' viewBox='0 0 21 20' fill='none'%3E%3Cpath d='M9.86454 17.401C14.3935 17.401 18.065 13.7295 18.065 9.20048C18.065 4.67148 14.3935 1 9.86454 1C5.33554 1 1.66406 4.67148 1.66406 9.20048C1.66406 13.7295 5.33554 17.401 9.86454 17.401Z' stroke='%23B0B0B0' stroke-width='2' stroke-miterlimit='10'/%3E%3Cpath d='M15.6631 14.9995L19.6636 19' stroke='%23B0B0B0' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-position: center;
+      background-size: cover;
+      transform: translateY(-50%);
+      content: '';
+    }
+  }
+
+  .nice-select-search {
+    @include text-button;
+
+    height: 4.8rem;
+    padding: 0.8rem 1.2rem 0.8rem 5.2rem;
+    border-radius: 0.8rem;
+  }
+
+  .list {
+    max-height: 64rem;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.6rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--color-grey-4);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--color-grey-6);
+    }
+  }
+
+  .option {
+    padding: 0 1.6rem;
+
+    &.selected.focus {
+      background-color: var(--color-grey-4);
+    }
+  }
+
+  .optgroup {
+    padding: 1.6rem 1.6rem;
+    color: var(--color-grey-5);
+    font-weight: 400;
+
+    // ~ .option {
+    //   padding: 0 1.6rem 0 3.2rem;
+    // }
+  }
+}

@@ -1,0 +1,20 @@
+include /modules/ui/_btn
+
+mixin hero-slider(props = {})
+    - const {slides = [], slim = false} = props
+    .hero-slider.js-hero-slider
+        .swiper
+            .swiper-wrapper
+                each slide in slides
+                    - const {img, description, subtitle, link} = slide
+                    .swiper-slide.hero-slide(class={'_slim': slim})
+                        .hero-slide__image-wrapper
+                            img.hero-slide__image(src= img.src, srcset=`${img.src} 1x, ${img.src2x} 2x` alt= img.alt)
+                        .hero-slide__content
+                            if subtitle
+                                p.hero-slide__subtitle Поставляем, устанавливаем и обслуживаем:
+                            if description
+                                p.hero-slide__title= description
+                            if link
+                                +btn({caption: link.caption, href: link.href, variant: 'white'})(class="hero-slide__link")
+            .swiper-pagination

@@ -1,0 +1,21 @@
+include /modules/_sprite
+
+mixin category-menu-item(props = {})
+    -
+        const {
+            id = '',
+            name = '',
+            title = '',
+            amount = '',
+            value = '',
+            isActive = false,
+            isSubCategory = false,
+        } = props
+
+    .category-menu-item(class={'_sub': isSubCategory, '_active': isActive})
+        input.visually-hidden.hx-form-trigger(type="radio", id =id, name= name, value= value, checked= isActive)
+        label.category-menu-item__label(for= id)
+            if isActive
+                +sprite('logo-chevron-right')
+            span.category-menu-item__title= title
+            span.category-menu-item__amount= `(${amount})`

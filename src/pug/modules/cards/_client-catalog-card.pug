@@ -1,0 +1,18 @@
+mixin client-catalog-card(props = {})
+    -
+        const {
+            image = '',
+            title = '',
+            fileInfo = '',
+            href = ''
+        } = props
+
+    article.client-catalog-card
+        .client-catalog-card__inner
+            .client-catalog-card__image
+                img(src= image.src, srcset= image.src2x, alt= image.alt)
+            .client-catalog-card__title-wrapper
+                a.client-catalog-card__link(href= href, target="_blank")
+                h3.client-catalog-card__title= title
+        .client-catalog-card__foot
+            span.client-catalog-card__file-info= fileInfo

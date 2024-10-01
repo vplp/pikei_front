@@ -1,0 +1,36 @@
+include /modules/_catalog-filters
+include /modules/cards/_catalog-card
+include /modules/_spinner
+
+mixin catalog-items(props = {})
+    .catalog-items#catalog-items
+        +spinner()
+        +app-grid(3)
+            -
+                const defaultCategories = [
+                    ['Анкерные зажимы для ОК', 'category'],
+                    ['Спиральная арматура', 'product'],
+                    ['Узлы крепления для ОК', 'category'],
+                    ['Элементы крепления для ОК', 'product'],
+                    ['Инструмент для монтажа ленты', 'category'],
+                    ['Пассивные компоненты ВОЛС', 'category'],
+                    ['Шкафы Телекоммуникационные', 'product'],
+                    ['Кабель волоконно-оптический', 'category'],
+                    ['Типовые решения крепления кабеля на опорах воздушных линий', 'category'],
+                ]
+
+            -
+                const {categories = defaultCategories} = props
+
+            each item, index in new Array(categories.length)
+                - const [title, type] = categories[index]
+                +catalog-card({
+                    img: {
+                        src: `/i/c/catalog-categories/${index + 1}.jpg`,
+                        src2x: `/i/c/catalog-categories/${index + 1}@2x.jpg`,
+                        alt: title,
+                    },
+                    title,
+                    href: '#',
+                    type,
+                })

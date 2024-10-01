@@ -1,0 +1,7 @@
+mixin scroll-to-links(props = {})
+    - const {links} = props
+
+        .scroll-to-links
+            each link in links
+                a.link.js-scroll-to-link(href= link.href)= link.caption
+                //.flex.gap-3.mt-auto

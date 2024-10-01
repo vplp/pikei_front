@@ -1,0 +1,60 @@
+.ui-pagination {
+  @include text-sm;
+
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+
+  &__counter {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  &__delimeter,
+  &__total {
+    color: var(--color-grey-5);
+  }
+
+  button {
+    @include hover {
+      svg {
+        color: var(--color-accent);
+      }
+    }
+
+    &:disabled {
+      pointer-events: none;
+
+      svg {
+        color: var(--color-grey-1);
+      }
+    }
+
+    svg {
+      @include box(1.6rem);
+
+      transition: color $default-tr;
+    }
+  }
+}
+
+.ui-pagination-container {
+  display: flex;
+  flex: 1;
+
+  &__show-more {
+    display: none;
+    flex: 1;
+
+    @include --tablet {
+      display: inherit;
+    }
+  }
+
+  &__pagination {
+    margin-left: auto;
+    @include --tablet {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+mixin panel(props = {})
+    -
+        const {
+            title = '',
+            closeTitle = 'Каталог',
+            titleIcon = '',
+            isAccordion = false,
+            isOpened = false,
+        } = props
+
+    .panel(class={'js-accordion': isAccordion, '_accordion': isAccordion, '_opened': isOpened})&attributes(attributes)
+        if title
+            .panel__head(class={'js-accordion-toggle': isAccordion, '_toggle': isAccordion})
+                +btn-icon()(class="panel__close-btn")
+                    +sprite('arrow-left')
+                    span= closeTitle
+                +btn-icon({ icon: 'close', caption: 'Закрыть меню'})(class="panel__close-btn")
+                p.panel__title
+                    if titleIcon
+                        +sprite(titleIcon)
+                    | #{title}
+                if isAccordion
+                    +sprite('chevron-down')
+
+        if block
+            .panel__content(class={'js-accordion-content': isAccordion})
+                .panel__inner
+                    block

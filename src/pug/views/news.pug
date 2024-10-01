@@ -1,0 +1,80 @@
+extends /layout/_layout
+
+include /modules/ui/_breadcrumbs
+include /modules/cards/_news-card
+include /modules/_spinner
+
+block variables
+    - const title = 'Новости'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'О компании',
+                    attributes: {
+                        href: '/catalog.html',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Новости',
+                    attributes: {
+                        href: '#',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+    +app-section({
+        title: 'Новости',
+        pageTitle: true,
+        arrows: true,
+    })
+        .news#news
+            +spinner()
+            each _, index in new Array(9)
+                +news-card({
+                    title: 'Новые телеги для УЗК с оптимальными размерами',
+                    date: '1691787600000',
+                    image: {
+                        src: `/i/c/news/news-${index + 1}.jpg`,
+                        src2x: `/i/c/news/news-${index + 1}@2x.jpg`,
+                    },
+                    isLatest: index === 0,
+                })
+        .app-section__foot
+            .ui-pagination-container
+                .ui-pagination-container__show-more
+                    +btn({
+                        caption: 'Показать еще',
+                    })(
+                        id="show-more-btn"
+                        hx-get="/news-response.html",
+                        hx-swap="multi:#pagination-1:outerHTML,#show-more-btn:outerHTML,#news:innerHTML swap:1s",
+                        hx-indicator=".spinner"
+                    )
+                .ui-pagination-container__pagination
+                    +ui-pagination({
+                        attrs: {
+                            'hx-get': '/news-response.html',
+                            'hx-swap': 'multi:#pagination-1:outerHTML,#show-more-btn:outerHTML,#news:innerHTML swap:1s',
+                            'hx-on::after-request': "document.querySelector('#news').scrollIntoView(true)",
+                        }
+                    })
+
+
+
+
+
+
+
+

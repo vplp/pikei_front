@@ -1,0 +1,40 @@
+.text-content-slider {
+  position: relative;
+  overflow: visible;
+
+  .swiper-slide {
+    img {
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      margin: 0;
+
+      object-fit: contain;
+    }
+  }
+
+  .swiper-pagination {
+    position: static;
+    display: flex;
+    gap: 1.6rem;
+    justify-content: center;
+    height: fit-content;
+    margin: 2.4rem 0 0;
+
+    .swiper-pagination-bullet {
+      @include box(0.8rem);
+
+      border-radius: 50%;
+      background-color: var(--color-grey-1);
+      cursor: pointer;
+      transition: opacity $default-tr, background-color $default-tr;
+
+      @include hover {
+        opacity: 0.8;
+      }
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: var(--color-grey-3);
+    }
+  }
+}

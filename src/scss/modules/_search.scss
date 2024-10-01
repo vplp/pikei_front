@@ -1,0 +1,56 @@
+.search {
+  @include box(100%);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity $default-tr, visibility 0s 0.35s ease, z-index 0s 0.35s ease;
+
+  &._shown {
+    z-index: 12;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity $default-tr, visibility 0s 0s ease;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--app-background);
+
+  }
+
+  &__inner {
+    position: absolute;
+    top: calc(var(--header-height) + 4rem);
+    width: 100%;
+  }
+
+  .btn-icon {
+    position: absolute;
+    top: 3.2rem;
+    right: 3.2rem;
+    z-index: 1;
+
+    svg {
+      @include box(3.2rem);
+    }
+
+    @include --mobile {
+      top: 1.6rem;
+      right: 1.6rem;
+    }
+  }
+
+  .app-section__title {
+    flex-direction: row;
+    align-items: center;
+
+    svg {
+      align-self: center;
+    }
+  }
+}

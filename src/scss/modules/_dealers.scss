@@ -1,0 +1,86 @@
+.dealers {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    @include --tablet {
+      margin: 4rem 0 0;
+    }
+  }
+
+  &__list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4rem;
+
+    @include --tablet {
+      justify-content: flex-start;
+    }
+  }
+
+  &__list-foot {
+    display: flex;
+    justify-content: flex-end;
+    margin: 3.2rem 0 0;
+
+    @include --tablet {
+      justify-content: center;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  &__items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    @include --mobile {
+      gap: 1.6rem;
+    }
+  }
+
+  &__search {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    @include --tablet {
+      flex: 1;
+      gap: 0;
+    }
+
+    > span {
+      @include text-sm;
+
+      color: var(--color-grey-5);
+
+      @include --tablet {
+        display: none;
+      }
+    }
+  }
+
+  &__aside {
+    padding: 5.6rem 0 0;
+
+    @include --tablet {
+      padding: 0;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  &__pagination {
+    @include --tablet {
+      display: none;
+    }
+  }
+}

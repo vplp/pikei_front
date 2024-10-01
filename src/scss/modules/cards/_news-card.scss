@@ -1,0 +1,111 @@
+.news-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @include hover {
+    .news-card {
+      &__image {
+        &::before {
+          opacity: 0.8;
+        }
+      }
+
+      &__title,
+      &__date {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &._latest {
+    @include --from-tablet {
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+
+    .news-card {
+      &__image {
+        @include --from-tablet {
+          aspect-ratio: 16 / 10;
+        }
+      }
+
+      &__title {
+        @include --from-tablet {
+          @include text-h0;
+
+          font-weight: 400;
+
+          margin: 3.2rem 0 0;
+        }
+      }
+
+      &__date {
+        @include --from-tablet {
+          margin: 6.4rem 0 0;
+        }
+      }
+    }
+  }
+
+  &__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  &__image  {
+    position: relative;
+    border-radius: 1.6rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background-color: var(--element-background);
+    background-image: url('/i/sprite/logo-pikei-red.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      background-image: var(--accent-gradient);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      opacity: 0;
+      transition: opacity $default-tr;
+      content: '';
+    }
+
+    img {
+      @include box(100%);
+
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    @include text-lg;
+
+    margin: 2.4rem 0 0;
+    transition: opacity $default-tr;
+
+    @include --tablet {
+      @include text-button;
+
+      margin: 1.6rem 0 0;
+    }
+  }
+
+  &__date {
+    @include caption;
+
+    margin: 3.2rem 0 0;
+    color: var(--color-grey-3);
+    transition: opacity $default-tr;
+
+    @include --tablet {
+      margin: 1.6rem 0 0;
+    }
+  }
+}

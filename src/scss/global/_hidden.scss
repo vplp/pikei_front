@@ -1,0 +1,12 @@
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.text-hidden {
+  @include text-hidden;
+}
+
+.hidden,
+[hidden] {
+  display: none !important; /* stylelint-disable-line declaration-no-important */
+}

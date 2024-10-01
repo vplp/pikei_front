@@ -1,0 +1,75 @@
+.benefits {
+  .app-grid {
+    row-gap: 11.1rem;
+
+    @include --tablet {
+      row-gap: 3.2rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+
+    @include --tablet {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    @include --mobile {
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    gap: 3rem;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+
+    svg {
+      @include box(9.1rem);
+    }
+
+    @include --tablet {
+      img {
+        margin: 1rem 0 0;
+      }
+    }
+
+    @include --mobile {
+      width: 7.2rem;
+
+      svg {
+        @include box(7.2rem);
+      }
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__title {
+    @include lead;
+  }
+
+  &__subtitle {
+    @include text-button;
+
+    @include --mobile {
+      @include text-button-sm;
+    }
+
+    color: var(--color-grey-3);
+    font-weight: 600;
+    font-family: $robotoFont;
+    text-transform: uppercase;
+  }
+}

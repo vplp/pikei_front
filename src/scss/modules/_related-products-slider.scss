@@ -1,0 +1,25 @@
+.related-products-slider {
+  position: relative;
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+
+    &.swiper-button-lock,
+    &:disabled {
+      visibility: hidden;
+    }
+  }
+
+  .swiper-button-prev {
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  .swiper-button-next {
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+}

@@ -1,0 +1,47 @@
+// --
+// fonts
+// ==
+
+/* stylelint-disable */
+/**
+ * Get font from path
+ * '../fonts/$fontFolderName/$fontWeight.woff'
+ * '../fonts/$fontFolderName/$fontWeight.woff2'
+ * example @include font('Open Sans', 'OpenSans' 400); подключит '../fonts/OpenSans/400.woff'
+ */
+@mixin font($fontFamily: '', $fontFolderName: '', $fontWeight: 400, $fontStyle: normal, $fontDisplay: swap) {
+  @font-face {
+    font-family: $fontFamily;
+    src: url('../fonts/#{$fontFolderName}/#{$fontWeight}.woff2') format('woff2'),
+    url('../fonts/#{$fontFolderName}/#{$fontWeight}.woff') format('woff');
+    font-style: $fontStyle;
+    font-weight: $fontWeight;
+    font-display: $fontDisplay;
+  }
+}
+
+// Open Sans
+
+@include font('Open Sans', 'open-sans', 300);
+@include font('Open Sans', 'open-sans', 400);
+@include font('Open Sans', 'open-sans', 600);
+@include font('Open Sans', 'open-sans', 700);
+
+// Roboto
+
+@include font('Roboto', 'roboto', 300);
+@include font('Roboto', 'roboto', 400);
+@include font('Roboto', 'roboto', 500);
+@include font('Roboto', 'roboto', 700);
+
+// Mulish
+
+@include font('Mulish', 'mulish', 400);
+@include font('Mulish', 'mulish', 500);
+
+// Formular
+
+@include font('Formular', 'formular', 400);
+@include font('Formular', 'formular', 700);
+
+/* stylelint-enable */

@@ -1,0 +1,19 @@
+extends /layout/_layout
+
+block variables
+    - const title = 'Страница не найдена'
+
+block content
+    .container
+        .not-available
+            +app-grid(4)
+                .not-available__description
+                    h1.text-h2 Страница не найдена
+                    +btn({
+                        href: '/',
+                        caption: 'Вернуться на главную',
+                    })
+                .not-available__error-code.app-grid__span-3
+                    +sprite('404')
+
+

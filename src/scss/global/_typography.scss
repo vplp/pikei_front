@@ -1,0 +1,63 @@
+h1,
+.text-h1,
+h2,
+.text-h2,
+h3,
+.text-h3,
+h4,
+.text-h4,
+h5,
+.text-h5,
+h6,
+.text-h6 {
+}
+
+h1,
+.text-h1 {
+  @include text-h1;
+}
+
+h2,
+.text-h2 {
+  @include text-h2;
+}
+
+h3,
+.text-h3 {
+  @include text-h3;
+}
+
+h4,
+.text-h4 {
+  @include text-h4;
+}
+
+h5,
+.text-h5 {
+  @include text-h5;
+}
+
+h6,
+.text-h6 {
+  @include text-h6;
+}
+
+.text {
+  @include text;
+}
+
+.text-lg {
+  @include text-lg;
+}
+
+.text-sm {
+  @include text-sm;
+}
+
+.text-button {
+  @include text-button;
+}
+
+.text-lead {
+  @include lead;
+}

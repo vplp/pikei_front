@@ -1,0 +1,161 @@
+.hero-slider {
+  position: relative;
+
+  + *:not(.hero__foot) {
+    margin: 7.8rem 0 0;
+
+    @include --mobile {
+      margin: 4.3rem 0 0;
+    }
+  }
+
+  .swiper-pagination {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    z-index: 1;
+    display: flex;
+    gap: 1.6rem;
+    transform: translate(-50%);
+
+    @include --mobile {
+      bottom: 2.2rem;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    @include box(1.3rem);
+    border-radius: 1.6rem;
+    background-color: var(--app-background);
+    cursor: pointer;
+    transition: opacity $default-tr, width $default-tr;
+
+    @include hover {
+      &:not(.swiper-pagination-bullet-active) {
+        opacity: 0.6;
+      }
+    }
+
+    &-active {
+      width: 4.8rem;
+      cursor: default;
+    }
+  }
+}
+
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: 68rem;
+  border-radius: 2.4rem;
+  overflow: hidden;
+  background-color: var(--color-accent);
+
+  @include --mobile {
+    height: 49.3rem;
+    border-radius: 0.8rem;
+  }
+
+  &._slim {
+    height: 56.8rem;
+
+    @include --mobile {
+      height: 45.3rem;
+    }
+  }
+
+  &__image-wrapper {
+    position: absolute;
+    inset: 0;
+
+    img {
+      @include box(100%);
+
+      object-fit: cover;
+    }
+
+    &::before {
+      @include box(100%);
+      position: absolute;
+      inset: 0;
+      display: block;
+      background-image: var(--accent-gradient);
+      content: '';
+    }
+  }
+
+  &__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 12.2rem;
+    user-select: none;
+
+    @include --tablet {
+      padding: 8rem 4rem 12rem;
+    }
+
+    @include --mobile {
+      padding: 8.8rem 1.6rem 7.5rem;
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    ._slim & {
+      padding: 11.5rem 5.7rem;
+
+      @include --mobile {
+        padding: 2rem 2rem 6rem;
+      }
+    }
+  }
+
+
+  &__title {
+    @include text-h0;
+
+    max-width: 78.2rem;
+    color: var(--color-contrast);
+    pointer-events: none;
+
+    @include --tablet {
+      max-width: 100%;
+    }
+
+    @include --mobile {
+      padding-left: 1.2rem;
+    }
+
+    ._slim & {
+      @include text-h2;
+
+      margin-top: auto;
+      padding-left: 0;
+
+      @include --mobile {
+        @include text-bold;
+      }
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 3.2rem;
+    color: var(--color-contrast);
+    pointer-events: none;
+
+    @include --tablet {
+      margin-bottom: 1.6rem;
+    }
+
+    @include --mobile {
+      display: none;
+    }
+  }
+
+  &__link {
+    margin-top: auto;
+  }
+}

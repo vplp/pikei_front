@@ -1,0 +1,11 @@
+.overlay {
+  @include box(100%);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  display: none;
+  background-color: var(--color-overlay);
+  opacity: 0;
+}

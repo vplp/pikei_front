@@ -1,0 +1,82 @@
+@mixin popupPosition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.app-popup {
+  @include popupPosition;
+
+  z-index: 100;
+  height: 100vh;
+
+
+  &::before {
+    @include box(100%);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-overlay);
+    opacity: 0.5;
+    content: '';
+  }
+
+  &__inner {
+    @include popupPosition;
+
+    height: 100%;
+
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__content {
+    @include text-lg;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+    align-items: center;
+    justify-content: center;
+    padding: 5.9rem;
+    border-radius: 2.4rem;
+    background-color: var(--element-background);
+    box-shadow: 0px 16px 36px 0px rgba(0, 0, 0, 0.16);
+    will-change: transform;
+
+    @include --tablet {
+      padding: 8rem 0;
+    }
+  }
+
+  &__close-btn {
+    @include box(6.2rem);
+    position: absolute;
+    top: 4rem;
+    right: 8rem;
+    z-index: 1;
+    color: #FFFFFF;
+    transition: opacity $default-tr;
+
+    @include hover {
+      opacity: 0.7;
+    }
+
+    @include --mobile {
+      top: 2rem;
+      right: 2rem;
+    }
+
+    svg {
+      @include box(100%);
+    }
+  }
+}

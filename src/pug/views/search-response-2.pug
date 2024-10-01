@@ -1,0 +1,65 @@
+include /modules/ui/_index
+
+#search-results.search-results-items
+    .tabs.js-tabs
+        .tabs__buttons
+            -
+                const tabs = [
+                    ["Все", 1],
+                    ["Новости", 1],
+                ]
+
+            each tab, index in tabs
+                - const [caption, amount] = tab
+                +tab({
+                    caption,
+                    amount,
+                    isChecked: index === 0,
+                })
+
+        -
+            const searchResults = [
+                {
+                    title: 'Новости',
+                    amount: 1,
+                    icon: 'link',
+                    results: [
+                        [null, 'Прошли систему сертификации %certificate_name%, подтверждающую %properties% нашей продукции'],
+                    ],
+                },
+
+            ]
+
+        .tabs__item.fade-transition.js-tab-item
+            each item in searchResults
+                - const {title, amount, icon, results} = item
+                .search-results-item
+                    h2.search-results-item__title
+                        span #{title} #[span.search-results-item__amount= `(${amount})`]
+                    .search-results-item__list.links-list
+                        each result in results
+                            - const [date, title, category, fileInfo] = result
+                            +list-link({
+                                date,
+                                href: '#',
+                                title,
+                                category,
+                                fileInfo,
+                                icon,
+                            })
+
+        .tabs__item.fade-transition.js-tab-item
+            each item in searchResults
+                - const {title, amount, icon, results} = item
+                .search-results-item
+                    .search-results-item__list.links-list
+                        each result in results
+                            - const [date, title, category, fileInfo] = result
+                            +list-link({
+                                date,
+                                href: '#',
+                                title,
+                                category,
+                                fileInfo,
+                                icon,
+                            })

@@ -1,0 +1,59 @@
+include /modules/ui/_btn
+include /modules/ui/_btn-icon
+include /modules/cards/_favorites-card
+
+
++btn({
+    caption: 'В избранном'
+})(
+    id="btn-favorite",
+    hx-get="/favorites-response.html",
+    hx-swap="outerHTML"
+    hx-select="#btn-favorite"
+)
+
++btn-icon({
+    icon: 'favorite',
+    caption: 'Убрать из избранного'
+})(
+    id="btn-icon-favorite",
+    class="catalog-card__favorites _favorite",
+    hx-get="/favorites-response.html",
+    hx-swap="outerHTML"
+    hx-select="#btn-icon-favorite"
+)
+
+#favorites
+    -
+        const favorites = [
+            {
+                title: 'Кабель волоконно оптический DROP (круглый) "NTSS-FO-DK-OUT-657-4-FRP-PE-1.5kN"',
+                subtitle: 'Минимальный объем: 30 м.',
+            },
+            {
+                title: 'Анкерный зажим ODWAC 22 (нерж.)',
+                subtitle: 'Минимальная партия: 75 шт.',
+            },
+            {
+                title: 'Анкерный зажим ODWAC 22 (оцинк.)',
+                subtitle: 'Минимальная партия: 86 шт.',
+            }
+        ]
+
+    each item, index in favorites
+        - const {title, subtitle} = item
+        +favorites-card({
+            href: '#',
+            title,
+            subtitle,
+            image: {
+                src: `/i/c/favorites/product-${index + 1}.jpg`,
+                src2x: `/i/c/favorites/product-${index + 1}@2x.jpg 2x`,
+            }
+        })
+
+    //- .contact-form__no-items Вы еще ничего не добавляли в избранное
+
++btn-icon({ href: '#', caption: true })(id="favorites-counter", class="_active", data-counter="10")
+    +sprite('favorite')
+    span Избранное

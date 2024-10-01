@@ -1,0 +1,22 @@
+.fade-transition {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s $ease-in-out-quad, visibility 0.2s $ease-in-out-quad;
+
+  &._enter,
+  &._enter-to,
+  &._leave {
+    display: block;
+  }
+
+  &._enter-to {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &._leave {
+    visibility: hidden;
+    opacity: 0;
+  }
+}

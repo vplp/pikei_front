@@ -1,0 +1,104 @@
+.btn-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  @include --tablet {
+    // max-width: fit-content;
+  }
+
+  svg {
+    @include box(3rem);
+
+    transition: color $default-tr, fill $default-tr;
+    fill: transparent;
+    stroke-width: 1.601;
+  }
+
+  span:not(.visually-hidden) {
+    @include text-button;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 1rem;
+    white-space: nowrap;
+    background-color: var(--element-background);
+    transform: translate(100%, -50%);
+    opacity: 0;
+    transition: transform $default-tr, opacity $default-tr;
+    pointer-events: none;
+
+    @include --tablet {
+      position: static;
+      display: inline;
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  &._active {
+    svg {
+      color: var(--color-accent-dark);
+    }
+
+    &[data-counter] {
+
+      &::after {
+        @include box(2.1rem);
+        @include text-xs;
+
+        position: absolute;
+        top: -1.2rem;
+        right: -1rem;
+        z-index: 2;
+        border-radius: 50%;
+        color: var(--color-text-accent);
+        font-weight: 700;
+        line-height: 2.1rem;
+        text-align: center;
+        background-color: var(--color-accent);
+        content: attr(data-counter);
+
+        @include --tablet {
+          position: static;
+        }
+      }
+    }
+  }
+
+  &._static {
+    span {
+      position: static;
+      display: inline;
+      height: auto;
+      background-color: transparent;
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  @include hover {
+    svg {
+      color: var(--color-accent-dark);
+    }
+
+    &:not(._static) {
+      span {
+        transform: translate(100%, -50%);
+        opacity: 1;
+
+        @include --tablet {
+          transform: none;
+        }
+      }
+    }
+  }
+}

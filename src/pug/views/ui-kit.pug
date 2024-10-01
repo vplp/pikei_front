@@ -1,0 +1,64 @@
+extends /layout/_layout.pug
+include /layout/_ui-kit-item
+include /modules/ui/_btn
+include /modules/_logo
+
+block content
+    .container
+        .ui-kit__page
+            h4.ui-kit__title GRIDS
+
+            +ui-kit-item('app-grid')
+                +app-grid()
+                    .ui-example-content._small 1
+                    .ui-example-content._small 2
+
+            +ui-kit-item('app-grid', 'app-grid _columns-2-1')
+                +app-grid(2)
+                    .ui-example-content._small 1
+                    .ui-example-content._small 2
+
+            +ui-kit-item('app-grid', 'app-grid _columns-3-1')
+                +app-grid(3)
+                    .ui-example-content._small 1
+                    .ui-example-content._small.app-grid__span-2 2
+
+            +ui-kit-item('app-grid', 'app-grid _columns-3-1')
+                +app-grid(3)
+                    .ui-example-content._small 1
+                    .ui-example-content._small 2
+                    .ui-example-content._small 3
+                    .ui-example-content._small 4
+
+            h4.ui-kit__title LOGO
+            +ui-kit-item('logo', 'red-black')
+                +logo()
+            +ui-kit-item('logo', '_red-black _desc')
+                +logo({ desc: true })
+            +ui-kit-item('logo', 'red-white')
+                +logo({ variant: 'red-white' })
+            +ui-kit-item('logo', '_red-black _desc')
+                +logo({ variant: 'red-white', desc: true })
+            +ui-kit-item('logo', 'red')
+                +logo({ variant: 'red' })
+            +ui-kit-item('logo', '_red _desc')
+                +logo({ variant: 'red', desc: true })
+            +ui-kit-item('logo', 'white')
+                +logo({ variant: 'white' })
+            +ui-kit-item('logo', '_white _desc')
+                +logo({ variant: 'white', desc: true })
+
+            h4.ui-kit__title BUTTONS
+
+            +ui-kit-item('btn')
+                +btn({caption: 'Смотреть каталог'})
+                +btn({caption: 'Смотреть каталог', disabled: true})
+
+            +ui-kit-item('btn', '_white')
+                +btn({caption: 'Смотреть каталог', variant: 'white'})
+                +btn({caption: 'Смотреть каталог', variant: 'white', disabled: true})
+
+            +ui-kit-item('btn', '_outline')
+                +btn({caption: 'Смотреть каталог', variant: 'outline'})
+                +btn({caption: 'Смотреть каталог', variant: 'outline', disabled: true})
+

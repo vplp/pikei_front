@@ -1,0 +1,11 @@
+include /modules/_sprite
+
+mixin logo(props = {})
+    -
+        const { href, logo = 'logo-pikei', variant = 'red-black', desc = false} = props
+        const logoName = `${logo}-${variant}${desc ? '-desc' : ''}`
+
+    .logo(class={[`_${variant}`]: variant, '_desc': desc})
+        a(aria-label="Логотип компании Pikei")&attributes({ href })
+            +sprite(logoName)
+

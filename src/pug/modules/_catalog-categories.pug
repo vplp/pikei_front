@@ -1,0 +1,62 @@
+include /modules/_category-menu-item
+include /modules/_catalog-filters
+
+mixin catalog-categories(props = {})
+    -
+        const defaultCategories = [
+            [false, 'Все', 672],
+            [false, 'Анкерные зажимы', 83, [
+                [true, 'Спиральная арматура', 27,],
+                [false, 'Зажимы спиральные натяжные', 8],
+                [false, 'Протектор защитный спиральный', 9],
+                [false, 'Зажимы спиральные поддерживающие', 10],
+            ]],
+            [false, 'Узлы крепления', 134],
+            [false, 'Элементы крепления', 17],
+            [false, 'Инструмент для монтажа ленты', 53],
+            [false, 'Пассивные компоненты ВОЛС', 27],
+            [false, 'Пассивные компоненты ВОЛС', 64],
+            [false, 'Шкафы телекоммуникационные', 41],
+            [false, 'Кабель волоконно-оптический', 56],
+            [false, 'Типовые решения крепления кабеля на опорах воздушных линий', 27],
+        ]
+
+    -
+        const { categories = defaultCategories } = props
+
+    #catalog-categories
+        ul
+            each category, index in categories || defaultCategories
+                - const [isActive, title, amount, children] = category
+                li
+                    if children
+                        +category-menu-item({
+                            id: `category-${index}`,
+                            name: `category`,
+                            value: index,
+                            title,
+                            amount,
+                            isActive
+                        })
+                        ul
+                            each child, childIndex in children
+                                - const [isActive, childTitle, childAmount] = child
+                                li
+                                    +category-menu-item({
+                                        id: `category-${childIndex + categories.length + 1}`,
+                                        name: `category`,
+                                        value: childIndex + categories.length + 1,
+                                        title: childTitle,
+                                        amount: childAmount,
+                                        isSubCategory: true,
+                                        isActive,
+                                    })
+                    else
+                        +category-menu-item({
+                            id: `category-${index}`,
+                            name: `category`,
+                            value: index,
+                            title,
+                            amount,
+                            isActive
+                        })

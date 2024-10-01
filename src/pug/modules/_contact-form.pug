@@ -1,0 +1,92 @@
+include /modules/cards/_favorites-card
+include /modules/_spinner
+
+mixin contact-form(props = {})
+    -
+        const {
+            isFavoritesForm = false,
+            hiddenValue = '',
+            dropzoneText = 'Кликните чтобы прикрепить файл, или&nbsp;перетащите его сюда',
+            submitCaption = 'Отправить',
+        } = props
+
+    .contact-form#contact-us(class={'_favorites': isFavoritesForm} data-animate)&attributes(attributes)
+        form.js-contact-form(
+            action='/api/contact-form'
+            method='post'
+            enctype='multipart/form-data'
+            data-success-message="Сообщение успешно отправленно"
+            data-error-message="Упс! Что-то пошло не так"
+        )
+            if hiddenValue
+                input(type="hidden", value= hiddenValue)
+            +app-grid(3)
+                if isFavoritesForm
+                    .contact-form__favorites#favorites
+                        +spinner({
+                            isContrast: true,
+                        })
+                        -
+                            const favorites = [
+                                {
+                                    title: 'Узел крепления натяжной УКН-01 (болт)',
+                                    subtitle: 'Минимальная партия: 108 шт.',
+                                },
+                                {
+                                    title: 'Кабель волоконно оптический DROP (круглый) "NTSS-FO-DK-OUT-657-4-FRP-PE-1.5kN"',
+                                    subtitle: 'Минимальный объем: 30 м.',
+                                },
+                                {
+                                    title: 'Анкерный зажим ODWAC 22 (нерж.)',
+                                    subtitle: 'Минимальная партия: 75 шт.',
+                                },
+                                {
+                                    title: 'Анкерный зажим ODWAC 22 (оцинк.)',
+                                    subtitle: 'Минимальная партия: 86 шт.',
+                                }
+                            ]
+
+                        each item, index in favorites
+                            - const {title, subtitle} = item
+                            +favorites-card({
+                                href: '#',
+                                title,
+                                subtitle,
+                                image: {
+                                    src: `/i/c/favorites/product-${index + 1}.jpg`,
+                                    src2x: `/i/c/favorites/product-${index + 1}@2x.jpg 2x`,
+                                }
+                            })
+
+                .contact-form__description
+                    p Заполните форму и наши специалисты свяжутся с вами в ближайшее время
+                .contact-form__inputs
+                    .ui-text-field
+                        input(id="company", name="company", type="text", placeholder=" ")
+                        label(for="company") Компания
+                    .ui-text-field
+                        input(id="name", name="name", type="text", placeholder=" ", required, data-validate="required")
+                        label(for="name") Имя
+                    .ui-text-field
+                        input(id="email", name="email", type="email", placeholder=" ", required, data-validate="email")
+                        label(for="email") Почта
+                    .ui-text-field
+                        input(id="tel", name="tel", type="tel", placeholder=" ", required, data-validate="tel")
+                        label(for="tel") Телефон
+                    .contact-form__textarea
+                        .ui-text-field
+                            textarea(id="message", name="message", placeholder=" ", required, data-validate="required")
+                            label(for="message") Сообщение
+                .contact-form__agreement
+                    p.text-content Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c #[a(href='/policy.html') политикой конфиденциальности]
+                .contact-form__file-upload.js-drop-file
+                    input.visually-hidden(id="file", type="file", name="file")
+                    label.js-dropzone-clickable
+                        +sprite('attachment')
+                        span!= dropzoneText
+
+
+
+                .contact-form__submit-button
+                    +btn({type: "submit", caption: submitCaption})
+

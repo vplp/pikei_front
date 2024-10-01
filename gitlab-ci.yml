@@ -1,0 +1,58 @@
+# Примечание:
+# директория сервера /var/www примонтирована как /.www в Docker
+
+# Нотификации Telegram
+# для работы нотификаций необходимо:
+# 1. по умолчанию используется бот https://t.me/ParawebNotify_bot
+# 2. добавить токен бота в переменную $TELEGRAM_BOT_TOKEN в настройки проекта или админ панели GitLab
+# 3. добавить id чата в $TELEGRAM_CHAT_ID
+
+image: node:lts
+
+variables:
+  GITLAB_DOMAIN: paraweb.space
+  BUILD_FOLDER: build # директория ./build проекта будет использована для артефакта сборки
+  SUBDOMAIN: $CI_COMMIT_REF_NAME-$CI_PROJECT_NAME.$GITLAB_DOMAIN # main-project-name.paraweb.space | dev-project-name.paraweb.space
+  CI_DEBUG_TRACE: "true"
+
+# эти директории кэшируются между сборками
+# https://docs.gitlab.com/ee/ci/yaml/index.html#cache
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - yarn install
+  - yarn build # или например yarn build:mock
+
+deploy:
+  script:
+    - if [ ! -d "$BUILD_FOLDER" ]; then echo "Файлы сборки в директории $BUILD_FOLDER не найдены"; fi
+    - if [ ! -d "$BUILD_FOLDER" ]; then exit 0; fi
+    - echo "Создание/очистка поддиректории $SUBDOMAIN"
+    - if [ -d "/.www/$SUBDOMAIN" ]; then rm -rf "/.www/$SUBDOMAIN/*"; fi
+    - if [ ! -d "/.www/$SUBDOMAIN" ]; then mkdir "/.www/$SUBDOMAIN"; fi
+    - echo "Копирование файлов сборки в поддомен"
+    - cp -a "$BUILD_FOLDER/." "/.www/$SUBDOMAIN/"
+    - echo "Файлы сборки скопированы"
+  only:
+    - main
+    - master
+    - dev
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - build
+
+
+notify_success:
+  variables:
+    URL: https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
+    MESSAGE: >
+      Обновление: 0A%0AProject:+$CI_PROJECT_NAME%0AURL:+$CI_PROJECT_URL/pipelines/$CI_PIPELINE_ID/%0ABranch:+$CI_COMMIT_REF_SLUG
+  script:
+    - curl -s --max-time 10 -d "chat_id=$TELEGRAM_CHAT_ID&disable_web_page_preview=1&text=$TEXT" $URL > /dev/null
+  only:
+    variables:
+      - $TELEGRAM_CHAT_ID
+  when: on_success

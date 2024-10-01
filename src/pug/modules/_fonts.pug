@@ -1,0 +1,6 @@
+mixin fonts(fonts = [])
+    each font in fonts
+        - const [fontFamily, weights] = font
+        each weight in weights
+            link(rel='preload' href=`/fonts/${fontFamily}/${weight}.woff2` as='font' crossorigin='' type='font/woff2')
+            link(rel='preload' href=`/fonts/${fontFamily}/${weight}.woff` as='font' crossorigin='' type='font/woff')

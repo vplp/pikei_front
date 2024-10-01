@@ -1,0 +1,30 @@
+mixin ui-pagination(props = {})
+    -
+        const {
+            id = 'pagination-1',
+            current = '1',
+            total = '7',
+            get = '',
+            swap = '', //multi:#pagination-${id}:outerHTML,#pagination-1:outerHTML,#dealers:innerHTML
+            indicator = '.spinner',
+            attrs = {},
+        } = props
+
+    .ui-pagination(id= id)
+        button(
+            type="button",
+            hx-indicator= indicator
+        )&attributes(attrs)
+            .visually-hidden Предыдущая страница
+            +sprite('chevron-left')
+        .ui-pagination__counter
+            span.ui-pagination__current= current
+            span.ui-pagination__delimeter /
+            span.ui-pagination__total= total
+        button(
+            type="button",
+            hx-indicator= indicator
+        )&attributes(attrs)
+            .visually-hidden Следующая страница
+            +sprite('chevron-right')
+

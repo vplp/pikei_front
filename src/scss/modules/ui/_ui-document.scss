@@ -1,0 +1,27 @@
+.ui-document {
+  @include text-sm;
+
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+
+  @include hover {
+    .ui-document {
+      &__title {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  svg {
+    @include box(3rem);
+  }
+
+  &__title {
+    transition: color $default-tr;
+  }
+
+  &__props {
+    color: var(--color-grey-1);
+  }
+}

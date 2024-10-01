@@ -1,0 +1,8 @@
+mixin ui-kit-item(className, subClassName)
+  .ui-kit__head
+    p class=&quot;#{className}&quot;
+      if subClassName
+        p class=&quot;#{subClassName}&quot;
+  .ui-kit__wrapper
+    section
+      block

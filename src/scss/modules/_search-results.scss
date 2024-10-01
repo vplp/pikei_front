@@ -1,0 +1,62 @@
+.search-results {
+  position: relative;
+  padding: 0.8rem;
+  border: 1px solid var(--color-grey-1);
+  border-radius: 0.8rem;
+  border-radius: 0.8rem;
+  background-color: var(--element-background);
+}
+
+.search-result {
+  &__link {
+    @include text-sm;
+
+    display: block;
+    gap: 4px;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.8rem;
+    transition: background-color $default-tr;
+
+    @include --mobile {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @include hover {
+      background-color: var(--color-grey-4);
+    }
+  }
+
+  &._no-results {
+    color: var(--color-accent);
+    pointer-events: none;
+  }
+
+  &__category,
+  &__delimeter {
+    @include caption;
+
+    color: var(--color-grey-1);
+  }
+
+  &__delimeter {
+    margin: 0 4px;
+
+    @include --mobile {
+      display: none;
+    }
+  }
+}
+
+.search-results-container {
+  position: absolute;
+  bottom: -0.8rem;
+  z-index: 2;
+  display: none;
+  width: 100%;
+  overflow: visible;
+  transform: translateY(100%);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity $default-tr, visibility 0s 0.35s ease;
+}

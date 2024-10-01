@@ -1,0 +1,107 @@
+extends ../layout/_layout.pug
+
+include /modules/ui/_breadcrumbs
+include /modules/_contact-form
+include /modules/_catalog-filters
+include /modules/_catalog-items
+include /modules/cards/_catalog-card
+include /modules/cards/_promo-card
+include /modules/_catalog-categories
+
+block variables
+    - const title = 'Каталог'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Каталог',
+                    attributes: {
+                        href: '/catalog.html',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+    +app-section({
+        title: 'Каталог',
+        pageTitle: true,
+        arrows: true,
+    })(class="catalog")
+        +app-grid(4)
+            form(
+                id="catalog-form"
+                hx-get="/catalog-response.html"
+                hx-trigger="change from:.hx-form-trigger, reset, submit"
+                hx-swap="multi:#catalog-categories,#filters,#catalog-items swap:1s"
+                hx-params="not search"
+                hx-indicator=".spinner"
+            )
+                .catalog-panels.js-catalog-panels
+                    +panel({title: 'Категория'})(class="js-category-panel")
+                        +catalog-categories()
+
+                    +panel({title: 'Фильтры', titleIcon: 'filter-2', isAccordion: true, isOpened: true})(class="js-filters-panel")
+                        +catalog-filters()
+
+                    .panel-mobile
+                        .ui-text-field._search
+                            input.js-search-input(
+                                id="search-1",
+                                name="search",
+                                type="search",
+                                placeholder=" ",
+                                hx-get="/search-response.html",
+                                hx-trigger="keyup changed delay:500ms, search",
+                                hx-target="#search-results-1"
+                                hx-swap="innerHTML"
+                                hx-disinherit
+                            )
+                            label(for="search") Поиск по каталогу
+                            +sprite('search')
+                            .search-results-container#search-results-1
+                        .panel-mobile__controls
+                            +btn({caption: 'Категория: Все', small: true})(class="js-category-trigger")
+                            +btn-icon({static: true})(class="js-filters-trigger")
+                                +sprite('filter-2')
+                                span Фильтры
+
+                +promo-card()
+
+
+            .app-grid__span-3
+                .catalog__search.ui-text-field._search
+                    input.js-search-input(
+                        id="search-2",
+                        name="search",
+                        type="search",
+                        placeholder=" ",
+                        hx-get="/search-response.html",
+                        hx-trigger="keyup changed delay:500ms, search",
+                        hx-target="#search-results-2"
+                        hx-disinherit
+                    )
+                    label(for="search") Поиск по каталогу
+                    +sprite('search')
+                    .search-results-container#search-results-2
+
+                +catalog-items()
+
+    +app-section({
+        title: 'Связаться с нами',
+        variant: 'white',
+        arrows: true
+    })(id="contact-us")
+        +contact-form()
+
+
+
+

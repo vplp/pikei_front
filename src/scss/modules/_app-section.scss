@@ -1,0 +1,215 @@
+.app-section {
+  margin: 0 0 15.6rem;
+
+  > .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include --mobile {
+    margin: 0 0 8.6rem;
+  }
+
+  &:last-child {
+    margin: 0 0 9rem;
+  }
+
+  &._white {
+    @include --mobile {
+      margin: 0;
+    }
+
+    .container {
+      padding: 5.8rem 3.4rem;
+      border-radius: 2.4rem;
+      background-color: var(--element-background);
+
+      @include --tablet {
+        width: 100%;
+        max-width: 100%;
+        padding: 5.8rem 4rem;
+        border-radius: 2.4rem 2.4rem 0 0;
+      }
+
+      @include --mobile {
+        padding: 5.8rem 1.6rem;
+      }
+    }
+  }
+
+  &__head {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin: 0 0 5.4rem;
+
+    ._title-sm & {
+      margin: 0 0 4.8rem;
+    }
+
+    ._meta & {
+      margin: 0 0 3.2rem;
+    }
+
+    &._align-center {
+      svg {
+        align-self: center;
+      }
+    }
+
+    svg {
+      flex-shrink: 0;
+      align-self: center;
+      width: 8.1rem;
+      height: 2.9rem;
+      color: var(--color-accent);
+
+      @include --tablet {
+        align-self: flex-start;
+      }
+
+      @include --mobile {
+        width: 5rem;
+        height: 2rem;
+      }
+    }
+
+    span {
+      font-size: 2.4rem;
+      font-family: $robotoFont;
+      line-height: 195%;
+
+      @include --mobile {
+        line-height: 120%;
+      }
+    }
+
+    @include --mobile {
+      margin: 0 0 2.4rem;
+    }
+  }
+
+  &__image {
+    margin: 0 0 7.2rem;
+    border-radius: 1.6rem;
+    aspect-ratio: 17 / 10;
+    overflow: hidden;
+
+    @include --tablet {
+      order: -1;
+      margin: 0 0 2.4rem;
+    }
+
+    img {
+      @include box(100%);
+
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    @include text-h1;
+
+    display: flex;
+    gap: 1.7rem;
+    align-items: center;
+
+    ._title-sm & {
+      @include text-h3;
+    }
+
+    ._title-md & {
+      @include --tablet {
+        @include text-lg;
+      }
+    }
+
+    ._icon-logo-arrows {
+      align-self: center;
+      color: var(--color-accent);
+
+      @include --tablet {
+        align-self: flex-start;
+      }
+    }
+
+    &.js-tab-button {
+      font-size: 2.4rem;
+      font-family: $robotoFont;
+      line-height: 195%;
+      transition: color $default-tr;
+
+      @include --mobile {
+        line-height: 120%;
+      }
+
+      @include hover {
+        color: var(--color-accent);
+      }
+
+      &._checked {
+        @include text-h1;
+
+        pointer-events: none;
+      }
+    }
+
+    @include --tablet {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__subtitle {
+    font-size: 2.4rem;
+    font-family: $robotoFont;
+    line-height: 195%;
+
+    @include --mobile {
+      @include text-button;
+    }
+
+    &.js-tab-button {
+      transition: color $default-tr;
+
+      @include hover {
+        color: var(--color-accent);
+      }
+
+      &._checked {
+        @include text-h1;
+
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__meta {
+    @include caption;
+
+    margin: 0 0 4.8rem;
+  }
+
+  &__foot {
+    display: flex;
+    justify-content: center;
+    margin: 6.4rem 0 0;
+
+    @include --mobile {
+      margin: 3.2rem 0 0;
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    &._right {
+      justify-content: flex-end;
+      margin-top: 4.2rem;
+    }
+  }
+
+  &__aside {
+    grid-column: 2;
+  }
+}

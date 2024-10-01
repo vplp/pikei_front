@@ -1,0 +1,14 @@
+mixin fab-links()
+    .fab-links.js-fab-links
+        +btn({
+            caption: '',
+            href: '#contact-us',
+            fab: true,
+        })(class="_lg js-scroll-to-link" data-margin-root=".app-section")
+            +sprite('dialog')
+        +btn({
+            caption: '',
+            href: 'tel:+74993228940',
+            fab: true,
+        })(class="_lg")
+            +sprite('mobile')

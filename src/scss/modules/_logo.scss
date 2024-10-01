@@ -1,0 +1,13 @@
+.logo {
+  width: 8.2rem;
+  height: 3.2rem;
+
+  &._desc {
+    width: 23.2rem;
+    height: 3.2rem;
+  }
+
+  svg {
+    @include box(100%);
+  }
+}

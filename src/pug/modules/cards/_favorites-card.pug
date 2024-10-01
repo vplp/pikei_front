@@ -1,0 +1,26 @@
+mixin favorites-card(props = {})
+    -
+        const {
+            href = '#',
+            image = null,
+            title = '',
+            subtitle = '',
+        } = props
+    article.favorites-card
+        input(type="hidden", name= title, value= title)
+        .favorites-card__image
+            a(href= image.src data-fancybox="" data-caption= title)
+                img(src= image.src srcset= image.src2x alt= image.alt)
+        .favorites-card__description
+            h2.favorites-card__title
+                a(href="#")= title
+            p.favorites-card__subtitle= subtitle
+        .favorites-card__button
+            +btn-icon({
+                icon: 'close',
+                caption: 'Удалить товар из избранного',
+            })(
+                hx-get="/favorites-response.html"
+                hx-swap="multi:#favorites:innerHTML,#favorites-counter:outerHTML swap:1s"
+                hx-indicator='.spinner'
+            )

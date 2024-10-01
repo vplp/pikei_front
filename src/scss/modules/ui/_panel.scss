@@ -1,0 +1,118 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.8rem;
+  background-color: var(--element-background);
+
+  @include --tablet {
+    @include box(100%);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    border-radius: 0;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform $default-tr, visibility 0s 0.35s;
+
+    &._active {
+      transform: translateX(0%);
+      visibility: visible;
+      transition: transform $default-tr, visibility 0s 0s;
+    }
+  }
+
+  &__head {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.7rem 1.5rem;
+
+    &._toggle {
+      cursor: pointer;
+
+      ._icon-chevron-down {
+        color: var(--color-grey-1);
+        transition: color $default-tr, transform $default-tr;
+
+        ._opened & {
+          transform: scaleY(-1);
+        }
+      }
+
+      @include hover {
+        ._icon-chevron-down {
+          color: var(--color-accent-light);
+        }
+      }
+    }
+
+    ._accordion & {
+      @include --tablet {
+        ._icon-chevron-down {
+          display: none;
+        }
+      }
+    }
+
+    svg {
+      @include box(1.6rem);
+      color: var(--color-accent);
+
+      @include --tablet {
+        @include box(2.5rem);
+      }
+    }
+  }
+
+  &__close-btn {
+    display: none;
+
+    @include --tablet {
+      display: flex;
+    }
+  }
+
+  &__title {
+    @include text-bold-sm;
+
+    display: flex;
+    gap: 0.8rem;
+
+    svg {
+      @include box(2rem);
+
+      color: var(--color-accent);
+    }
+
+    @include --tablet {
+      display: none;
+    }
+  }
+
+  &__content {
+    overflow: hidden;
+
+    @include --tablet {
+      height: 100% !important;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 1.5rem 3.4rem;
+
+    ._accordion:not(._opened) {
+      height: 0;
+      padding: 0;
+    }
+
+    ._accordion & {
+      padding: 1.7rem 1.5rem 3.4rem;
+    }
+  }
+}

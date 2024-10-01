@@ -1,0 +1,10 @@
+mixin partners()
+    .partners
+        ul
+            each partner in collection('partners')
+                - const [path, ext] = partner.img.split('.')
+                li.partners__item
+                    if ext === 'svg'
+                        img(src= partner.img alt= partner.alt)
+                    else
+                        img(src =partner.img srcset= `${partner.img2x} 2x` alt= partner.alt)

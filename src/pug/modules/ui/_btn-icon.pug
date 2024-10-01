@@ -1,0 +1,19 @@
+include /modules/_sprite
+
+mixin btn-icon(props = {})
+    - const {icon = '', caption = '', href = '', static = false } = props
+    if href
+        a.btn-icon(href= href, class={'_caption': caption})&attributes(attributes)
+            if block
+                block
+            else
+                +sprite(icon)
+                span.visually-hidden= caption
+    else
+        button.btn-icon(type="button", class={'_caption': caption, '_static': static})&attributes(attributes)
+            if block
+                block
+            else
+                +sprite(icon)
+                span.visually-hidden= caption
+

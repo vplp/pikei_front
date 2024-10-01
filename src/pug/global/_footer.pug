@@ -1,0 +1,91 @@
+include /modules/_logo
+include /modules/_sprite
+include /modules/_social
+include /modules/ui/_btn
+
+footer.footer#js-footer
+    .footer__inner
+        .container
+            .footer__content
+                +app-grid(3)
+                    .footer__logo-wrapper
+                        +logo({variant: 'white', desc: true })
+                        +btn({caption: 'Смотреть каталог', href: '/catalog.html', variant: 'white'})
+
+                    .footer__links-wrapper
+                        .footer__links
+                            p.footer__title Компания
+                            ul
+                                -
+                                    const companyLinks = [
+                                        ['О компании', '#'],
+                                        ['Основные цифры', '#'],
+                                        ['Почему мы', '#'],
+                                        ['С кем мы работаем', '#'],
+                                        ['Вакансии', '#'],
+                                        ['Новости', '#'],
+                                    ]
+
+                                each link in companyLinks
+                                    - const [caption, href] = link
+                                    li: a(href= href)= caption
+
+                        .footer__links
+                            p.footer__title Клиентам
+                            ul
+                                -
+                                    const clientLinks = [
+                                        ['Условия доставки', '#'],
+                                        ['Сертификаты', '#'],
+                                        ['Каталоги', '#'],
+                                    ]
+
+                                each link in clientLinks
+                                    - const [caption, href] = link
+                                    li: a(href= href)= caption
+                    .footer__links-wrapper._mobile
+                        .footer__links
+                            ul
+                                -
+                                    const mobCompanyLinks = [
+                                        ['О нас', '#'],
+                                        ['Новости', '#'],
+                                        ['Вакансии', '#'],
+                                        ['Каталог', '#'],
+                                    ]
+
+                                each link in mobCompanyLinks
+                                    - const [caption, href] = link
+                                    li: a(href= href)= caption
+
+                        .footer__links
+                            ul
+                                -
+                                    const mobClientLinks = [
+                                        ['Где купить', '#'],
+                                        ['Клиентам', '#'],
+                                        ['Контакты', '#'],
+                                    ]
+
+                                each link in mobClientLinks
+                                    - const [caption, href] = link
+                                    li: a(href= href)= caption
+                    .footer__contacts
+                        a.footer__phone(href="tel:+74993228940") +7(499) 322-89-40
+                        a.footer__email(href="mailto:info@pikei.ru") info@pikei.ru
+                        address.footer__address г.Москва, 22-ой км. Киевского шоссе, БП Румянцево, корпус В, 16 подъезд, 7 этаж, офис 730 В
+                        -
+                            const socials = [
+                                { href: '#', icon: 'vk'},
+                                { href: '#', icon: 'tg'},
+                            ]
+
+                        +social(socials)
+                .footer__copyright
+                    +app-grid(3)
+                        span © 2023, «Пикей»
+                        a.footer__policy(href="/policy.html") Политика конфиденциальности
+                        a.footer__vendor(href="https://piligrims.ru/")
+                            | Сделано в дизайн-студии
+                            +sprite('logo-piligrim')
+

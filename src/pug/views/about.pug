@@ -1,0 +1,222 @@
+extends ../layout/_layout.pug
+
+include /modules/ui/_breadcrumbs
+include /modules/_hero-slider
+include /modules/cards/_category-card
+include /modules/_contact-form
+include /modules/_partners
+include /modules/_scroll-to-links
+
+block variables
+    - const title = 'О компании'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'О компании',
+                    attributes: {
+                        href: '/about.html',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+    +app-section({ title: 'О компании', arrows: true, pageTitle: true })
+        -
+            const slide =
+                {
+                    img: {
+                        src: '/i/c/about/hero-slider/1.jpg',
+                        src2x: '/i/c/about/hero-slider/1@2x.jpg',
+                        alt: 'Фотография склада'
+                    },
+                    description: 'Мы производим и поставляем арматуру и крепежи для кабелей волоконно-оптических линий связи (ВОЛС) и самонесущих изолированных проводов (СИП) с 2017 года.'
+                }
+
+            const slides = Array.from({ length: 4 }).map((item, index) => ({ ...slide, description: slide.description + index}))
+        +hero-slider({ slides, slim: true })
+
+        +app-grid(3)
+            .app-grid__span-2
+                .text-content.v-flex
+                    p.text-lead Компания PIKEI основана 18 мая 2017 года. Сегодня это 4 цеха, 150 профессионалов в команде, склады и офисы в Москве и Наро-Фоминске. Благодаря системе наставничества и передачи опыта молодым специалистам мы поддерживаем высокий уровень квалификации наших сотрудников. Наша цель 一 создавать лучшие продукты для строительства IT-инфраструктуры и электрических систем. 
+
+                    +scroll-to-links({
+                        links: [
+                            {href: '#key-figures', caption: 'Ключевые цифры'},
+                            {href: '#why-us', caption: 'Почему мы?'},
+                            {href: '#partners', caption: 'С кем мы работаем'},
+                            {href: '#contact-us', caption: ' Связаться с нами'},
+                        ]
+                    })
+            .app-grid._columns-2-1._desktop-only
+                .app-section__aside
+                    .preview-tabs.js-tabs
+                        .preview-tabs__buttons
+                            button.js-tab-button._checked(type="button") Новости
+                            button.js-tab-button(type="button") Вакансии
+                        each item in new Array(2)
+                            .preview-tabs__item.fade-transition.js-tab-item
+                                ul.news-preview
+                                    -
+                                        const news = [
+                                            {
+                                                date: '20 июля 2023',
+                                                datetime: '2023-07-19T21:00:00.000Z',
+                                                title: 'Прошли систему сертификации %certificate_name%, подтверждающую %properties% нашей <span>продукции</span>',
+                                                href: '#'
+                                            },
+                                            {
+                                                date: '07 июля 2023',
+                                                datetime: '2023-07-06T21:00:00.000Z',
+                                                title: 'Запустили новый завод, теперь сами делаем оптоволоконный <span>кабель</span>',
+                                                href: '#'
+                                            },
+                                        ]
+
+                                    each item in news
+                                        li
+                                            time(datetime= item.datetime)= item.date
+                                            a.news-preview__title(href= item.href)!= item.title
+
+                                a.link(href= "/news.html") Новости
+    +app-section({ hasContainer: true, title: 'Ключевые цифры', arrows: true })(id="key-figures", class="key-figures")
+        //- h2.key-figures__title Ключевые цифры
+        ul.key-figures__list
+            li
+                span.key-figures__figure
+                    span.js-figure 5000
+                    span м2
+                span.key-figures__description общая производственная площадь
+            li
+                span.key-figures__figure >
+                    span.js-figure 9 000
+                span.key-figures__description выполненных комплексных заказов
+            li
+                span.key-figures__figure
+                    span.js-figure 70
+                span.key-figures__description регионов РФ используют нашу продукцию
+            li
+                span.key-figures__figure
+                    span.js-figure 150
+                span.key-figures__description профессионалов в&nbsp;штате
+    +app-section({title: 'Почему мы', arrows: true, hasContainer: false})(id="why-us")
+        .container
+            +app-grid(3)
+                .app-grid__span-2
+                    .text-content
+                        p.text-lead Мы стремимся стать лидером на рынке производства и поставок крепежей и арматуры для строительства ВОЛС и СИП. Что вы получите, работая с нами?
+        include /modules/_benefits-slider
+
+    +app-section({title: 'С кем мы работаем', arrows: true})(id="partners")
+        +app-grid(3)
+            .app-grid__span-2
+                .text-content
+                    p.text-lead Мы сотрудничаем с крупными отечественными поставщиками сырья и являемся дистрибьюторами известных российских производителей кабеля. Наши заказчики 一 государственные и частные монтажные организации, торговые операторы рынка ВОЛС и СИП, провайдеры услуг связи, дорожные службы. Хотите быть уверенными в качестве и надежности поставок? Напишите нам.
+
+        +partners()
+
+        .preview-slider.js-preview-slider
+            +app-grid(3)
+                .preview-slider__text-content.text-content
+                    p.preview-slider__title.text-lead.js-preview-slider-title Машиностроительное подразделение
+                    p.preview-slider__description.js-preview-slider-description У нас есть собственное Конструкторское бюро, инструментальный цех и электрические лаборатории. Мы разработали специальную оснастку оборудования, благодаря которой мы можем изменять технологию производства в зависимости от конкретных проектов.
+                    -
+                        const slides = [
+                            {
+                                img: {
+                                    src: '/i/c/about/preview-slider/slide-1.jpg',
+                                    src2x: '/i/c/about/preview-slider/slide-1@2x.jpg',
+                                    alt: 'Машиностроительное подразделение'
+                                },
+                                title: 'Машиностроительное подразделение',
+                                description: 'У нас есть собственное Конструкторское бюро, инструментальный цех и электрические лаборатории. Мы разработали специальную оснастку оборудования, благодаря которой мы можем изменять технологию производства в зависимости от конкретных проектов.'
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/about/preview-slider/slide-1.jpg',
+                                    src2x: '/i/c/about/preview-slider/slide-1@2x.jpg',
+                                    alt: 'Фотография склада'
+                                },
+                                title: 'Тайтл слайда 1',
+                                description: 'Описание слайда'
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/about/preview-slider/slide-1.jpg',
+                                    src2x: '/i/c/about/preview-slider/slide-1@2x.jpg',
+                                    alt: 'Фотография склада'
+                                },
+                                title: 'Тайтл слайда 2',
+                                description: 'Описание слайда'
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/about/preview-slider/slide-1.jpg',
+                                    src2x: '/i/c/about/preview-slider/slide-1@2x.jpg',
+                                    alt: 'Фотография склада'
+                                },
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/about/preview-slider/slide-1.jpg',
+                                    src2x: '/i/c/about/preview-slider/slide-1@2x.jpg',
+                                    alt: 'Фотография склада'
+                                },
+                                title: 'Тайтл слайда 3',
+                                description: 'Описание слайда'
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/about/preview-slider/slide-1.jpg',
+                                    src2x: '/i/c/about/preview-slider/slide-1@2x.jpg',
+                                    alt: 'Фотография склада'
+                                },
+                            },
+                            {
+                                img: {
+                                    src: '/i/c/about/preview-slider/slide-1.jpg',
+                                    src2x: '/i/c/about/preview-slider/slide-1@2x.jpg',
+                                    alt: 'Фотография склада'
+                                },
+                            },
+                        ]
+
+                .preview-slider__stage.app-grid__span-2
+                    .preview-slider__main-slider.swiper.js-preview-slider-main
+                        +btn({ variant: 'secondary', fab: true })(class="swiper-button-prev")
+                            +sprite('chevron-left')
+                        +btn({ variant: 'secondary', fab: true })(class="swiper-button-next")
+                            +sprite('chevron-right')
+                        .swiper-wrapper
+                            each slide in slides
+                                - const { title, description, img } = slide
+                                .swiper-slide.preview-slider__slide(data-title= title)
+                                    .preview-slider__image
+                                        a(href= img.src data-fancybox="gallery" data-caption= title)
+                                            img(src= img.src, srcset=`${img.src} 1x, ${img.src2x} 2x`)
+                                    .preview-slider__content
+                                        if title
+                                            p.preview-slider__src-title= title
+                                        if description
+                                            p.preview-slider__src-description= description
+
+                    .preview-slider__thumbs-slider.swiper.js-preview-slider-thumbs
+                        .swiper-wrapper
+                            each slide in slides
+                                - const { img } = slide
+                                .swiper-slide.preview-slider__thumb
+                                    .preview-slider__image._thumb
+                                        img(src= img.src, srcset=`${img.src} 1x, ${img.src2x} 2x`)
+
+    +app-section({ title: 'Связаться с нами', variant: 'white', arrows: true, hasContainer: true, })(id="contact-us")
+        +contact-form()

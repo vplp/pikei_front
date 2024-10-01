@@ -1,0 +1,179 @@
+.footer {
+  margin: auto 0 0;
+  color: var(--color-contrast);
+
+  @include --mobile {
+    background-color: var(--element-background);
+  }
+
+  a:not(.btn, .footer__vendor, .social__link, .footer__policy) {
+    text-decoration: underline transparent;
+    transition: text-decoration-color $default-tr;
+
+    @include hover {
+      text-decoration-color: var(--color-contrast);
+    }
+  }
+
+  &__inner {
+    border-radius: 2.4rem 2.4rem 0 0;
+    background-color: var(--color-accent);
+  }
+
+  &__content {
+    padding: 5.3rem 0;
+
+    @include --mobile {
+      padding: 3.2rem 0;
+    }
+
+    > .app-grid {
+      @include --tablet {
+        gap: 6.4rem;
+      }
+
+      @include --mobile {
+        gap: 3.2rem;
+      }
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-flow: column;
+    max-width: 32.5rem;
+
+    @include --mobile {
+      order: 1;
+    }
+
+    .social {
+      margin-top: 2rem;
+    }
+  }
+
+  &__phone {
+    @include text-h2;
+
+    letter-spacing: 1.6px;
+    white-space: nowrap;
+  }
+
+  &__email {
+    @include text-h3;
+
+    margin-top: 2rem;
+  }
+
+  &__address {
+    @include text-sm;
+
+    margin-top: 1.2rem;
+    color: var(--color-grey-4);
+  }
+
+  &__logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+
+    @include --mobile {
+      flex-direction: column-reverse;
+      gap: 3.2rem;
+      order: 3;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  &__links-wrapper {
+    display: flex;
+
+    @include --mobile {
+      display: none;
+    }
+
+    &._mobile {
+      display: none;
+
+      @include --mobile {
+        display: flex;
+        gap: 3.2rem;
+        order: 2;
+      }
+    }
+  }
+
+  &__links {
+    flex: 1;
+
+    a {
+      @include text-sm;
+
+      @include --mobile {
+        font-weight: 700;
+      }
+    }
+
+    p {
+      @include text-button;
+
+      letter-spacing: 0.9px;
+
+      @include --mobile {
+        display: none;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-flow: column;
+      gap: 0.8rem;
+      margin: 2.4rem 0 0;
+
+      @include --mobile {
+        margin: 0;
+      }
+    }
+  }
+
+  &__copyright {
+    @include text-xs;
+    margin: 5.3rem 0 0;
+
+    .app-grid {
+      @include --tablet {
+        gap: 0.8rem;
+        margin: 3.2rem 0 0;
+      }
+    }
+  }
+
+  &__policy {
+    color: var(--color-contrast);
+    text-decoration: underline;
+  }
+
+  &__vendor {
+    align-items: center;
+    line-height: 150%;
+
+    @include --mobile {
+      margin: 5.3rem 0 0;
+    }
+
+    svg {
+      display: inline-block;
+      width: 11.9rem;
+      height: 1.2rem;
+      margin-left: 1.7rem;
+      vertical-align: middle;
+
+      @include --mobile {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

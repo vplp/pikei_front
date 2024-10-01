@@ -1,0 +1,60 @@
+.spinner {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--app-background);
+    opacity: 0.8;
+
+    ._contrast & {
+      background-color: var(--element-background);
+    }
+  }
+
+  &.htmx-request {
+    display: flex;
+  }
+
+  svg {
+    position: relative;
+    color: var(--color-accent);
+
+    path {
+      &:nth-child(1) {
+        animation: 2s infinite fadeIn;
+      }
+
+      &:nth-child(2) {
+        animation: 2s 0.3s infinite fadeIn;
+      }
+
+      &:nth-child(3) {
+        animation: 2s 0.6s infinite fadeIn;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateX(-5%);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+

@@ -1,0 +1,46 @@
+include /modules/cards/_dealer-card
+include /modules/_sprite
+include /modules/ui/_ui-pagination
+
+ul.dealers__items#dealers
+    li: +dealer-card({
+        image: {
+            src: '/i/c/about/partners/partner-1.svg',
+            alt: '',
+        }
+    })
+    li: +dealer-card({
+        image: {
+            src: '/i/c/about/partners/partner-1.svg',
+            alt: '',
+        }
+    })
+    li: +dealer-card({
+        image: {
+            src: '/i/c/about/partners/partner-1.svg',
+            alt: '',
+        }
+    })
+
+#pagination-1
+    +ui-pagination({
+        current: 2,
+        total: 7,
+        attrs: {
+            'hx-get': "/dealers-response.html",
+            'hx-swap': 'multi:#pagination-2:outerHTML,#pagination-1:outerHTML,#show-more-btn:outerHTML,#dealers:innerHTML',
+        }
+    })
+
+#pagination-2
+    +ui-pagination({
+        current: 2,
+        total: 7,
+        attrs: {
+            'hx-get': "/dealers-response.html",
+            'hx-swap': 'multi:#pagination-2:outerHTML,#pagination-1:outerHTML,#show-more-btn:outerHTML,#dealers:innerHTML',
+            'hx-on::after-request': "document.querySelector('.dealers').scrollIntoView(true)",
+        }
+    })
+
+#show-more-btn

@@ -1,0 +1,103 @@
+// --
+// base
+// ==
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: fill-available; /* mobile viewport bug fix */
+  margin: 0;
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+}
+
+html {
+  color: var(--text-color);
+  font-size: 62.5%;
+  font-family: $mainFont;
+  background: var(--app-background);
+
+  @media screen and (max-width: 767px) {
+    font-size: calc(10px + 13 * (100vw - 375px) / 447);
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: calc(10px + 4 * (100vw - 768px) / 255);
+  }
+
+  @media (min-width: 1024px) and (max-width: 1360px) {
+    font-size: calc(8px + 2 * (100vw - 1024px) / 336);
+  }
+}
+
+body {
+  @include text;
+
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--scrollbar-thumb-color);
+  }
+}
+
+main {
+  flex: 1;
+  padding: calc(var(--header-height) + 4.4rem) 0 0;
+
+  @include --tablet {
+    padding: calc(var(--header-height) + 2.4rem) 0 0;
+  }
+}
+
+.aside {
+  position: relative;
+
+  @include --tablet {
+    order: -1;
+  }
+}
+
+[class^='_icon'] {
+  display: block;
+}
+
+.transition-disabled * {
+  transition: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.grecaptcha-badge {
+  display: none;
+}
+
+// start sticky footer
+//body {
+//  display: flex;
+//  flex-direction: column;
+//}
+//
+//main {
+//  flex: 1 0 auto;
+//}
+// end
+
+// start цвет автозаполнения в webkit
+//input:-webkit-autofill,
+//input:-webkit-autofill:hover,
+//input:-webkit-autofill:focus,
+//input:-webkit-autofill:active {
+//  -webkit-transition: color 9999s ease-out, background-color 9999s ease-out; /* stylelint-disable-line property-no-vendor-prefix */
+//  -webkit-transition-delay: 9999s; /* stylelint-disable-line property-no-vendor-prefix */
+//}
+// end

@@ -1,0 +1,161 @@
+@mixin text-h0 {
+  font-weight: 700;
+  font-size: 4.8rem;
+  line-height: 130%;
+
+  @include --mobile {
+    font-size: 2.7rem;
+    line-height: 120%;
+  }
+}
+
+@mixin text-h1 {
+  font-weight: 400;
+  font-size: 4.8rem;
+  line-height: 130%;
+
+  @include --mobile {
+    font-size: 3.2rem;
+    line-height: 120%;
+  }
+}
+
+@mixin text-h2 {
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 130%;
+
+  @include --tablet {
+    font-size: 2.4rem;
+  }
+}
+
+@mixin text-h3 {
+  font-weight: 700;
+  font-size: 2.7rem;
+  line-height: 150%;
+}
+
+@mixin text-h4 {
+}
+
+@mixin text-h5 {
+}
+
+@mixin text-h6 {
+}
+
+@mixin text-mob {
+  font-weight: 400;
+  font-size: 2.1rem;
+  line-height: 150%;
+}
+
+@mixin text {
+  font-weight: 400;
+  font-size: 2.1rem;
+  line-height: 150%;
+
+  @include --mobile {
+    @include text-sm;
+  }
+}
+
+@mixin text-sm {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+@mixin text-xs {
+  font-weight: 400;
+  font-size: 1.2rem;
+  font-family: $opensansFont;
+  line-height: 150%;
+}
+
+// big_text в макете
+@mixin text-lg {
+  font-weight: 400;
+  font-size: 2.7rem;
+  line-height: 150%;
+}
+
+@mixin text-bold {
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 150%;
+
+  @include --mobile {
+    line-height: 130%;
+  }
+}
+
+@mixin text-bold-sm {
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: normal;
+
+  @include --mobile {
+    font-size: 1.1rem;
+    line-height: 130%;
+  }
+}
+
+@mixin text-button-bold {
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 150%;
+
+  @include --mobile {
+    font-size: 1.1rem;
+    line-height: 130%;
+  }
+}
+
+@mixin text-button-medium {
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 150%;
+}
+
+@mixin text-button-bold {
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 150%;
+}
+
+@mixin text-button-sm {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 150%;
+}
+
+@mixin text-button {
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 150%;
+}
+
+@mixin caption {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: normal;
+}
+
+@mixin lead {
+  font-weight: 400;
+  font-size: 3.2rem;
+  line-height: 150%;
+
+  @include --mobile{
+    font-size: 2.1rem;
+  }
+}
+
+@mixin lead-secondary {
+  font-weight: 300;
+  font-size: 3.6rem;
+  font-family: $robotoFont;
+  line-height: 150%;
+}

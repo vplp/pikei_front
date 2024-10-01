@@ -1,0 +1,34 @@
+mixin breadcrumbs(props)
+    -
+        var defaultOptions = () => ({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        }), options = {...defaultOptions(), ...props}
+
+    if (options.items.length === 1)
+        ol.breadcrumbs._back(itemscope itemtype='https://schema.org/BreadcrumbList')
+            each item, index in options.items
+                li.breadcrumbs__item(itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem')
+                    +sprite('arrow-left')
+                    a.breadcrumbs__item-link&attributes(item.attributes)
+                        span(itemprop=name) #{item.label}
+                        meta(itemprop='position' content=`${index + 1}`)
+    else
+        ol.breadcrumbs(itemscope itemtype='https://schema.org/BreadcrumbList')
+            each item, index in options.items
+                li.breadcrumbs__item(itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem')
+                    a.breadcrumbs__item-link&attributes(item.attributes)
+                        if (item.label)
+                            span(itemprop=name) #{item.label}
+                        meta(itemprop='position' content=`${index + 1}`)
+                    if (options.items.length - 1 !== index)
+                        //- +sprite('chevron-right')
+                        span.breadcrumbs__delimeter >
+

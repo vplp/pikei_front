@@ -1,0 +1,120 @@
+extends /layout/_layout
+
+include /modules/ui/_breadcrumbs
+include /modules/_contact-form
+include /modules/_spinner
+include /modules/cards/_dealer-card
+
+block variables
+    - const title = 'Где купить'
+
+block content
+    .container
+        +breadcrumbs({
+            items: [
+                {
+                    label: 'Главная',
+                    attributes: {
+                        href: '/',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Каталог',
+                    attributes: {
+                        href: '/catalog.html',
+                        itemprop: 'item',
+                    }
+                },
+                {
+                    label: 'Где купить',
+                    attributes: {
+                        href: '#',
+                        itemprop: 'item',
+                    }
+                },
+            ]
+        })
+    +app-section({
+        title: 'Где купить',
+        pageTitle: true,
+        arrows: true,
+    })
+        +app-grid(3)
+            .text-content.app-grid__span-2
+                p.text-lead Мы ценим наших представителей и предлагаем индивидуальные условия сотрудничества. Наша продукция представлена в 11 городах 一 просто выберите в списке подходящего вам представителя.
+
+    +app-section()
+        .dealers
+            +app-grid(4)
+                .dealers__aside
+                    +btn({
+                        caption: 'Стать диллером',
+                        href: '#contact-us'
+                    })(class='js-scroll-to-link')
+                .dealers__list.app-grid__span-3
+                    .dealers__list-head
+                        .dealers__search
+                            span Показать для:
+                            +ui-select(
+                                {
+                                    attrs: {
+                                        'hx-get': '/dealers-response.html',
+                                        'hx-trigger': 'change',
+                                        'hx-swap': 'multi:#pagination-2:outerHTML,#pagination-1:outerHTML,#show-more-btn:outerHTML,#dealers:innerHTML swap:1s',
+                                    }
+                                }
+                            )
+                                option(selected) Москва
+                                option Санкт-Петербург
+                                optgroup(label="Города")
+                                    each _, index in new Array(20)
+                                        option Город #{index + 1}
+                        .dealers__pagination
+                            +ui-pagination({
+                                attrs: {
+                                    'hx-get': "/dealers-response.html",
+                                    'hx-swap': 'multi:#pagination-2:outerHTML,#pagination-1:outerHTML,#show-more-btn:outerHTML,#dealers:innerHTML swap:1s',
+                                }
+                            })
+                    ul.dealers__items#dealers
+                        +spinner()
+                        each _, index in new Array(10)
+                            li: +dealer-card({
+                                image: {
+                                    src: `/i/c/about/partners/partner-${index + 1}${[1, 8].includes(index + 1) ? '.svg' : '.png'}`,
+                                    alt: 'Самый любимый партнер',
+                                }
+                            })
+        .app-section__foot
+            .ui-pagination-container#pagination
+                .ui-pagination-container__show-more
+                    +btn({
+                        caption: 'Показать еще',
+                    })(
+                        id="show-more-btn",
+                        hx-get="/dealers-response.html",
+                        hx-swap="multi:#pagination-2:outerHTML,#pagination-1:outerHTML,#show-more-btn:outerHTML,#dealers:innerHTML swap:1s"
+                    )
+                .ui-pagination-container__pagination
+                    +ui-pagination({
+                        id: 'pagination-2',
+                        attrs: {
+                            'hx-get': "/dealers-response.html",
+                            'hx-swap': 'multi:#pagination-2:outerHTML,#pagination-1:outerHTML,#dealers:innerHTML swap:1s',
+                            'hx-on::after-request': "document.querySelector('.dealers').scrollIntoView(true)",
+                        }
+                    })
+
+    +app-section({
+        title: 'Стать дилером',
+        variant: 'white',
+        arrows: true
+    })(id="contact-us")
+        +contact-form({
+            hiddenValue: '%вставить сюда тему письма%'
+        })
+
+
+
+

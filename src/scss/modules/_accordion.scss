@@ -1,0 +1,61 @@
+.accordion {
+  @include --tablet {
+    .list-link {
+      gap: 0.8rem;
+      padding: 1.6rem 0;
+
+      time {
+        display: none;
+      }
+    }
+  }
+
+  &__inner {
+    padding: 3.2rem 0 6.4rem;
+    overflow: hidden;
+  }
+
+  &__trigger {
+    .list-link {
+      border-bottom: 1px solid transparent;
+      transition: border-color 0s 0.35s ease;
+
+      ._opened & {
+        border-bottom: 1px solid var(--color-grey-1);
+        transition: border-color $default-tr;
+      }
+    }
+  }
+
+  ._icon-minus {
+    opacity: 0;
+  }
+
+  ._icon-minus,
+  ._icon-plus {
+    position: absolute;
+    right: 0;
+    transition: opacity $default-tr;
+
+    @include --tablet {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+
+  &._opened {
+    ._icon-plus {
+      opacity: 0;
+    }
+
+    ._icon-minus {
+      opacity: 1;
+    }
+  }
+
+}
+
+.accordions {
+  margin: 6.4rem 0 0;
+}

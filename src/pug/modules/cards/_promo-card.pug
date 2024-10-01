@@ -1,0 +1,23 @@
+mixin promo-card(props = {})
+    -
+        const {
+            image = {
+                src: '/i/c/clients/catalog-1.jpg',
+            },
+            button = {
+                caption: 'Скачать каталог',
+                href: '#',
+                variant: 'outline',
+            }
+        } = props
+
+    .promo-card
+        .promo-card__inner
+            .promo-card__image
+                img&attributes(image)
+            .promo-card__button-wrapper
+                +btn({
+                    caption: button.caption,
+                    href: button.href,
+                    variant: button.variant,
+                })

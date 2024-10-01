@@ -1,0 +1,21 @@
+mixin ui-input(props = {})
+    -
+        const Type = {
+            CHECKBOX: 'checkbox',
+            RADIO: 'radio',
+        }
+        const {
+            id = 'ui-input',
+            name = 'ui-input',
+            value = 'value',
+            type = 'checkbox',
+            isDisabled = false,
+            isInvalid = false,
+            isChecked = false,
+        } = props
+
+    .ui-input(class={'_disabled': isDisabled, '_invalid': isInvalid, [`_${type}`]: type})
+        input.visually-hidden(type= type, id= id, name= name, value= value, disabled= isDisabled, checked= isChecked)&attributes(attributes)
+        label(for= id)
+            if type === Type.CHECKBOX
+                +sprite('check')
