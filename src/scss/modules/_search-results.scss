@@ -5,6 +5,12 @@
   border-radius: 0.8rem;
   border-radius: 0.8rem;
   background-color: var(--element-background);
+
+  &._catalog {
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+  }
 }
 
 .search-result {
