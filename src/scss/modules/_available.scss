@@ -1,0 +1,34 @@
+.available {
+    span {
+      display: flex;
+      align-items: center;
+      column-gap: .6rem;
+
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 120%;
+      color: var(--color-success);
+
+      &::before {
+        content: '';
+        display: block;
+        width: 1.6rem;
+        height: 1.6rem;
+        background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.10782 4.57496C1.40524 5.71673 1 7.06104 1 8.5C1 12.6421 4.35786 16 8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C7.90338 1 7.32303 1.06966 6.76664 1.2013' stroke='%234D9900' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M4 3.25C4.41421 3.25 4.75 2.91421 4.75 2.5C4.75 2.08579 4.41421 1.75 4 1.75C3.58579 1.75 3.25 2.08579 3.25 2.5C3.25 2.91421 3.58579 3.25 4 3.25Z' fill='%234D9900'/%3E%3Cpath d='M11.125 5.96875C8.71183 9.09375 7.50524 10.6563 7.50524 10.6563C7.50524 10.6563 6.83683 9.96193 5.5 8.5733' stroke='%234D9900' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+
+    &._to_order {
+      span {
+        color: var(--text-color);
+
+        &::before {
+          content: '';
+          background-image: url("data:image/svg+xml,%3Csvg width='17' height='17' viewBox='0 0 17 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.29248 8.50085C7.29248 9.24383 7.89075 9.84636 8.62773 9.84636C9.14553 9.84636 9.58927 9.54645 9.8108 9.11254L9.8145 9.11593L12.252 4.68451L7.9729 7.32871L7.97694 7.33278C7.57057 7.56381 7.29248 7.99739 7.29248 8.50085Z' fill='%232F2F2F'/%3E%3Cpath d='M14.007 2.0895C12.6387 0.884452 10.8709 0.115009 8.85083 0V2.04472C10.5342 2.15261 11.526 2.69135 12.5219 3.53204L14.007 2.0895Z' fill='%232F2F2F'/%3E%3Cpath d='M14.96 7.8634H16.9868C16.8508 5.82783 16.0606 4.15528 14.8338 2.78467L13.3999 4.22076C14.2638 5.21818 14.8321 6.50635 14.96 7.8634Z' fill='%232F2F2F'/%3E%3Cpath d='M14.9695 8.88112C14.7551 12.2737 11.9657 14.9644 8.55858 14.9644C5.01172 14.9644 2.02004 12.0658 2.02004 8.49199C2.02004 5.08989 4.81073 2.30626 7.84079 2.04503V0.000305176C3.46404 0.264589 0 3.97542 0 8.50081C0 13.1972 3.84481 17 8.50539 17C13.0276 17 16.7842 13.2915 17 8.88112H14.9695Z' fill='%232F2F2F'/%3E%3C/svg%3E ");
+        }
+      }
+    }
+  }

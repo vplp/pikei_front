@@ -16,6 +16,23 @@
   }
 }
 
+@mixin link-red {
+  position: relative;
+  display: inline-block;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+
+  @include hover {
+    text-decoration: none;
+  }
+}
+
 .link {
   @include link;
+}
+
+.link-red {
+  @include link-red;
 }

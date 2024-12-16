@@ -25,6 +25,10 @@
     }
   }
 
+  &._footer {
+    margin: 0rem 0 10rem;
+  }
+
   &__list {
     @include flex($gap: 3.6rem, $flex-wrap: wrap);
 

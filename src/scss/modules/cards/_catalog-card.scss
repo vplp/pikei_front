@@ -37,8 +37,8 @@
   &__title {
     @include text-bold-sm;
 
+    margin-bottom: .6rem;
     max-width: 100%;
-    min-height: 4rem;
     overflow: hidden;
     text-align: center;
     text-transform: uppercase;
@@ -46,6 +46,7 @@
     @include --mobile {
       align-items: flex-start;
       min-height: 2.8rem;
+      font-size: 1.4rem;
     }
 
     ._product & {
@@ -62,7 +63,57 @@
     }
   }
 
-  &__favorites {
+  &__article {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 130%;
+    text-align: center;
+    color: var(--text-color-gray);
+
+    @include --tablet {
+      font-size: 1.2rem;
+      line-height: 120%;
+    }
+  }
+
+  &__available {
+    margin-bottom: 1rem;
+
+    span { 
+      justify-content: center;
+    }
+
+    @include --tablet {
+      margin-bottom: .2rem;
+
+      span { 
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  &__btn {
+    margin: 0px auto;
+    margin-top: auto;
+    z-index: $base_project_layer;
+
+    .btn {
+      padding: 1rem 1.4rem;
+      font-size: 1.4rem;
+
+      @include --tablet {
+        border-radius: 2rem;
+        padding: .8rem 1.4rem;
+        font-size: 1rem;
+      }
+
+      @include --phone {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &__cart {
     position: absolute;
     top: 2.4rem;
     right: 2.4rem;
@@ -73,7 +124,7 @@
       right: 1rem;
     }
 
-    &._favorite {
+    &._cart {
       svg {
         color: var(--color-accent);
         stroke-width: 3;

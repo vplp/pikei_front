@@ -7,12 +7,95 @@ class Header extends Module {
 
     this.lastScrollTop = 0
     this.delta = 15
+    this.dropDownItems = document.querySelectorAll('[data-nav-dropdown-root]')
+    this.dropDownChevrons = document.querySelectorAll(
+      '[data-nav-dropdown-chevron]',
+    )
   }
 
   init() {
     this.onResize()
     this.ctx.on('resize', this.onResize)
     document.addEventListener('scroll', this.onScroll)
+
+    const mediaQuery = window.matchMedia('(min-width: 1023px)')
+    mediaQuery.matches ? this.onDesktop() : this.onMobile()
+    mediaQuery.addEventListener('change', (e) => {
+      e.matches ? this.onDesktop() : this.onMobile()
+    })
+  }
+
+  onDesktop() {
+    this.checkHoverMenuItems()
+  }
+
+  onMobile() {
+    this.checkClickMenuItems()
+  }
+
+  checkHoverMenuItems() {
+    if (!this.dropDownItems || this.dropDownItems.length === 0) {
+      return
+    }
+
+    this.dropDownItems.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        this.setVisible(item, true)
+      })
+
+      item.addEventListener('mouseleave', () => {
+        this.setVisible(item, false)
+      })
+    })
+  }
+
+  checkClickMenuItems() {
+    if (!this.dropDownChevrons || this.dropDownChevrons.length === 0) {
+      return
+    }
+
+    // Обработчик для кликов по иконкам
+    this.dropDownChevrons.forEach((item) => {
+      const rootEl = item.closest('[data-nav-dropdown-root]')
+
+      item.addEventListener('click', (e) => {
+        e.stopPropagation() // Предотвращаем всплытие, чтобы не закрыть текущий rootEl
+
+        const isVisible = rootEl.classList.contains('_visible')
+
+        // Закрываем все остальные rootEl
+        this.dropDownChevrons.forEach((otherItem) => {
+          const otherRootEl = otherItem.closest('[data-nav-dropdown-root]')
+          if (otherRootEl !== rootEl) {
+            this.setVisible(otherRootEl, false)
+          }
+        })
+
+        // Тогглим текущий rootEl
+        this.setVisible(rootEl, !isVisible)
+      })
+    })
+
+    // Обработчик для кликов вне элементов
+    document.addEventListener('click', (e) => {
+      this.dropDownChevrons.forEach((item) => {
+        const rootEl = item.closest('[data-nav-dropdown-root]')
+        if (
+          rootEl.classList.contains('_visible') &&
+          !rootEl.contains(e.target)
+        ) {
+          this.setVisible(rootEl, false)
+        }
+      })
+    })
+  }
+
+  setVisible(element, isVisible) {
+    if (isVisible) {
+      element.classList.add('_visible')
+    } else {
+      element.classList.remove('_visible')
+    }
   }
 
   destroy() {

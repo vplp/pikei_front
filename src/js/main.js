@@ -6,6 +6,7 @@ import NiceSelect from 'nice-select2/dist/js/nice-select2'
 import dayjs from 'dayjs'
 import gsap from 'gsap'
 import Cookies from './modules/Cookies'
+import ScrollTo from './modules/ScrollTo'
 
 window.APP = APP
 
@@ -126,7 +127,7 @@ APP.on('ready', () => {
     .querySelectorAll(
       `
         .app-section,
-        [class*="card"],
+        [class*="card"]:not(.dropdown-catalog__card-sections),
         header,
         footer,
         .btn,
@@ -150,6 +151,8 @@ APP.on('ready', () => {
       `,
     )
     .forEach((element) => observeSubscribe(element))
+
+  ScrollTo.autoScroll()
 })
 
 /**

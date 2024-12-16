@@ -87,6 +87,10 @@
     color: var(--color-accent);
     background-color: var(--color-contrast);
 
+    &-bold {
+      border: 2px solid var(--color-accent);
+    }
+
     @include active {
       color: var(--color-accent-dark);
       background-color: var(--color-contrast);

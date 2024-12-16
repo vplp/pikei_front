@@ -7,6 +7,7 @@ import Accordion from './Accordion'
 import CatalogPanels from './CatalogPanels'
 import Share from './Share'
 import RelatedProductsSlider from './RelatedProductsSlider'
+import ViewedProductsSlider from './ViewedProductsSlider'
 import TextContentSlider from './TextContentSlider'
 import Tabs from './Tabs'
 import Search from './Search'
@@ -25,6 +26,7 @@ export const modules = {
   '.js-catalog-panels': CatalogPanels,
   '.js-share': Share,
   '.js-related-products-slider': RelatedProductsSlider,
+  '.js-viewed-products-slider': ViewedProductsSlider,
   '.js-text-content-slider': TextContentSlider,
   '.js-tabs': Tabs,
   '.js-search': Search,

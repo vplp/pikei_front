@@ -37,6 +37,21 @@
     }
   }
 
+  &._under_white {
+    @include --mobile {
+      margin-top: 8.6rem;
+    }
+
+  }
+
+  &._cart {
+    margin: 0px 0 2.7rem;
+
+    .app-section__head {
+      margin: 0 0 2rem;
+    }
+  }
+
   &__head {
     display: flex;
     gap: 1rem;

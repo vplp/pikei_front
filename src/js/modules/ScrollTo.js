@@ -20,12 +20,30 @@ class ScrollTo extends Module {
   handleScrollTo(e) {
     e.preventDefault()
 
-    const targetId = e.target.getAttribute('href')
-    const marginRoot = e.target.dataset.marginRoot
+    console.log('margin-root', e.target.dataset.marginRoot)
+
+    var targetId = e.target.getAttribute('href')
+    if (!targetId) {
+      targetId = e.target.closest('.js-scroll-to-link').getAttribute('href')
+    }
+
+    const linkPage = e.target.getAttribute('data-open-page')
+    if (linkPage) {
+      localStorage.setItem('scrollTarget', targetId)
+      localStorage.setItem('marginRoot', e.target.dataset.marginRoot)
+      window.location.href = linkPage
+      return
+    }
+
+    ScrollTo.scrollToTarget(targetId, e.target.dataset.marginRoot)
+  }
+
+  static scrollToTarget(targetId, marginRoot = null) {
     const documentStyle = getComputedStyle(document.documentElement)
     const headerHeight = parseFloat(
       documentStyle.getPropertyValue('--header-height'),
     )
+
     const target = document.querySelector(targetId)
     const offsetTarget = marginRoot && target.closest(marginRoot)
 
@@ -37,6 +55,19 @@ class ScrollTo extends Module {
       top,
       behavior: 'smooth',
     })
+  }
+
+  static autoScroll() {
+    const scrollTarget = localStorage.getItem('scrollTarget')
+    const marginRoot = localStorage.getItem('marginRoot')
+
+    if (scrollTarget) {
+      window.onload = function () {
+        ScrollTo.scrollToTarget(scrollTarget, marginRoot)
+        localStorage.removeItem('scrollTarget')
+        localStorage.removeItem('marginRoot')
+      }
+    }
   }
 }
 

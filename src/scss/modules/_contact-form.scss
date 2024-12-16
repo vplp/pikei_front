@@ -1,9 +1,24 @@
 .contact-form {
 
-  &._favorites {
+  &._cart {
     .app-grid {
-      grid-template-rows: repeat(4, auto);
+      // grid-template-rows: repeat(4, auto);
       column-gap: 9.6rem;
+
+      .contact-form__wrapper {
+        height: min-content;
+        position: sticky;
+        top: calc(var(--header-height) + 12px);
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 4rem;
+        order: 3;
+
+        @include --tablet {
+          position: static;
+        }
+      }
 
       @include --tablet {
         grid-template-rows: auto;
@@ -19,9 +34,9 @@
     }
   }
 
-  &__favorites {
+  &__cart {
     position: relative;
-    grid-row: span 4;
+    // grid-row: span 4;
     grid-column: span 2;
     order: 1;
 
@@ -32,10 +47,15 @@
   }
 
   &__description {
-    max-width: 31.7rem;
+    // max-width: 31.7rem;
     color: var(--color-grey-3);
 
-    ._favorites & {
+    img {
+      height: 12rem;
+      object-fit: contain;
+    }
+
+    ._cart & {
       display: none;
 
       @include --tablet {
@@ -44,12 +64,17 @@
         margin: 3.2rem 0 0;
       }
     }
+
+    @include --tablet {
+      display: flex;
+      align-items: center;
+    }
   }
 
   &__agreement {
     @include text-sm;
 
-    ._favorites & {
+    ._cart & {
       order: 6;
 
       .text-content {
@@ -82,7 +107,7 @@
       grid-column: 1 / 2;
     }
 
-    ._favorites & {
+    ._cart & {
       grid-column: 3 / 4;
       grid-template-columns: 1fr;
       order: 2;
@@ -116,7 +141,7 @@
       grid-column: auto;
     }
 
-    ._favorites & {
+    ._cart & {
       grid-row: auto;
       grid-column: auto;
     }
@@ -140,7 +165,7 @@
   &__submit-button {
     margin-left: auto;
 
-    ._favorites & {
+    ._cart & {
       order: 5;
       margin-left: 0;
 
@@ -166,7 +191,7 @@
     gap: 1rem;
     padding: 0 5rem 0 0;
 
-    ._favorites & {
+    ._cart & {
       order: 3;
       padding: 0;
     }

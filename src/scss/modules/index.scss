@@ -22,6 +22,7 @@
 @import 'app-popup';
 @import 'aside';
 
+@import 'available';
 @import 'hero-slider';
 @import 'benefits';
 @import 'about-main';
@@ -46,6 +47,7 @@
 @import 'product';
 @import 'specs-group';
 @import 'related-products-slider';
+@import 'viewed-products-slider';
 @import 'search-results';
 @import 'dealers';
 @import 'news';
@@ -67,7 +69,7 @@
 @import 'cards/dealer-card';
 @import 'cards/news-card';
 @import 'cards/client-catalog-card';
-@import 'cards/favorites-card';
+@import 'cards/cart-card';
 @import 'cards/promo-card';
 
 // Text Content

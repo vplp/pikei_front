@@ -8,20 +8,20 @@
   }
 
   &__items {
-    max-width: 47.5rem;
-    margin: 2.4rem 0 0;
+    // max-width: 44rem;
+    margin: .2rem 0 0;
   }
 
   &__item {
-    @include text-sm;
+    font-size: 1.8rem;
+    line-height: 170%;
 
     display: flex;
     flex-wrap: wrap;
     width: 100%;
 
     @include --mobile {
-      @include caption;
-
+      font-size: 1.4rem;
       line-height: 150%;
     }
   }

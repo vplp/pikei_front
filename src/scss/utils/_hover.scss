@@ -1,13 +1,22 @@
 @mixin hover {
-  @media (hover: hover) {
+  @media (min-width: $tablet) {
     &:hover {
       @content;
     }
   }
 }
 
+@mixin hover-transition($properties: all, $duration: 0.3s, $timing-function: ease) {
+  @media (min-width: $tablet) {
+    &:hover {
+      @content;
+      transition: $properties $duration $timing-function;
+    }
+  }
+}
+
 @mixin active {
-  @media (hover: hover) {
+  @media (min-width: $tablet) {
     &:hover:active {
       @content;
     }

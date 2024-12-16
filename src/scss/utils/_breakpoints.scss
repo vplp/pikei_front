@@ -1,3 +1,9 @@
+@mixin --laptop {
+  @media (max-width: $laptop) {
+    @content;
+  }
+}
+
 @mixin --tablet {
   @media (max-width: $tablet) {
     @content;
@@ -10,7 +16,19 @@
   }
 }
 
+@mixin --phone {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+
 // from
+@mixin --from-laptop {
+  @media (min-width: $from_laptop) {
+    @content;
+  }
+}
+
 @mixin --from-tablet {
   @media (min-width: $from_tablet) {
     @content;
@@ -22,3 +40,10 @@
     @content;
   }
 }
+
+@mixin --from-phone {
+  @media (min-width: $phone) {
+    @content;
+  }
+}
+
