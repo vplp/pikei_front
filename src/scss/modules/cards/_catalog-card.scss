@@ -124,6 +124,10 @@
       right: 1rem;
     }
 
+    svg {
+      color: var(--color-fullblack);
+    }
+
     &._cart {
       svg {
         color: var(--color-accent);

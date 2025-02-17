@@ -6,7 +6,7 @@
 .text-content {
   color: var(--text-color);
 
-  p {
+  p:not(.text-lead) {
     font-size: 1.8rem;
   }
 

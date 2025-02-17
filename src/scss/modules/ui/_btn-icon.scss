@@ -5,6 +5,7 @@
   padding: 0;
   border: none;
   background: transparent;
+  color: var(--color-fullblack);
 
   @include --tablet {
     // max-width: fit-content;
