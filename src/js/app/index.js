@@ -42,6 +42,8 @@ class App extends Emittery {
     await this.initModules()
 
     this.isReady = true
+
+    this.showTelegramWidget()
   }
 
   async refresh() {
@@ -73,6 +75,27 @@ class App extends Emittery {
 
         if (index === plugin.length - 1) resolve({})
       })
+    })
+  }
+
+  showTelegramWidget() {
+    const tgWidgetEl = document.querySelector('[data-tg-widget]')
+    const tgWidgetCloseEl = document.querySelector('[data-tg-widget-close]')
+    const tgWidgetLinkEl = document.querySelector('[data-tg-widget-link]')
+
+    setTimeout(() => {
+      if (tgWidgetEl && !sessionStorage.getItem('tg-widget-link-clicked')) {
+        tgWidgetEl.style.display = 'flex'
+      }
+    }, 30000)
+
+    tgWidgetLinkEl?.addEventListener('click', () => {
+      sessionStorage.setItem('tg-widget-link-clicked', '1')
+      tgWidgetEl.style.display = 'none'
+    })
+
+    tgWidgetCloseEl?.addEventListener('click', () => {
+      tgWidgetEl.style.display = 'none'
     })
   }
 
