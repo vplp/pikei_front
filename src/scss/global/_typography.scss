@@ -58,6 +58,15 @@ h6,
   @include text-button;
 }
 
+.text-bold-medium {
+  @include text-bold-medium;
+}
+
 .text-lead {
   @include lead;
+}
+
+.text-accent {
+  color: var(--color-accent);
+  font-weight: 700;
 }

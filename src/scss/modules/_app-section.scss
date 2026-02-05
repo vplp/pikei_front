@@ -14,9 +14,17 @@
     margin: 0 0 9rem;
   }
 
+  &._not-overflow {
+    overflow: hidden;
+
+    .container {
+      overflow: hidden;
+    }
+  }
+
   &._white {
     @include --mobile {
-      margin: 0;
+      // margin: 0;
     }
 
     .container {
@@ -25,8 +33,6 @@
       background-color: var(--element-background);
 
       @include --tablet {
-        width: 100%;
-        max-width: 100%;
         padding: 5.8rem 4rem;
         border-radius: 2.4rem 2.4rem 0 0;
       }
@@ -44,8 +50,8 @@
 
     .container {
       @include --tablet {
-        width: 100%;
-        max-width: 100%;
+        // width: 100%;
+        // max-width: 100%;
         padding: 5.8rem 4rem;
         border-radius: 2.4rem 2.4rem;
       }
@@ -64,6 +70,79 @@
 
     .app-section__head {
       margin: 0 0 2rem;
+    }
+  }
+
+  &._background {
+    .container {
+      position: relative;
+      border-radius: 2.4rem;
+      overflow: hidden;
+    }
+
+    .app-section__title {
+      color: var(--color-contrast);
+
+      svg {
+        color: currentColor;
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+
+    .app-section__background {
+      inset: 0;
+      position: absolute;
+
+      &::before {
+        background-image: var(--accent-gradient);
+        content: "";
+        display: block;
+        height: 100%;
+        inset: 0;
+        position: absolute;
+        width: 100%;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .app-section__subtitle {
+      font-size: 4.8rem;
+      font-weight: 700;
+      line-height: 130%;
+      margin-bottom: 2rem;
+      color: var(--color-contrast);
+
+      @include --mobile {
+        font-size: 2.8rem;
+        margin-bottom: 3rem;
+      }
+    }
+
+    .app-section__description {
+      font-size: 3.2rem;
+      line-height: 130%;
+      color: var(--color-contrast);
+
+      @include --mobile {
+        font-size: 2.1rem;
+      }
+    }
+
+    .app-section__content {
+      padding: 4rem;
+      z-index: $base_project_layer;
+
+      @include --mobile {
+        padding: 1.2rem;
+      }
     }
   }
 
@@ -89,9 +168,9 @@
 
     svg {
       flex-shrink: 0;
-      align-self: center;
+      // align-self: center;
       width: 8.1rem;
-      height: 2.9rem;
+      // height: 2.9rem;
       color: var(--color-accent);
 
       @include --tablet {
@@ -142,7 +221,7 @@
 
     display: flex;
     gap: 1.7rem;
-    align-items: center;
+    align-items: baseline;
 
     ._title-sm & {
       @include text-h3;

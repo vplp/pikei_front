@@ -104,6 +104,12 @@
       }
     }
 
+    &._top {
+      .hero-slide__title {
+        margin-top: unset;
+      }
+    }
+
     ._slim & {
       padding: 11.5rem 5.7rem;
 
@@ -150,8 +156,10 @@
       margin-bottom: 1.6rem;
     }
 
-    @include --mobile {
-      display: none;
+    &:not(._mobile-visible) {
+      @include --mobile {
+        display: none;
+      }
     }
   }
 

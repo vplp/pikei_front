@@ -1,4 +1,5 @@
 .accordion {
+
   @include --tablet {
     .list-link {
       gap: 0.8rem;
@@ -13,6 +14,12 @@
   &__inner {
     padding: 3.2rem 0 6.4rem;
     overflow: hidden;
+  }
+
+  &__content {
+    transition: 0.5s;
+    overflow: hidden;
+    height: 0px;
   }
 
   &__trigger {

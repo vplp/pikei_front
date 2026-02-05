@@ -10,6 +10,27 @@ import ScrollTo from './modules/ScrollTo'
 
 window.APP = APP
 
+document.addEventListener('click', function (event) {
+  const target = event.target.closest('[data-click]')
+
+  if (!target) return
+
+  const ymClickType = target.dataset.click
+  switch (ymClickType) {
+    case 'phone':
+      ym(50571025, 'reachGoal', 'call_the_number')
+      break
+
+    case 'optom':
+      ym(50571025, 'reachGoal', 'opt_click')
+      break
+
+    default:
+      console.warn('Неизвестный data-click:', ymClickType)
+      break
+  }
+})
+
 APP.on('ready', () => {
   APP.isShown = true
 

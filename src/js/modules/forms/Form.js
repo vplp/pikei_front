@@ -20,6 +20,8 @@ export default class Form {
     this.submitBtn = form.querySelector('.js-submit')
     this.dropzones = []
     this.grecaptcha_key = '6LcgpFMqAAAAANo2Pic9fzU_P-gS6No9LuHThiMG'
+    this.smartсaptcha_key =
+      'ysc1_ApP0BnY83Ba4B5fkGpS2bvkhCSgvViQUqSQIn6Mud95d530b'
 
     this.form.querySelectorAll('.js-drop-file').forEach((dropzone) => {
       this.dropzones.push(initCustomDropzone(dropzone))
@@ -27,9 +29,7 @@ export default class Form {
 
     this.validatedHandler = () => {
       this.loader?.classList.add('_visible')
-
       this.form.submit()
-      // this.submit()
     }
 
     this.createValidator()

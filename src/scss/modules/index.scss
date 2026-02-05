@@ -4,6 +4,7 @@
 
 // UI
 
+@import 'ui/privacy-checkbox';
 @import 'ui/btn';
 @import 'ui/btn-icon';
 @import 'ui/text-field';
@@ -63,6 +64,9 @@
 @import 'cookie-popup';
 @import 'tg-bottom';
 @import 'tg-widget';
+@import 'faq';
+@import 'transport-companies';
+@import 'delivery';
 
 // Cards
 
@@ -78,3 +82,8 @@
 
 @import 'text-content';
 @import 'text-content-slider';
+
+
+// Cookie Yes
+
+@import 'cookie-yes';

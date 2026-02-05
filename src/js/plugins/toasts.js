@@ -22,6 +22,8 @@ class Toasts {
     node = document.getElementById('cookie-popup'),
     onClose = () => {},
   }) {
+    if (!node) return
+
     const toast = Toastify({
       node,
       text: 'Мы используем куки на нашем сайте',

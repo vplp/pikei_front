@@ -11,6 +11,7 @@ class ContactForm extends Form {
   async sendForm() {
     let self = this
     const url = self.form.action
+    const ymFormType = self.form.dataset.form
     const formData = new FormData(self.form)
     const { successMessage, errorMessage } = self.form.dataset
 
@@ -19,25 +20,55 @@ class ContactForm extends Form {
       body: formData,
     }
 
-    if (self.form.querySelector('[name="recaptcha_response"]')) {
+    //smartCaptcha
+    const yaCaptchaEl = this.form.querySelector('#ya-captcha')
+    if (yaCaptchaEl && window.smartCaptcha) {
+      const token = await new Promise((resolve) => {
+        window.smartCaptcha.render('ya-captcha', {
+          sitekey: this.smartсaptcha_key,
+          invisible: true,
+          callback: resolve,
+          hideShield: true,
+        })
+
+        window.smartCaptcha.execute()
+      })
+
+      formData.set('smart-token', token)
+    }
+
+    //recaptcha
+    if (this.form.querySelector('[name="recaptcha_response"]')) {
       await grecaptcha.ready(async () => {
-        const token = await grecaptcha.execute(self.grecaptcha_key, {
+        const token = await grecaptcha.execute(this.grecaptcha_key, {
           action: 'submit',
         })
-        fetchParams.body.set('recaptcha_response', token)
-        const res = await fetch(url, fetchParams)
 
+        formData.set('recaptcha_response', token)
+
+        const res = await fetch(url, fetchParams)
         if (res.ok) window.appPopup.open(successMessage)
         else window.appPopup.open(errorMessage)
       })
-
       return
     }
 
     const res = await fetch(url, fetchParams)
 
-    if (res.ok) window.appPopup.open(successMessage)
-    else window.appPopup.open(errorMessage)
+    if (res.ok) {
+      window.appPopup.open(successMessage)
+
+      switch (ymFormType) {
+        case 'call_us':
+          ym(50571025, 'reachGoal', 'contact_us_form')
+          break
+
+        default:
+          break
+      }
+    } else {
+      window.appPopup.open(errorMessage)
+    }
   }
 }
 

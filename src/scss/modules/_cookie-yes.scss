@@ -1,0 +1,219 @@
+div.cky-consent-container {
+  &.cky-banner-bottom {
+    max-width: 147.2rem;
+    width: calc(100% - 8rem);
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .cky-consent-bar {
+      border-radius: 16px;
+      border: 1px solid var(--color-grey-8);
+      box-shadow: none;
+      background: var(--element-background);
+      padding: 32px 40px;
+
+      @include --tablet {
+        padding: 20px 16px;
+      }
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: underline 1px transparent;
+      transition:
+        color 0.35s cubic-bezier(0.32, 0.94, 0.6, 1),
+        text-decoration-color 0.35s cubic-bezier(0.32, 0.94, 0.6, 1),
+        -webkit-text-decoration-color 0.35s cubic-bezier(0.32, 0.94, 0.6, 1);
+
+      &:hover {
+        text-underline-offset: 4px;
+        text-decoration-color: var(--color-accent);
+      }
+    }
+
+    .cky-consent-bar .cky-notice-des 
+    {
+      p {
+        color: var(--color-grey-3);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 150%;
+      }
+
+      @include --mobile {
+        padding: 0px;
+      }
+    }
+
+    @include --tablet {
+      transform: translateX(0%);
+      left: 4rem;
+      max-width: calc(100% - 14rem);
+    }
+    
+    @include --mobile {
+      transform: translateX(0%);
+      left: 1.6rem;
+      bottom: 1.6rem;
+      max-width: calc(100% - 10rem);
+    }
+  }
+}
+
+div.cky-notice {
+  .cky-notice-btn-wrapper {
+    margin-left: 0;
+
+    .cky-btn {
+      text-transform: uppercase;
+      border-radius: 16px;
+      padding: 16px 24px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 100%;
+
+      @include --mobile {
+        padding: 16px 10px;
+      }
+    }
+
+    @include --mobile {
+      flex-wrap: wrap;
+      padding: 0px;
+    }
+  }
+
+  .cky-title {
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 120%;
+    text-transform: uppercase;
+
+    @include --mobile { padding: 0px; }
+  }
+
+  .cky-notice-group {
+    align-items: flex-start;
+    gap: 28px 60px;
+
+    @include --tablet {
+      flex-direction: column;
+    }
+  }
+}
+
+div.cky-modal {
+  .cky-footer-wrapper {
+    div:last-child {
+      display: none !important;
+    }
+  }
+
+  .cky-prefrence-btn-wrapper {
+    .cky-btn {
+      border-radius: 16px;
+      padding: 16px 24px;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 100%;
+      text-transform: uppercase;
+    }
+
+    gap: 24px 24px;
+
+    @include --mobile {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  .cky-audit-table {
+    border-radius: 12px;
+
+    .cky-cookie-des-table {
+      font-size: 14px;
+    }
+
+    .cky-empty-cookies-text {
+      font-size: 14px;
+      padding: 16px 12px;
+    }
+  }
+
+  .cky-accordion {
+    border-bottom: 1px solid var(--color-grey-8);
+
+    .cky-accordion-item {
+      margin-top: 16px;
+    }
+
+    .cky-accordion-header {
+      .cky-accordion-btn {
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+
+      .cky-always-active {
+        color: var(--color-accent);
+      }
+
+      .cky-accordion-header-des {
+        margin: 12px 0 16px 0;
+      }
+    }
+  }
+
+  .cky-preference-center {
+    width: 900px;
+  }
+
+  .cky-preference-header {
+    padding: 32px 40px;
+
+    .cky-btn-close img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .cky-preference-title {
+      text-transform: uppercase;
+    }
+  }
+
+  .cky-preference-body-wrapper {
+    padding: 0px 40px;
+  }
+
+  .cky-preference-content-wrapper {
+    padding: 16px 0px;
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    .cky-show-desc-btn {
+      display: block;
+      color: var(--color-accent) !important;
+      text-decoration: underline 1px transparent;
+      transition:
+        color 0.35s cubic-bezier(0.32, 0.94, 0.6, 1),
+        text-decoration-color 0.35s cubic-bezier(0.32, 0.94, 0.6, 1),
+        -webkit-text-decoration-color 0.35s cubic-bezier(0.32, 0.94, 0.6, 1);
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--color-accent) !important;
+        text-underline-offset: 4px;
+      }
+    }
+  }
+}
+
+div.video-placeholder-normal {
+  display: none !important;
+}
+
+.cky-btn-revisit-wrapper {display: none !important;}

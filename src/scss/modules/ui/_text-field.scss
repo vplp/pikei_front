@@ -60,6 +60,15 @@
     }
   }
 
+  &.contact-form__agreement > label {
+    pointer-events: all;
+    white-space: normal;
+    position: relative;
+    width: 100%;
+    top: 0;
+    transform: unset;
+  }
+
   > input,
     textarea {
     @include text-sm;
@@ -207,5 +216,9 @@
     bottom: 0;
     color: var(--error-color);
     transform: translateY(110%);
+  }
+
+  &.contact-form__agreement .error-label {
+    left: 0;
   }
 }

@@ -25,6 +25,12 @@ export default class Validator extends Emittery {
         errorMessage: 'Заполните это поле',
       },
     ],
+    checkbox: [
+      {
+        rule: 'required',
+        errorMessage: 'Вы должны согласиться с условиями',
+      },
+    ],
     file: [
       {
         rule: 'minFilesCount',

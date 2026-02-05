@@ -91,6 +91,16 @@
   }
 }
 
+@mixin text-bold-medium {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 150%;
+
+  @include --mobile {
+    line-height: 130%;
+  }
+}
+
 @mixin text-bold-sm {
   font-weight: 700;
   font-size: 1.6rem;

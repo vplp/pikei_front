@@ -2,7 +2,7 @@
   display: flex;
   gap: 1.5rem;
 
-  svg {
+  svg, img {
     @include box(4rem);
   }
 

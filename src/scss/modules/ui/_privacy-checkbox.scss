@@ -1,0 +1,49 @@
+.privacy-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+    }
+
+    .privacy-checkbox input {
+        position: absolute;
+        opacity: 0;
+        width: 1.8rem;
+        height: 1.8rem;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    .checkmark {
+        width: 1.8rem;
+        min-width: 1.8rem;
+        height: 1.8rem;
+        margin-top: .2rem;
+        border: 2px solid var(--color-grey-1);
+        border-radius: .4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    }
+
+    .checkmark svg {
+        width: 1.8rem;
+        height: 1.8rem;
+        stroke: var(--element-background);
+        stroke-width: 3px;
+        fill: none;
+        display: none;
+    }
+
+    .privacy-checkbox input:checked + .checkmark {
+        background-color: var(--color-accent);
+        border-color: var(--color-accent);
+    }
+
+    .privacy-checkbox input:checked + .checkmark svg {
+        display: block;
+    }
